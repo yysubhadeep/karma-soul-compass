@@ -8,6 +8,11 @@ export interface ArchetypeData {
   lifeStages: string;
   healingPractices: string;
   careerPaths: string[];
+  vedicInsights: {
+    view: string;
+    startDoing: string[];
+    stopDoing: string[];
+  };
 }
 
 export const archetypeInsights: Record<string, ArchetypeData> = {
@@ -19,7 +24,34 @@ export const archetypeInsights: Record<string, ArchetypeData> = {
     shadows: "Overworking, rigidity, suppressing emotional needs",
     lifeStages: "Early responsibility, mid-life leadership, legacy wisdom",
     healingPractices: "Journaling, body relaxation, trust-building with others",
-    careerPaths: ["Policy", "Public Service", "Manufacturing", "Finance", "Law", "Real Estate", "Education"]
+    careerPaths: ["Policy", "Public Service", "Manufacturing", "Finance", "Law", "Real Estate", "Education"],
+    vedicInsights: {
+      view: "Embodiment of Karma Yoga. This soul is born to create lasting legacies through discipline and structure, aligned with Saturn's dharmic purpose.",
+      startDoing: [
+        "Wake early and follow a structured daily sadhana",
+        "Set long-term goals with clear timelines",
+        "Respect elders and mentors (Shani principle)",
+        "Take accountability in teams",
+        "Practice patience in public life",
+        "Ground yourself in routines",
+        "Build assets, not just income",
+        "Lead younger souls in responsibility",
+        "Contribute anonymously (Seva)",
+        "Accept delays as divine timing"
+      ],
+      stopDoing: [
+        "Rushing results",
+        "Judging others for laziness",
+        "Overworking without joy",
+        "Micromanaging",
+        "Fearing failure",
+        "Hoarding power",
+        "Staying too rigid in mindset",
+        "Distrusting flow",
+        "Compromising on ethics",
+        "Avoiding rest"
+      ]
+    }
   },
   "The Dreamer": {
     name: "The Dreamer",
@@ -29,7 +61,34 @@ export const archetypeInsights: Record<string, ArchetypeData> = {
     shadows: "Idealism over action, emotional overwhelm, avoidance",
     lifeStages: "Sensitive childhood, visionary youth, guiding elder",
     healingPractices: "Art, music, solitude, water connection",
-    careerPaths: ["Design", "Arts", "UX", "Psychology", "Social Innovation", "Kids Content"]
+    careerPaths: ["Design", "Arts", "UX", "Psychology", "Social Innovation", "Kids Content"],
+    vedicInsights: {
+      view: "Rooted in Bhakti Yoga. Often deeply intuitive and connected to divine realms. A soul meant to dissolve ego and walk a path of devotion and imagination.",
+      startDoing: [
+        "Journal vivid dreams and feelings",
+        "Create through poetry/music/art",
+        "Spend time in water bodies",
+        "Chant or meditate daily",
+        "Sleep enough and nurture the mind",
+        "Trust intuitive nudges",
+        "Do Seva with compassion",
+        "Read spiritual texts",
+        "Keep a digital detox day",
+        "Embrace silence"
+      ],
+      stopDoing: [
+        "Escaping into fantasy",
+        "Doubting your sensitivity",
+        "Avoiding confrontation",
+        "Being easily influenced",
+        "Over-romanticizing pain",
+        "Procrastinating due to emotions",
+        "Neglecting boundaries",
+        "Using substances to cope",
+        "Taking everything personally",
+        "Staying in toxic situations out of 'love'"
+      ]
+    }
   },
   "The Leader": {
     name: "The Leader",
@@ -39,7 +98,34 @@ export const archetypeInsights: Record<string, ArchetypeData> = {
     shadows: "Arrogance, over-control, ignoring feedback",
     lifeStages: "Spotlight in youth, power in midlife, purpose-driven elder",
     healingPractices: "Humility practices, mentoring others, collaborative work",
-    careerPaths: ["Entrepreneurship", "Media", "Politics", "Sports", "Corporate Leadership"]
+    careerPaths: ["Entrepreneurship", "Media", "Politics", "Sports", "Corporate Leadership"],
+    vedicInsights: {
+      view: "Channel of Raja Yoga. A soul placed under Surya's fire to lead others with dharma, vision, and light. Their path is to serve society with clarity and courage.",
+      startDoing: [
+        "Stand tall—own your presence",
+        "Give back to others visibly",
+        "Train your voice and speak clearly",
+        "Set weekly leadership challenges",
+        "Guide the confused",
+        "Create win-win plans",
+        "Follow solar health rhythms",
+        "Dress with dignity",
+        "Take responsibility before reward",
+        "Celebrate others openly"
+      ],
+      stopDoing: [
+        "Seeking constant attention",
+        "Dismissing emotional needs",
+        "Dominating without consent",
+        "Hiding your true power",
+        "Belittling others",
+        "Being overly competitive",
+        "Chasing titles over impact",
+        "Fearing vulnerability",
+        "Neglecting family",
+        "Over-associating with status"
+      ]
+    }
   },
   "The Healer": {
     name: "The Healer",
@@ -49,7 +135,34 @@ export const archetypeInsights: Record<string, ArchetypeData> = {
     shadows: "Self-neglect, guilt patterns, martyrdom",
     lifeStages: "Service from early age, mastery of healing arts, holistic teacher",
     healingPractices: "Nature therapy, breathwork, Ayurveda",
-    careerPaths: ["Medicine", "Mental Health", "Social Work", "Nutrition", "Wellness Coaching"]
+    careerPaths: ["Medicine", "Mental Health", "Social Work", "Nutrition", "Wellness Coaching"],
+    vedicInsights: {
+      view: "Aligned with Ayurveda + Seva Dharma. This archetype naturally channels nurturing, purity, and energetic harmony for personal and collective health.",
+      startDoing: [
+        "Cook sattvic meals",
+        "Learn a healing art (Reiki, Ayurveda, etc.)",
+        "Keep your space clean and sacred",
+        "Volunteer in hospitals or animal shelters",
+        "Journal your health rhythms",
+        "Tend to emotional hygiene",
+        "Spend time in forests or gardens",
+        "Develop listening skills",
+        "Simplify your daily life",
+        "Study Doshas and body types"
+      ],
+      stopDoing: [
+        "Overgiving to the point of burnout",
+        "Holding emotional pain for others",
+        "Avoiding confrontation",
+        "Neglecting own health",
+        "Fixing people who don't ask",
+        "Shaming illness",
+        "Depending on outside validation",
+        "Staying stuck in over-care mode",
+        "Consuming toxic content",
+        "Undercharging for care-based work"
+      ]
+    }
   },
   "The Seeker": {
     name: "The Seeker",
@@ -59,7 +172,34 @@ export const archetypeInsights: Record<string, ArchetypeData> = {
     shadows: "Escaping discomfort, not committing",
     lifeStages: "Early wanderer, mid-life scholar, elder wisdom keeper",
     healingPractices: "Travel, journaling, spiritual study",
-    careerPaths: ["Writing", "Teaching", "Research", "Consulting", "Cross-cultural Projects"]
+    careerPaths: ["Writing", "Teaching", "Research", "Consulting", "Cross-cultural Projects"],
+    vedicInsights: {
+      view: "Guided by Jnana Yoga + Dwandwa Bodh (dualities). Born to walk between wisdom and wonder, seeking truth across dimensions and philosophies.",
+      startDoing: [
+        "Read ancient and modern texts",
+        "Meditate without expectation",
+        "Travel solo, even short distances",
+        "Engage with diverse faiths",
+        "Question status quo with humility",
+        "Share learnings with youth",
+        "Track personal truth evolution",
+        "Honor both logic and magic",
+        "Keep a daily inquiry prompt",
+        "Serve a Guru or mentor"
+      ],
+      stopDoing: [
+        "Overthinking every path",
+        "Dismissing ordinary life",
+        "Escaping through travel or books",
+        "Being 'too spiritual to act'",
+        "Judging others' ignorance",
+        "Ignoring your body",
+        "Flipping beliefs too fast",
+        "Chasing 'next big answer'",
+        "Speaking in riddles only",
+        "Rejecting routine altogether"
+      ]
+    }
   },
   "The Rebel": {
     name: "The Rebel",
@@ -69,7 +209,34 @@ export const archetypeInsights: Record<string, ArchetypeData> = {
     shadows: "Rebellion for rebellion's sake, isolation, burn-out",
     lifeStages: "Breakout youth, peak disruption in midlife, mentoring change-makers",
     healingPractices: "Expression through activism, creating safe communities",
-    careerPaths: ["Tech Innovation", "Startup Founder", "Activism", "Ed-tech", "Public Discourse"]
+    careerPaths: ["Tech Innovation", "Startup Founder", "Activism", "Ed-tech", "Public Discourse"],
+    vedicInsights: {
+      view: "Manifestation of Kali energy. Here to burn down injustice, create alternative systems, and embody fierce truth with dharma.",
+      startDoing: [
+        "Build your own framework",
+        "Speak truth to power",
+        "Support grassroots movements",
+        "Use art for protest",
+        "Create brave communities",
+        "Journal anger consciously",
+        "Study law and ethics",
+        "Find elders who fought before you",
+        "Learn to pause before explosion",
+        "Practice yoga to channel intensity"
+      ],
+      stopDoing: [
+        "Fighting everyone, always",
+        "Burning out in isolation",
+        "Refusing all authority blindly",
+        "Disregarding systems altogether",
+        "Ignoring rest",
+        "Belittling 'followers'",
+        "Thinking suffering = strength",
+        "Creating chaos without direction",
+        "Holding grudges",
+        "Avoiding inner healing"
+      ]
+    }
   },
   "The Mystic": {
     name: "The Mystic",
@@ -79,7 +246,34 @@ export const archetypeInsights: Record<string, ArchetypeData> = {
     shadows: "Isolation, disconnection from reality, emotional withdrawal",
     lifeStages: "Deep inner world as child, awakening as adult, spiritual teacher",
     healingPractices: "Meditation, prayer, water rituals, mantra",
-    careerPaths: ["Research", "Psychology", "Spiritual Teaching", "Cultural Preservation"]
+    careerPaths: ["Research", "Psychology", "Spiritual Teaching", "Cultural Preservation"],
+    vedicInsights: {
+      view: "Born from Tantra + Tapasya. A deep soul meant to experience the unseen, embody soul science, and dissolve form into source.",
+      startDoing: [
+        "Create sacred morning rituals",
+        "Study Jyotish, Tantra or Vedanta",
+        "Channel intuition into design/music",
+        "Fast or retreat periodically",
+        "Read past-life regression science",
+        "Keep water and flame on altar",
+        "Offer silence in conflict",
+        "Spend time in temples, caves, or hills",
+        "Observe death and grief without fear",
+        "Be a mirror to others' truths"
+      ],
+      stopDoing: [
+        "Escaping into illusion",
+        "Hiding your mystical nature",
+        "Feeling cursed for being sensitive",
+        "Avoiding money and real-world duties",
+        "Disregarding the body",
+        "Thinking you're too 'deep' to be helped",
+        "Holding mystical superiority",
+        "Fear of being misunderstood",
+        "Living too much alone",
+        "Forgetting joy is spiritual"
+      ]
+    }
   },
   "The Visionary": {
     name: "The Visionary",
@@ -89,7 +283,34 @@ export const archetypeInsights: Record<string, ArchetypeData> = {
     shadows: "Delusion, aloofness, disconnection from people",
     lifeStages: "Early idealism, strategy in midlife, legacy projects later",
     healingPractices: "Nature time, strategic action, creative vision boarding",
-    careerPaths: ["Product Design", "Sustainability", "Think-tanks", "Urban Planning", "Green-tech"]
+    careerPaths: ["Product Design", "Sustainability", "Think-tanks", "Urban Planning", "Green-tech"],
+    vedicInsights: {
+      view: "Aligned to Vishwa Karma and Rishi Dharma. Brings futuristic insight into today's society — to seed tomorrow's breakthroughs.",
+      startDoing: [
+        "Write ideas in a long-term log",
+        "Partner with grounded executors",
+        "Learn tech, design or science",
+        "Mentor underprivileged youth",
+        "Make future predictions mindfully",
+        "Create models for better systems",
+        "Share open-source knowledge",
+        "Study sacred geometry or metaphysics",
+        "Keep ego in check through service",
+        "Get feedback early and often"
+      ],
+      stopDoing: [
+        "Talking only, not doing",
+        "Dismissing others as 'behind'",
+        "Avoiding real-world struggles",
+        "Losing yourself in idealism",
+        "Creating without consulting affected people",
+        "Believing you're always the smartest",
+        "Bouncing from idea to idea",
+        "Neglecting old wisdom",
+        "Ignoring cultural context",
+        "Thinking visibility = value"
+      ]
+    }
   },
   "The Connector": {
     name: "The Connector",
@@ -99,7 +320,34 @@ export const archetypeInsights: Record<string, ArchetypeData> = {
     shadows: "People-pleasing, gossip, emotional manipulation",
     lifeStages: "Supportive childhood, social star in youth, peacemaker in elderhood",
     healingPractices: "Group therapy, journaling, forgiveness rituals",
-    careerPaths: ["Community Work", "HR", "Education", "Storytelling", "Diplomacy"]
+    careerPaths: ["Community Work", "HR", "Education", "Storytelling", "Diplomacy"],
+    vedicInsights: {
+      view: "A Vishnu archetype. Brings people together through love, listening, and harmony. Heals wounds in society by being the middle bridge.",
+      startDoing: [
+        "Host safe spaces for conversations",
+        "Study counseling, mediation or HR",
+        "Learn nonviolent communication",
+        "Build interfaith or intercaste dialogue",
+        "Use art/music for bonding",
+        "Celebrate community rituals",
+        "Support friendships consistently",
+        "Set healthy relational boundaries",
+        "Acknowledge conflict, don't avoid it",
+        "Volunteer in family courts or schools"
+      ],
+      stopDoing: [
+        "People-pleasing at your own cost",
+        "Avoiding tough truths",
+        "Gossiping under the mask of bonding",
+        "Expecting validation constantly",
+        "Carrying others' emotions as yours",
+        "Saying yes when you mean no",
+        "Ignoring alone-time needs",
+        "Staying neutral in injustice",
+        "Over-correcting for peace",
+        "Seeking love where there's no respect"
+      ]
+    }
   },
   "The Strategist": {
     name: "The Strategist",
@@ -109,7 +357,34 @@ export const archetypeInsights: Record<string, ArchetypeData> = {
     shadows: "Analysis paralysis, judgmental thinking",
     lifeStages: "Data-gathering early life, innovation midlife, systems leader later",
     healingPractices: "Journaling, clarity meditation, systems thinking",
-    careerPaths: ["Tech Architecture", "Data Science", "Consulting", "Systems Governance"]
+    careerPaths: ["Tech Architecture", "Data Science", "Consulting", "Systems Governance"],
+    vedicInsights: {
+      view: "Like Chanakya, this archetype combines intellect, systems, and dharmic design thinking. Their mind is meant to serve large-scale problem-solving.",
+      startDoing: [
+        "Design tools, maps or workflows",
+        "Study ancient logic and Nyaya",
+        "Journal systems in daily life",
+        "Help others solve complexity",
+        "Build long-term financial strategy",
+        "Join think tanks or innovation labs",
+        "Create clarity where there's fog",
+        "Teach others structure",
+        "Balance logic with heart",
+        "Mentor someone less organized"
+      ],
+      stopDoing: [
+        "Overthinking small things",
+        "Getting cold or overly calculative",
+        "Always needing control",
+        "Refusing emotion-based reasoning",
+        "Judging 'messy' people",
+        "Assuming your way is best",
+        "Becoming arrogant with intellect",
+        "Shaming vulnerability",
+        "Getting lost in spreadsheets",
+        "Neglecting spiritual practice"
+      ]
+    }
   },
   "The Performer": {
     name: "The Performer",
@@ -119,7 +394,34 @@ export const archetypeInsights: Record<string, ArchetypeData> = {
     shadows: "Burnout, emotional rollercoasters, self-worth tied to audience",
     lifeStages: "Expressive child, acclaimed adult, influential elder",
     healingPractices: "Performance with purpose, identity work",
-    careerPaths: ["Acting", "Dance", "Public Speaking", "Content Creation", "Motivational Work"]
+    careerPaths: ["Acting", "Dance", "Public Speaking", "Content Creation", "Motivational Work"],
+    vedicInsights: {
+      view: "Channel of Natyashastra + Rasa Dharma. This soul brings light, emotion, and presence into a space — a divine actor and joy-carrier.",
+      startDoing: [
+        "Develop your stage craft",
+        "Express emotions daily",
+        "Learn classical or folk performance art",
+        "Create online videos",
+        "Share positive messages in public",
+        "Study storytelling traditions",
+        "Build discipline to support creativity",
+        "Work with kids or elders",
+        "Use laughter as healing",
+        "Connect to Lakshmi and joy"
+      ],
+      stopDoing: [
+        "Performing to be liked",
+        "Needing applause to feel worthy",
+        "Hiding true pain",
+        "Overdramatizing minor events",
+        "Competing for attention",
+        "Thinking loud = powerful",
+        "Avoiding silence",
+        "Tiring yourself by 'being on'",
+        "Neglecting money planning",
+        "Skipping daily rituals for 'vibe'"
+      ]
+    }
   },
   "The Alchemist": {
     name: "The Alchemist",
@@ -129,7 +431,34 @@ export const archetypeInsights: Record<string, ArchetypeData> = {
     shadows: "Manipulation, intensity overload, isolation",
     lifeStages: "Curious youth, change-maker midlife, soul alchemist elder",
     healingPractices: "Deep therapy, energy rituals, fire ceremonies",
-    careerPaths: ["Entrepreneurship", "Transformation Coaching", "Product Innovation", "Ecology"]
+    careerPaths: ["Entrepreneurship", "Transformation Coaching", "Product Innovation", "Ecology"],
+    vedicInsights: {
+      view: "Rooted in Shiva + Kundalini Energy. Here to face darkness, transform poison, and turn pain into power — both within and around them.",
+      startDoing: [
+        "Study Tantra or shadow work",
+        "Transform wounds into stories/art",
+        "Learn trauma psychology",
+        "Support others in rebirth journeys",
+        "Practice breathwork and movement",
+        "Sit with fears, not run from them",
+        "Mentor youth going through crisis",
+        "Explore occult sciences ethically",
+        "Hold sacred space for grief",
+        "Celebrate transformations"
+      ],
+      stopDoing: [
+        "Staying in toxic cycles",
+        "Wearing trauma as identity",
+        "Controlling others through intensity",
+        "Overusing spiritual jargon",
+        "Running from softness",
+        "Seeking chaos as normal",
+        "Shaming your younger self",
+        "Using manipulation",
+        "Holding resentment",
+        "Over-identifying with pain as power"
+      ]
+    }
   }
 };
 

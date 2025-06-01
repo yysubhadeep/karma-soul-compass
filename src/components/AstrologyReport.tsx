@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Star, Calendar, MapPin, Clock, Briefcase, Heart, Brain, Target, Shield, Lightbulb, Users, Zap } from "lucide-react";
+import { ArrowLeft, Calendar, MapPin, Clock, Briefcase, Heart, Brain, Target, Shield, Lightbulb, Users, Zap } from "lucide-react";
 import { getArchetypeData, calculateArchetypeFromChart } from '@/data/archetypeData';
 
 interface FormData {
@@ -56,42 +56,37 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
 
     const zodiac = getZodiacSign(month, day);
 
-    // Generate moon and rising signs (simplified)
+    // Generate secondary patterns (simplified)
     const zodiacOrder = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
     const timeHour = parseInt(formData.timeOfBirth.split(':')[0]);
-    const moonSign = zodiacOrder[(timeHour + day) % 12];
-    const risingSign = zodiacOrder[(timeHour * 2 + month) % 12];
+    const emotionalPattern = zodiacOrder[(timeHour + day) % 12];
+    const lifeApproach = zodiacOrder[(timeHour * 2 + month) % 12];
     
-    // Generate dominant planet and element
-    const dominantPlanet = zodiac.ruling;
+    // Generate dominant influences
+    const dominantInfluence = zodiac.ruling;
     const dominantElement = zodiac.element;
     const dominantModality = ["Cardinal", "Fixed", "Mutable"][timeHour % 3];
 
     // Calculate archetype using the new system
     const archetypeResult = calculateArchetypeFromChart(
       zodiac.name,
-      moonSign,
-      risingSign,
-      dominantPlanet,
+      emotionalPattern,
+      lifeApproach,
+      dominantInfluence,
       dominantElement,
       dominantModality
     );
 
     return {
       zodiac,
-      moonSign,
-      risingSign,
-      dominantPlanet,
+      emotionalPattern,
+      lifeApproach,
+      dominantInfluence,
       dominantElement,
       dominantModality,
       archetype: archetypeResult.primary,
       secondaryArchetype: archetypeResult.secondary,
-      scoreBreakdown: archetypeResult.scoreBreakdown,
-      karmaNumbers: {
-        life: (day + month + birthDate.getFullYear()) % 9 + 1,
-        soul: day % 9 + 1,
-        destiny: (month + birthDate.getFullYear()) % 9 + 1
-      }
+      scoreBreakdown: archetypeResult.scoreBreakdown
     };
   };
 
@@ -99,29 +94,29 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
   const archetypeData = getArchetypeData(report.archetype);
   const secondaryArchetypeData = getArchetypeData(report.secondaryArchetype);
 
-  // Enhanced personalized insights based on astrological profile
+  // Enhanced personalized insights based on psychological profile
   const getPersonalizedInsights = () => {
     const insights = [];
     
-    // Sun-Moon combination insight
+    // Core-Emotional combination insight
     insights.push({
       title: "Your Inner-Outer Balance",
       icon: "🌗",
-      content: `With your ${report.zodiac.name} Sun and ${report.moonSign} Moon, you present yourself as ${report.zodiac.name === "Leo" ? "confident and radiant" : report.zodiac.name === "Virgo" ? "practical and detail-oriented" : "uniquely yourself"} to the world, while internally you process emotions like a ${report.moonSign}. This creates a ${report.zodiac.element}-${getElementForSign(report.moonSign)} dynamic that ${report.zodiac.element === getElementForSign(report.moonSign) ? "harmonizes beautifully" : "requires conscious integration"}.`
+      content: `With your ${report.zodiac.name} core pattern and ${report.emotionalPattern} emotional nature, you present yourself as ${report.zodiac.name === "Leo" ? "confident and radiant" : report.zodiac.name === "Virgo" ? "practical and detail-oriented" : "authentically yourself"} to the world, while internally you process emotions like a ${report.emotionalPattern}. This creates a ${report.zodiac.element}-${getElementForSign(report.emotionalPattern)} dynamic that ${report.zodiac.element === getElementForSign(report.emotionalPattern) ? "harmonizes beautifully" : "requires conscious integration"}.`
     });
 
     // Dominant element insight
     insights.push({
       title: "Your Elemental Power",
       icon: getElementEmoji(report.dominantElement),
-      content: `${report.dominantElement} energy dominates your chart, making you naturally ${getElementTraits(report.dominantElement)}. This manifests in your ${report.archetype} archetype through ${getElementArchetypeConnection(report.dominantElement, report.archetype)}.`
+      content: `${report.dominantElement} energy dominates your psychological profile, making you naturally ${getElementTraits(report.dominantElement)}. This manifests in your ${report.archetype} archetype through ${getElementArchetypeConnection(report.dominantElement, report.archetype)}.`
     });
 
-    // Rising sign insight
+    // Life approach insight
     insights.push({
       title: "How You Navigate Life",
       icon: "🧭",
-      content: `Your ${report.risingSign} rising sign means you approach new situations with ${getRisingTraits(report.risingSign)}. This complements your ${report.archetype} nature by ${getRisingArchetypeConnection(report.risingSign, report.archetype)}.`
+      content: `Your ${report.lifeApproach} life approach means you handle new situations with ${getApproachTraits(report.lifeApproach)}. This complements your ${report.archetype} nature by ${getApproachArchetypeConnection(report.lifeApproach, report.archetype)}.`
     });
 
     return insights;
@@ -159,7 +154,7 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
     return `your natural tendency to ${element === "Fire" ? "initiate and lead" : element === "Earth" ? "build and stabilize" : element === "Air" ? "connect and communicate" : "heal and nurture"}`;
   };
 
-  const getRisingTraits = (sign: string) => {
+  const getApproachTraits = (sign: string) => {
     const traitsMap: Record<string, string> = {
       "Aries": "bold confidence and direct action",
       "Taurus": "steady determination and practical wisdom",
@@ -177,11 +172,30 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
     return traitsMap[sign] || "balanced perspective";
   };
 
-  const getRisingArchetypeConnection = (sign: string, archetype: string) => {
-    return `giving you the perfect mask to express your ${archetype} energy in the world`;
+  const getApproachArchetypeConnection = (sign: string, archetype: string) => {
+    return `giving you the perfect framework to express your ${archetype} energy in the world`;
   };
 
   const personalizedInsights = getPersonalizedInsights();
+
+  // Get archetype emoji
+  const getArchetypeEmoji = (archetype: string) => {
+    const emojiMap: Record<string, string> = {
+      "The Builder": "🛠️",
+      "The Dreamer": "🌙", 
+      "The Leader": "🔥",
+      "The Healer": "🌿",
+      "The Seeker": "🧭",
+      "The Rebel": "⚡",
+      "The Mystic": "🔮",
+      "The Visionary": "🌈",
+      "The Connector": "🤝",
+      "The Strategist": "🧠",
+      "The Performer": "🎭",
+      "The Alchemist": "🦂"
+    };
+    return emojiMap[archetype] || "🌟";
+  };
 
   return (
     <div className="max-w-4xl mx-auto space-y-8 p-4">
@@ -203,8 +217,8 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
       <Card className="border-orange-200">
         <CardHeader>
           <CardTitle className="flex items-center space-x-2 text-xl">
-            <Star className="h-6 w-6 text-orange-600" />
-            <span>Birth Chart Summary for {formData.name}</span>
+            <span className="text-2xl">📊</span>
+            <span>Personality Analysis Summary for {formData.name}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -228,7 +242,7 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
       {/* Main Archetype */}
       <Card className="border-orange-200 bg-gradient-to-br from-orange-50 to-red-50">
         <CardHeader className="text-center pb-6">
-          <div className="text-6xl mb-4">🌟</div>
+          <div className="text-6xl mb-4">{getArchetypeEmoji(report.archetype)}</div>
           <CardTitle className="text-3xl text-orange-800 mb-4">
             Your Primary KarmaArchetype
           </CardTitle>
@@ -238,11 +252,11 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
         </CardHeader>
         <CardContent className="text-center space-y-6">
           <p className="text-lg text-gray-700 leading-relaxed">
-            Based on your birth chart analysis, you embody the essence of <strong>{report.archetype}</strong>.
+            Based on your personality analysis, you embody the essence of <strong>{report.archetype}</strong>.
           </p>
           <div className="bg-white/50 rounded-lg p-4">
             <p className="text-md text-gray-600">
-              Your secondary archetype is <strong>{report.secondaryArchetype}</strong>, adding depth to your karmic blueprint.
+              💫 Your secondary archetype is <strong>{report.secondaryArchetype}</strong>, adding depth to your psychological blueprint.
             </p>
           </div>
         </CardContent>
@@ -250,7 +264,7 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
 
       {/* Enhanced Personalized Insights */}
       <div className="space-y-6">
-        <h3 className="text-2xl font-bold text-gray-900 text-center mb-6">🔮 Your Personalized Astrological Insights</h3>
+        <h3 className="text-2xl font-bold text-gray-900 text-center mb-6">🔮 Your Personalized Psychological Insights</h3>
         {personalizedInsights.map((insight, index) => (
           <Card key={index} className="border-purple-200 bg-gradient-to-r from-purple-50 to-indigo-50">
             <CardHeader>
@@ -266,23 +280,23 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
         ))}
       </div>
 
-      {/* Astrological Profile - Vertical Layout */}
+      {/* Personality Profile - Vertical Layout */}
       <Card className="border-orange-200">
         <CardHeader>
           <CardTitle className="text-xl flex items-center space-x-2">
-            <span>🌙</span>
-            <span>Your Complete Astrological Profile</span>
+            <span>🧠</span>
+            <span>Your Complete Personality Profile</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Primary Signs */}
+          {/* Primary Patterns */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 border-b border-orange-200 pb-2">Core Signs</h3>
+            <h3 className="text-lg font-semibold text-gray-900 border-b border-orange-200 pb-2">Core Patterns</h3>
             <div className="grid gap-4">
               <div className="flex justify-between items-center p-4 bg-orange-50 rounded-lg">
                 <div>
-                  <h4 className="font-semibold text-gray-900">Sun Sign</h4>
-                  <p className="text-sm text-gray-600">Core Identity</p>
+                  <h4 className="font-semibold text-gray-900">Core Identity</h4>
+                  <p className="text-sm text-gray-600">Primary Personality Pattern</p>
                 </div>
                 <div className="text-right">
                   <p className="text-2xl font-bold text-orange-600">{report.zodiac.name}</p>
@@ -291,21 +305,21 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
               
               <div className="flex justify-between items-center p-4 bg-orange-50 rounded-lg">
                 <div>
-                  <h4 className="font-semibold text-gray-900">Moon Sign</h4>
-                  <p className="text-sm text-gray-600">Emotional Nature</p>
+                  <h4 className="font-semibold text-gray-900">Emotional Nature</h4>
+                  <p className="text-sm text-gray-600">Inner Processing Style</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-2xl font-bold text-orange-600">{report.moonSign}</p>
+                  <p className="text-2xl font-bold text-orange-600">{report.emotionalPattern}</p>
                 </div>
               </div>
               
               <div className="flex justify-between items-center p-4 bg-orange-50 rounded-lg">
                 <div>
-                  <h4 className="font-semibold text-gray-900">Rising Sign</h4>
-                  <p className="text-sm text-gray-600">Life Approach</p>
+                  <h4 className="font-semibold text-gray-900">Life Approach</h4>
+                  <p className="text-sm text-gray-600">External Engagement Style</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-2xl font-bold text-orange-600">{report.risingSign}</p>
+                  <p className="text-2xl font-bold text-orange-600">{report.lifeApproach}</p>
                 </div>
               </div>
             </div>
@@ -317,11 +331,11 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
             <div className="grid gap-4">
               <div className="flex justify-between items-center p-4 bg-red-50 rounded-lg">
                 <div>
-                  <h4 className="font-semibold text-gray-900">Dominant Planet</h4>
-                  <p className="text-sm text-gray-600">Behavioral Force</p>
+                  <h4 className="font-semibold text-gray-900">Primary Influence</h4>
+                  <p className="text-sm text-gray-600">Behavioral Driver</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-2xl font-bold text-red-600">{report.dominantPlanet}</p>
+                  <p className="text-2xl font-bold text-red-600">{report.dominantInfluence}</p>
                 </div>
               </div>
               
@@ -349,6 +363,57 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
         </CardContent>
       </Card>
 
+      {/* Vedic Insights Section */}
+      <Card className="border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50">
+        <CardHeader>
+          <CardTitle className="text-xl flex items-center space-x-2">
+            <span className="text-2xl">🕉️</span>
+            <span>Vedic Insights for {report.archetype} {getArchetypeEmoji(report.archetype)}</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="bg-white/60 rounded-lg p-4">
+            <p className="text-lg text-amber-900 font-medium leading-relaxed">
+              <strong>Vedic View:</strong> {archetypeData.vedicInsights.view}
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Start Doing */}
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <h4 className="text-lg font-bold text-green-800 mb-4 flex items-center">
+                <span className="text-xl mr-2">✅</span>
+                Start Doing
+              </h4>
+              <ul className="space-y-2">
+                {archetypeData.vedicInsights.startDoing.map((item, index) => (
+                  <li key={index} className="text-sm text-green-700 flex items-start">
+                    <span className="text-green-500 mr-2 mt-1">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Stop Doing */}
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <h4 className="text-lg font-bold text-red-800 mb-4 flex items-center">
+                <span className="text-xl mr-2">❌</span>
+                Stop Doing
+              </h4>
+              <ul className="space-y-2">
+                {archetypeData.vedicInsights.stopDoing.map((item, index) => (
+                  <li key={index} className="text-sm text-red-700 flex items-start">
+                    <span className="text-red-500 mr-2 mt-1">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Enhanced Life Purpose */}
       <Card className="border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50">
         <CardHeader>
@@ -363,7 +428,7 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
           </p>
           <div className="bg-white/50 rounded-lg p-4">
             <p className="text-md text-blue-700 font-medium">
-              💫 As a {report.zodiac.name} with {report.archetype} energy, your mission is amplified by your natural {report.dominantElement.toLowerCase()} essence and {report.dominantPlanet} influence.
+              💫 As a {report.zodiac.name} with {report.archetype} energy, your mission is amplified by your natural {report.dominantElement.toLowerCase()} essence and {report.dominantInfluence} influence.
             </p>
           </div>
         </CardContent>
@@ -382,7 +447,7 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
             <p className="text-gray-700 leading-relaxed">{archetypeData.strengths}</p>
             <div className="bg-white/50 rounded-lg p-3">
               <p className="text-sm text-green-700 font-medium">
-                🌟 Enhanced by your {report.moonSign} emotional intelligence and {report.risingSign} life approach.
+                🌟 Enhanced by your {report.emotionalPattern} emotional intelligence and {report.lifeApproach} life approach.
               </p>
             </div>
           </CardContent>
@@ -419,7 +484,7 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
             <p className="text-gray-700 leading-relaxed">{archetypeData.shadows}</p>
             <div className="bg-white/50 rounded-lg p-3">
               <p className="text-sm text-purple-700 font-medium">
-                🌙 Your {report.moonSign} Moon holds keys to healing these patterns through emotional awareness.
+                🌙 Your {report.emotionalPattern} emotional nature holds keys to healing these patterns through awareness.
               </p>
             </div>
           </CardContent>
@@ -434,7 +499,7 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
           </CardHeader>
           <CardContent className="space-y-3">
             <p className="text-gray-700 leading-relaxed">
-              In relationships, you likely attract partners who {report.zodiac.name === "Leo" ? "appreciate your warmth but may challenge your need for attention" : report.zodiac.name === "Scorpio" ? "match your intensity or provide grounding stability" : "complement your core nature"}. Your {report.risingSign} rising means you initially present as {getRisingTraits(report.risingSign).split(" and ")[0]}, which shapes first impressions.
+              In relationships, you likely attract partners who {report.zodiac.name === "Leo" ? "appreciate your warmth but may challenge your need for attention" : report.zodiac.name === "Scorpio" ? "match your intensity or provide grounding stability" : "complement your core nature"}. Your {report.lifeApproach} approach means you initially present as {getApproachTraits(report.lifeApproach).split(" and ")[0]}, which shapes first impressions.
             </p>
             <div className="bg-white/50 rounded-lg p-3">
               <p className="text-sm text-pink-700 font-medium">
@@ -481,9 +546,9 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
               </p>
             </div>
             <div className="bg-white/50 rounded-lg p-4">
-              <h4 className="font-medium text-rose-800 mb-2">For Your {report.moonSign} Moon:</h4>
+              <h4 className="font-medium text-rose-800 mb-2">For Your {report.emotionalPattern} Nature:</h4>
               <p className="text-sm text-gray-700">
-                Emotional practices that honor your {report.moonSign} sensitivity and help you process feelings in healthy ways.
+                Emotional practices that honor your {report.emotionalPattern} sensitivity and help you process feelings in healthy ways.
               </p>
             </div>
           </div>
@@ -510,46 +575,6 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
             <p className="text-gray-600 text-center">
               These career paths align with your natural {archetypeData.name} energy and your {report.zodiac.name} drive for {report.zodiac.name === "Leo" ? "creative leadership" : report.zodiac.name === "Virgo" ? "practical service" : "authentic expression"}.
             </p>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Karma Numbers */}
-      <Card className="border-orange-200">
-        <CardHeader>
-          <CardTitle className="text-xl">🔢 Your Karma Numbers & Life Codes</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid gap-4">
-            <div className="flex justify-between items-center p-4 bg-gradient-to-r from-orange-100 to-red-100 rounded-lg">
-              <div>
-                <h3 className="font-semibold text-gray-900">Life Path</h3>
-                <p className="text-sm text-gray-600">Your soul's primary lesson</p>
-              </div>
-              <div className="text-right">
-                <p className="text-4xl font-bold text-orange-600">{report.karmaNumbers.life}</p>
-              </div>
-            </div>
-            
-            <div className="flex justify-between items-center p-4 bg-gradient-to-r from-orange-100 to-red-100 rounded-lg">
-              <div>
-                <h3 className="font-semibold text-gray-900">Soul Number</h3>
-                <p className="text-sm text-gray-600">Your deepest desires & motivations</p>
-              </div>
-              <div className="text-right">
-                <p className="text-4xl font-bold text-orange-600">{report.karmaNumbers.soul}</p>
-              </div>
-            </div>
-            
-            <div className="flex justify-between items-center p-4 bg-gradient-to-r from-orange-100 to-red-100 rounded-lg">
-              <div>
-                <h3 className="font-semibold text-gray-900">Destiny Number</h3>
-                <p className="text-sm text-gray-600">Your life's ultimate direction</p>
-              </div>
-              <div className="text-right">
-                <p className="text-4xl font-bold text-orange-600">{report.karmaNumbers.destiny}</p>
-              </div>
-            </div>
           </div>
         </CardContent>
       </Card>
