@@ -1,12 +1,12 @@
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { ArrowRight } from "lucide-react";
-import MobileAstrologyReport from './MobileAstrologyReport';
 
 interface FormData {
   name: string;
@@ -19,7 +19,6 @@ interface FormData {
 
 const KarmaForm = () => {
   const [step, setStep] = useState(1);
-  const [showReport, setShowReport] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -29,6 +28,7 @@ const KarmaForm = () => {
     placeOfBirth: ''
   });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({
@@ -73,28 +73,11 @@ const KarmaForm = () => {
     // Simulate KarmaMap generation
     setTimeout(() => {
       setLoading(false);
-      setShowReport(true);
       toast.success("🌟 Your KarmaArchetype has been generated!");
+      // Navigate to report page with form data
+      navigate('/report', { state: { formData } });
     }, 2000);
   };
-
-  const handleBackToForm = () => {
-    setShowReport(false);
-    setStep(1);
-    setFormData({
-      name: '',
-      email: '',
-      otp: '',
-      dateOfBirth: '',
-      timeOfBirth: '',
-      placeOfBirth: ''
-    });
-  };
-
-  // Show report if generated
-  if (showReport) {
-    return <MobileAstrologyReport formData={formData} onBack={handleBackToForm} />;
-  }
 
   return (
     <div className="w-full max-w-sm mx-auto">

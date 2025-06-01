@@ -2,9 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { ArrowRight, Compass, Calendar } from "lucide-react";
+import { ArrowRight, Compass, Calendar, Star } from "lucide-react";
 import KarmaForm from '@/components/KarmaForm';
 
 const Index = () => {
@@ -25,21 +23,121 @@ const Index = () => {
         </nav>
       </header>
 
-      {/* Hero Section */}
-      <section className="px-4 py-16 max-w-6xl mx-auto text-center">
-        <div className="mb-8">
-          <span className="inline-block bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
-            🌟 KarmaMap™ Launch Story
-          </span>
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Why we built this for <span className="text-orange-600">Bharat</span> — and why now.
-          </h1>
+      {/* Hero Section with Prominent CTA */}
+      <section className="px-4 py-8 md:py-16 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left Content */}
+          <div className="space-y-6">
+            <div>
+              <span className="inline-block bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                🌟 Discover Your Life Purpose
+              </span>
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
+                Find Your True Path with <span className="text-orange-600">KarmaMap™</span>
+              </h1>
+              <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+                Get instant clarity on who you are, what you're meant to do, and when to take action. 
+                Powered by AI and ancient wisdom.
+              </p>
+            </div>
+
+            {/* Key Benefits */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+              <div className="flex items-center space-x-3 bg-white/70 rounded-lg p-3">
+                <span className="text-2xl">🎯</span>
+                <span className="font-medium text-gray-800">Find Your Purpose</span>
+              </div>
+              <div className="flex items-center space-x-3 bg-white/70 rounded-lg p-3">
+                <span className="text-2xl">💡</span>
+                <span className="font-medium text-gray-800">Career Clarity</span>
+              </div>
+              <div className="flex items-center space-x-3 bg-white/70 rounded-lg p-3">
+                <span className="text-2xl">💕</span>
+                <span className="font-medium text-gray-800">Relationship Insights</span>
+              </div>
+              <div className="flex items-center space-x-3 bg-white/70 rounded-lg p-3">
+                <span className="text-2xl">⏰</span>
+                <span className="font-medium text-gray-800">Perfect Timing</span>
+              </div>
+            </div>
+
+            {/* Social Proof */}
+            <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-4 border border-green-200">
+              <div className="flex items-center space-x-2 mb-2">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <span className="text-sm font-semibold text-gray-700">Trusted by 10,000+ people</span>
+              </div>
+              <p className="text-sm text-gray-600 italic">
+                "Finally understood my life patterns and made decisions with confidence" - Priya, Mumbai
+              </p>
+            </div>
+          </div>
+
+          {/* Right Content - CTA Form */}
+          <div className="lg:pl-8">
+            {!showForm ? (
+              <Card className="bg-gradient-to-br from-orange-500 to-red-500 text-white border-0 shadow-2xl">
+                <CardContent className="p-8 text-center space-y-6">
+                  <div className="text-5xl mb-4">🧭</div>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                    Get Your FREE KarmaArchetype
+                  </h2>
+                  <p className="text-lg opacity-90 mb-6">
+                    Discover your unique personality type, life purpose, and growth path in just 3 minutes.
+                  </p>
+                  
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center justify-center space-x-2 text-sm">
+                      <span>✨</span>
+                      <span>Instant personalized report</span>
+                    </div>
+                    <div className="flex items-center justify-center space-x-2 text-sm">
+                      <span>🔒</span>
+                      <span>100% secure & private</span>
+                    </div>
+                    <div className="flex items-center justify-center space-x-2 text-sm">
+                      <span>🆓</span>
+                      <span>Completely free forever</span>
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    onClick={() => setShowForm(true)}
+                    size="lg" 
+                    className="w-full bg-white text-orange-600 hover:bg-gray-100 font-bold text-lg px-8 py-4 rounded-full"
+                  >
+                    Start My Free Reading
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                  
+                  <p className="text-xs opacity-80 mt-4">
+                    ⚡ Takes only 3 minutes • No payment required
+                  </p>
+                </CardContent>
+              </Card>
+            ) : (
+              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                <KarmaForm />
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Why We Built This Section */}
+      <section className="px-4 py-16 max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+            Why we built this for <span className="text-orange-600">Bharat</span>
+          </h2>
         </div>
 
-        <div className="max-w-4xl mx-auto text-left space-y-8 text-lg text-gray-700 leading-relaxed">
-          <p>
-            Most of us in Bharat grow up with pressure, confusion, and comparisons.
-          </p>
+        <div className="max-w-4xl mx-auto text-left space-y-6 text-lg text-gray-700 leading-relaxed">
+          <p>Most of us in Bharat grow up with pressure, confusion, and comparisons.</p>
           
           <div className="bg-white/70 p-6 rounded-2xl border border-orange-200">
             <p className="mb-4">We follow what society says:</p>
@@ -69,52 +167,10 @@ const Index = () => {
           </div>
 
           <p>
-            We asked the same questions too.
-            <br />
-            And we realized—most people aren't lost.
-            <br />
+            We asked the same questions too.<br />
+            And we realized—most people aren't lost.<br />
             <strong>They're just disconnected from their inner map.</strong>
           </p>
-        </div>
-      </section>
-
-      {/* What is KarmaMap */}
-      <section className="px-4 py-16 bg-white/50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-              🧭 That's why we built KarmaMap™.
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 text-lg text-gray-700">
-              <p>Not as a horoscope app.</p>
-              <p>Not as another self-help theory.</p>
-              <p className="text-xl font-semibold text-gray-900">
-                But as a life clarity engine—powered by AI, ancient wisdom, and your birth chart—to help you answer the real questions:
-              </p>
-              
-              <div className="space-y-4 bg-gradient-to-r from-orange-100 to-red-100 p-6 rounded-2xl">
-                <div className="space-y-3">
-                  <p className="font-semibold">Who am I really?</p>
-                  <p className="font-semibold">What is my karma trying to teach me?</p>
-                  <p className="font-semibold">When is the right time to act?</p>
-                  <p className="font-semibold">What path will bring me peace, success, and truth?</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-gradient-to-br from-orange-500 to-red-500 p-8 rounded-3xl text-white transform hover:scale-105 transition-transform duration-300">
-                <Compass className="h-24 w-24 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold mb-4">Your Inner Compass</h3>
-                <p className="text-lg opacity-90">
-                  Discover your true path with AI-powered ancient wisdom
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -187,38 +243,6 @@ const Index = () => {
               And it's time to read it.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="px-4 py-16 max-w-4xl mx-auto text-center">
-        <div className="bg-gradient-to-br from-orange-500 to-red-500 p-12 rounded-3xl text-white">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            🛕 KarmaMap™ is now live.
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Get your free KarmaArchetype.<br />
-            Start understanding the life you were born to live.
-          </p>
-          
-          {!showForm ? (
-            <Button 
-              onClick={() => setShowForm(true)}
-              size="lg" 
-              className="bg-white text-orange-600 hover:bg-gray-100 font-bold text-lg px-8 py-4 rounded-full"
-            >
-              Discover Your KarmaArchetype
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          ) : (
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl">
-              <KarmaForm />
-            </div>
-          )}
-          
-          <p className="text-sm mt-6 opacity-80">
-            🪷 A new Bharat begins with inner clarity.
-          </p>
         </div>
       </section>
 
