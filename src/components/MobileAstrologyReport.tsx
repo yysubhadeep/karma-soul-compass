@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -18,7 +19,7 @@ interface MobileAstrologyReportProps {
   onBack: () => void;
 }
 
-// New personality-based archetype calculation
+// Fixed personality-based archetype calculation with more balanced mappings
 const calculatePersonalityArchetype = (
   corePersonality: string,
   emotionalStyle: string,
@@ -43,124 +44,114 @@ const calculatePersonalityArchetype = (
     "The Alchemist": 0
   };
 
-  // Core personality scoring (Weight: +10)
-  const corePersonalityScoring: Record<string, string[]> = {
-    "The Builder": ["The Achiever", "The Builder"],
-    "The Dreamer": ["The Intuitive", "The Nurturer"],
-    "The Leader": ["The Pioneer", "The Creator"],
-    "The Healer": ["The Nurturer", "The Harmonizer"],
-    "The Seeker": ["The Explorer", "The Analyzer"],
-    "The Rebel": ["The Pioneer", "The Transformer"],
-    "The Mystic": ["The Intuitive", "The Transformer"],
-    "The Visionary": ["The Innovator", "The Explorer"],
-    "The Connector": ["The Communicator", "The Harmonizer"],
-    "The Strategist": ["The Analyzer", "The Achiever"],
-    "The Performer": ["The Creator", "The Communicator"],
-    "The Alchemist": ["The Transformer", "The Innovator"]
+  // Core personality scoring (Weight: +12) - More specific mappings
+  const corePersonalityScoring: Record<string, string> = {
+    "The Achiever": "The Builder",
+    "The Innovator": "The Visionary", 
+    "The Intuitive": "The Mystic",
+    "The Pioneer": "The Leader",
+    "The Builder": "The Builder",
+    "The Communicator": "The Connector",
+    "The Nurturer": "The Healer",
+    "The Creator": "The Performer",
+    "The Analyzer": "The Strategist",
+    "The Harmonizer": "The Connector",
+    "The Transformer": "The Alchemist",
+    "The Explorer": "The Seeker"
   };
 
-  Object.entries(corePersonalityScoring).forEach(([archetype, personalities]) => {
-    if (personalities.includes(corePersonality)) {
-      scores[archetype] += 10;
-    }
-  });
+  if (corePersonalityScoring[corePersonality]) {
+    scores[corePersonalityScoring[corePersonality]] += 12;
+  }
 
-  // Primary driver scoring (Weight: +8)
+  // Primary driver scoring (Weight: +10) - More diverse mappings
   const driverScoring: Record<string, string[]> = {
-    "The Builder": ["Achievement", "Security"],
-    "The Dreamer": ["Connection", "Growth"],
-    "The Leader": ["Achievement", "Independence"],
-    "The Healer": ["Connection", "Security"],
-    "The Seeker": ["Growth", "Innovation"],
-    "The Rebel": ["Independence", "Innovation"],
-    "The Mystic": ["Growth", "Connection"],
-    "The Visionary": ["Innovation", "Growth"],
-    "The Connector": ["Connection", "Achievement"],
-    "The Strategist": ["Achievement", "Innovation"],
-    "The Performer": ["Independence", "Achievement"],
-    "The Alchemist": ["Innovation", "Independence"]
+    "Achievement": ["The Builder", "The Leader"],
+    "Innovation": ["The Visionary", "The Rebel"],
+    "Connection": ["The Connector", "The Healer"],
+    "Independence": ["The Rebel", "The Seeker"],
+    "Security": ["The Builder", "The Healer"],
+    "Growth": ["The Seeker", "The Dreamer"]
   };
 
-  Object.entries(driverScoring).forEach(([archetype, drivers]) => {
-    if (drivers.includes(primaryDriver)) {
-      scores[archetype] += 8;
-    }
-  });
+  if (driverScoring[primaryDriver]) {
+    driverScoring[primaryDriver].forEach(archetype => {
+      scores[archetype] += 5; // Split the weight
+    });
+  }
 
-  // Cognitive style scoring (Weight: +6)
+  // Cognitive style scoring (Weight: +8) - More balanced distribution
   const cognitiveScoring: Record<string, string[]> = {
-    "The Builder": ["Practical", "Analytical"],
-    "The Dreamer": ["Intuitive"],
-    "The Leader": ["Practical", "Intuitive"],
-    "The Healer": ["Intuitive", "Practical"],
-    "The Seeker": ["Analytical", "Intuitive"],
-    "The Rebel": ["Intuitive", "Analytical"],
-    "The Mystic": ["Intuitive"],
-    "The Visionary": ["Intuitive", "Analytical"],
-    "The Connector": ["Intuitive", "Practical"],
-    "The Strategist": ["Analytical"],
-    "The Performer": ["Intuitive", "Practical"],
-    "The Alchemist": ["Analytical", "Intuitive"]
+    "Practical": ["The Builder", "The Healer"],
+    "Intuitive": ["The Mystic", "The Dreamer", "The Visionary"],
+    "Analytical": ["The Strategist", "The Seeker"]
   };
 
-  Object.entries(cognitiveScoring).forEach(([archetype, styles]) => {
-    if (styles.includes(cognitiveStyle)) {
-      scores[archetype] += 6;
-    }
-  });
+  if (cognitiveScoring[cognitiveStyle]) {
+    const archetypes = cognitiveScoring[cognitiveStyle];
+    archetypes.forEach(archetype => {
+      scores[archetype] += Math.floor(8 / archetypes.length);
+    });
+  }
 
-  // Energy type scoring (Weight: +4)
+  // Energy type scoring (Weight: +6)
   const energyScoring: Record<string, string[]> = {
-    "The Builder": ["Steady-energy"],
-    "The Dreamer": ["Reflective-energy"],
-    "The Leader": ["High-energy"],
-    "The Healer": ["Steady-energy", "Reflective-energy"],
-    "The Seeker": ["High-energy", "Reflective-energy"],
-    "The Rebel": ["High-energy"],
-    "The Mystic": ["Reflective-energy"],
-    "The Visionary": ["High-energy", "Steady-energy"],
-    "The Connector": ["Steady-energy"],
-    "The Strategist": ["Steady-energy", "Reflective-energy"],
-    "The Performer": ["High-energy"],
-    "The Alchemist": ["High-energy", "Reflective-energy"]
+    "High-energy": ["The Leader", "The Performer", "The Rebel"],
+    "Steady-energy": ["The Builder", "The Connector", "The Healer"],
+    "Reflective-energy": ["The Mystic", "The Dreamer", "The Strategist"]
   };
 
-  Object.entries(energyScoring).forEach(([archetype, energies]) => {
-    if (energies.includes(energyType)) {
-      scores[archetype] += 4;
-    }
-  });
+  if (energyScoring[energyType]) {
+    const archetypes = energyScoring[energyType];
+    archetypes.forEach(archetype => {
+      scores[archetype] += Math.floor(6 / archetypes.length);
+    });
+  }
 
-  // Emotional style scoring (Weight: +5)
-  const emotionalScoring: Record<string, string[]> = {
-    "The Builder": ["Achiever", "Analyzer"],
-    "The Dreamer": ["Intuitive", "Nurturer"],
-    "The Leader": ["Pioneer", "Creator"],
-    "The Healer": ["Nurturer", "Harmonizer"],
-    "The Seeker": ["Explorer", "Communicator"],
-    "The Rebel": ["Pioneer", "Transformer"],
-    "The Mystic": ["Intuitive", "Transformer"],
-    "The Visionary": ["Innovator", "Explorer"],
-    "The Connector": ["Communicator", "Harmonizer"],
-    "The Strategist": ["Analyzer", "Builder"],
-    "The Performer": ["Creator", "Communicator"],
-    "The Alchemist": ["Transformer", "Innovator"]
+  // Emotional style scoring (Weight: +8) - Direct mapping to archetypes
+  const emotionalToArchetypeMap: Record<string, string> = {
+    "Achiever": "The Builder",
+    "Innovator": "The Visionary",
+    "Intuitive": "The Mystic", 
+    "Pioneer": "The Leader",
+    "Builder": "The Builder",
+    "Communicator": "The Connector",
+    "Nurturer": "The Healer",
+    "Creator": "The Performer",
+    "Analyzer": "The Strategist",
+    "Harmonizer": "The Connector",
+    "Transformer": "The Alchemist",
+    "Explorer": "The Seeker"
   };
 
-  Object.entries(emotionalScoring).forEach(([archetype, emotions]) => {
-    if (emotions.includes(emotionalStyle)) {
-      scores[archetype] += 5;
-    }
-  });
+  if (emotionalToArchetypeMap[emotionalStyle]) {
+    scores[emotionalToArchetypeMap[emotionalStyle]] += 8;
+  }
 
-  console.log("Archetype calculation scores:", scores);
+  // Add randomization factor to prevent same results (Weight: +2 to +4)
+  const birthDate = new Date();
+  const randomSeed = (birthDate.getTime() + behaviorPattern.length) % 12;
+  const archetypeNames = Object.keys(scores);
+  const randomArchetype = archetypeNames[randomSeed];
+  scores[randomArchetype] += 2 + (randomSeed % 3); // 2-4 bonus points
+
+  console.log("=== ARCHETYPE CALCULATION DEBUG ===");
   console.log("Input data:", { corePersonality, emotionalStyle, behaviorPattern, primaryDriver, cognitiveStyle, energyType });
+  console.log("Core personality mapping:", corePersonality, "->", corePersonalityScoring[corePersonality]);
+  console.log("Driver mapping:", primaryDriver, "->", driverScoring[primaryDriver]);
+  console.log("Cognitive mapping:", cognitiveStyle, "->", cognitiveScoring[cognitiveStyle]);
+  console.log("Energy mapping:", energyType, "->", energyScoring[energyType]);
+  console.log("Emotional mapping:", emotionalStyle, "->", emotionalToArchetypeMap[emotionalStyle]);
+  console.log("Random bonus for:", randomArchetype, "=", 2 + (randomSeed % 3));
+  console.log("Final scores:", scores);
 
   // Find primary and secondary archetypes
   const sortedScores = Object.entries(scores)
     .sort(([,a], [,b]) => b - a);
 
   console.log("Sorted scores:", sortedScores);
+  console.log("Selected primary:", sortedScores[0][0], "with score:", sortedScores[0][1]);
+  console.log("Selected secondary:", sortedScores[1][0], "with score:", sortedScores[1][1]);
 
   return {
     primary: sortedScores[0][0],
@@ -180,27 +171,30 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
     
     // Psychological personality patterns based on birth timing
     const getPersonalityPattern = (month: number, day: number) => {
-      if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) {
+      const dayMonth = day + month;
+      
+      // More varied personality distribution
+      if (dayMonth % 12 === 0) {
         return { name: "The Achiever", trait: "Goal-oriented", tendency: "Structured thinking" };
-      } else if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) {
+      } else if (dayMonth % 12 === 1) {
         return { name: "The Innovator", trait: "Forward-thinking", tendency: "Independent mindset" };
-      } else if ((month === 2 && day >= 19) || (month === 3 && day <= 20)) {
+      } else if (dayMonth % 12 === 2) {
         return { name: "The Intuitive", trait: "Empathetic", tendency: "Emotional intelligence" };
-      } else if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) {
+      } else if (dayMonth % 12 === 3) {
         return { name: "The Pioneer", trait: "Action-oriented", tendency: "Leadership drive" };
-      } else if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) {
+      } else if (dayMonth % 12 === 4) {
         return { name: "The Builder", trait: "Practical", tendency: "Steady persistence" };
-      } else if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) {
+      } else if (dayMonth % 12 === 5) {
         return { name: "The Communicator", trait: "Adaptable", tendency: "Quick learning" };
-      } else if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) {
+      } else if (dayMonth % 12 === 6) {
         return { name: "The Nurturer", trait: "Caring", tendency: "Protective instincts" };
-      } else if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) {
+      } else if (dayMonth % 12 === 7) {
         return { name: "The Creator", trait: "Confident", tendency: "Self-expression drive" };
-      } else if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) {
+      } else if (dayMonth % 12 === 8) {
         return { name: "The Analyzer", trait: "Detail-oriented", tendency: "Systematic approach" };
-      } else if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) {
+      } else if (dayMonth % 12 === 9) {
         return { name: "The Harmonizer", trait: "Balanced", tendency: "Relationship focus" };
-      } else if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) {
+      } else if (dayMonth % 12 === 10) {
         return { name: "The Transformer", trait: "Intense", tendency: "Deep thinking" };
       } else {
         return { name: "The Explorer", trait: "Optimistic", tendency: "Growth mindset" };
@@ -209,19 +203,34 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
 
     const corePersonality = getPersonalityPattern(month, day);
 
-    // Generate secondary psychological patterns
+    // Generate more varied secondary psychological patterns
     const personalityTypes = ["Achiever", "Innovator", "Intuitive", "Pioneer", "Builder", "Communicator", "Nurturer", "Creator", "Analyzer", "Harmonizer", "Transformer", "Explorer"];
     const timeHour = parseInt(formData.timeOfBirth.split(':')[0]);
-    const emotionalStyle = personalityTypes[(timeHour + day) % 12];
-    const behaviorPattern = personalityTypes[(timeHour * 2 + month) % 12];
+    const timeMinute = parseInt(formData.timeOfBirth.split(':')[1] || '0');
     
-    // Generate dominant psychological drivers
+    // More varied distribution for emotional style and behavior
+    const emotionalStyle = personalityTypes[(timeHour + day * 2) % 12];
+    const behaviorPattern = personalityTypes[(timeMinute + month * 3) % 12];
+    
+    // Generate dominant psychological drivers with more variation
     const motivationalDrivers = ["Achievement", "Innovation", "Connection", "Independence", "Security", "Growth"];
-    const primaryDriver = motivationalDrivers[timeHour % 6];
-    const cognitiveStyle = ["Analytical", "Intuitive", "Practical"][timeHour % 3];
-    const energyType = ["High-energy", "Steady-energy", "Reflective-energy"][(day + month) % 3];
+    const primaryDriver = motivationalDrivers[(timeHour + day) % 6];
+    const cognitiveStyle = ["Analytical", "Intuitive", "Practical"][(timeHour + month) % 3];
+    const energyType = ["High-energy", "Steady-energy", "Reflective-energy"][(day * month) % 3];
 
-    // Calculate archetype using the new personality-based system
+    console.log("=== PROFILE GENERATION DEBUG ===");
+    console.log("Birth date:", formData.dateOfBirth);
+    console.log("Month:", month, "Day:", day, "Hour:", timeHour, "Minute:", timeMinute);
+    console.log("Generated profile:", {
+      corePersonality: corePersonality.name,
+      emotionalStyle,
+      behaviorPattern,
+      primaryDriver,
+      cognitiveStyle,
+      energyType
+    });
+
+    // Calculate archetype using the fixed personality-based system
     const archetypeResult = calculatePersonalityArchetype(
       corePersonality.name,
       emotionalStyle,
