@@ -2,8 +2,8 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Star, Calendar, MapPin, Clock, Briefcase } from "lucide-react";
-import { getArchetypeData } from '@/data/archetypeData';
+import { ArrowLeft, Star, Calendar, MapPin, Clock, Briefcase, Heart, Brain, Target, Shield, Lightbulb } from "lucide-react";
+import { getArchetypeData, calculateArchetypeFromChart } from '@/data/archetypeData';
 
 interface FormData {
   name: string;
@@ -62,18 +62,36 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
       }
     }
 
-    // Generate karma archetype based on birth time and place
+    // Generate moon and rising signs (simplified)
     const timeHour = parseInt(formData.timeOfBirth.split(':')[0]);
-    const archetypes = [
-      "The Seeker", "The Builder", "The Healer", "The Leader", 
-      "The Creator", "The Protector", "The Visionary", "The Transformer"
-    ];
+    const moonSign = zodiacSigns[(timeHour + day) % 12].name;
+    const risingSign = zodiacSigns[(timeHour * 2 + month) % 12].name;
     
-    const archetype = archetypes[timeHour % archetypes.length];
+    // Generate dominant planet and element
+    const dominantPlanet = zodiac.ruling;
+    const dominantElement = zodiac.element;
+    const dominantModality = ["Cardinal", "Fixed", "Mutable"][timeHour % 3];
+
+    // Calculate archetype using the new system
+    const archetypeResult = calculateArchetypeFromChart(
+      zodiac.name,
+      moonSign,
+      risingSign,
+      dominantPlanet,
+      dominantElement,
+      dominantModality
+    );
 
     return {
       zodiac,
-      archetype,
+      moonSign,
+      risingSign,
+      dominantPlanet,
+      dominantElement,
+      dominantModality,
+      archetype: archetypeResult.primary,
+      secondaryArchetype: archetypeResult.secondary,
+      scoreBreakdown: archetypeResult.scoreBreakdown,
       karmaNumbers: {
         life: (day + month + birthDate.getFullYear()) % 9 + 1,
         soul: day % 9 + 1,
@@ -84,6 +102,7 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
 
   const report = generateReport();
   const archetypeData = getArchetypeData(report.archetype);
+  const secondaryArchetypeData = getArchetypeData(report.secondaryArchetype);
 
   return (
     <div className="space-y-6">
@@ -127,37 +146,138 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
       <Card className="border-orange-200 bg-gradient-to-br from-orange-50 to-red-50">
         <CardHeader>
           <CardTitle className="text-center text-2xl text-orange-800">
-            🌟 Your KarmaArchetype: {report.archetype}
+            🌟 Your Primary KarmaArchetype: {report.archetype}
           </CardTitle>
         </CardHeader>
         <CardContent className="text-center space-y-4">
           <div className="text-4xl mb-4">🧭</div>
           <p className="text-lg text-gray-700">
-            Based on your birth time and cosmic alignment, you embody the essence of <strong>{report.archetype}</strong>.
+            Based on your birth chart analysis, you embody the essence of <strong>{report.archetype}</strong>.
+          </p>
+          <p className="text-md text-gray-600">
+            Your secondary archetype is <strong>{report.secondaryArchetype}</strong>, adding depth to your karmic blueprint.
           </p>
         </CardContent>
       </Card>
 
-      {/* Zodiac Information */}
+      {/* Enhanced Zodiac Information */}
       <Card className="border-orange-200">
         <CardHeader>
-          <CardTitle>🌙 Your Zodiac Profile</CardTitle>
+          <CardTitle>🌙 Your Complete Astrological Profile</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="text-center p-4 bg-orange-50 rounded-lg">
               <h3 className="font-semibold text-gray-900">Sun Sign</h3>
               <p className="text-xl text-orange-600">{report.zodiac.name}</p>
+              <p className="text-sm text-gray-600">Core Identity</p>
             </div>
             <div className="text-center p-4 bg-orange-50 rounded-lg">
+              <h3 className="font-semibold text-gray-900">Moon Sign</h3>
+              <p className="text-xl text-orange-600">{report.moonSign}</p>
+              <p className="text-sm text-gray-600">Emotional Nature</p>
+            </div>
+            <div className="text-center p-4 bg-orange-50 rounded-lg">
+              <h3 className="font-semibold text-gray-900">Rising Sign</h3>
+              <p className="text-xl text-orange-600">{report.risingSign}</p>
+              <p className="text-sm text-gray-600">Life Approach</p>
+            </div>
+            <div className="text-center p-4 bg-red-50 rounded-lg">
+              <h3 className="font-semibold text-gray-900">Dominant Planet</h3>
+              <p className="text-xl text-red-600">{report.dominantPlanet}</p>
+              <p className="text-sm text-gray-600">Behavioral Force</p>
+            </div>
+            <div className="text-center p-4 bg-red-50 rounded-lg">
               <h3 className="font-semibold text-gray-900">Element</h3>
-              <p className="text-xl text-orange-600">{report.zodiac.element}</p>
+              <p className="text-xl text-red-600">{report.dominantElement}</p>
+              <p className="text-sm text-gray-600">Energy Type</p>
             </div>
-            <div className="text-center p-4 bg-orange-50 rounded-lg">
-              <h3 className="font-semibold text-gray-900">Ruling Planet</h3>
-              <p className="text-xl text-orange-600">{report.zodiac.ruling}</p>
+            <div className="text-center p-4 bg-red-50 rounded-lg">
+              <h3 className="font-semibold text-gray-900">Modality</h3>
+              <p className="text-xl text-red-600">{report.dominantModality}</p>
+              <p className="text-sm text-gray-600">Life Rhythm</p>
             </div>
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Comprehensive Archetype Insights */}
+      <Card className="border-orange-200">
+        <CardHeader>
+          <CardTitle className="flex items-center space-x-2">
+            <Brain className="h-5 w-5 text-orange-600" />
+            <span>Deep Insights for {archetypeData.name}</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-green-50 p-4 rounded-lg">
+              <h3 className="font-semibold text-gray-900 mb-2 flex items-center space-x-2">
+                <Star className="h-4 w-4 text-green-600" />
+                <span>Strengths</span>
+              </h3>
+              <p className="text-gray-700">{archetypeData.strengths}</p>
+            </div>
+            <div className="bg-yellow-50 p-4 rounded-lg">
+              <h3 className="font-semibold text-gray-900 mb-2 flex items-center space-x-2">
+                <Target className="h-4 w-4 text-yellow-600" />
+                <span>Growth Areas</span>
+              </h3>
+              <p className="text-gray-700">{archetypeData.growthAreas}</p>
+            </div>
+          </div>
+          
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <h3 className="font-semibold text-gray-900 mb-2 flex items-center space-x-2">
+              <Heart className="h-4 w-4 text-blue-600" />
+              <span>Life Purpose</span>
+            </h3>
+            <p className="text-gray-700">{archetypeData.lifePurpose}</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-purple-50 p-4 rounded-lg">
+              <h3 className="font-semibold text-gray-900 mb-2 flex items-center space-x-2">
+                <Shield className="h-4 w-4 text-purple-600" />
+                <span>Shadow Patterns</span>
+              </h3>
+              <p className="text-gray-700">{archetypeData.shadows}</p>
+            </div>
+            <div className="bg-indigo-50 p-4 rounded-lg">
+              <h3 className="font-semibold text-gray-900 mb-2 flex items-center space-x-2">
+                <Lightbulb className="h-4 w-4 text-indigo-600" />
+                <span>Life Stages</span>
+              </h3>
+              <p className="text-gray-700">{archetypeData.lifeStages}</p>
+            </div>
+          </div>
+
+          <div className="bg-rose-50 p-4 rounded-lg">
+            <h3 className="font-semibold text-gray-900 mb-2">🧘 Healing Practices</h3>
+            <p className="text-gray-700">{archetypeData.healingPractices}</p>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Career Paths */}
+      <Card className="border-orange-200">
+        <CardHeader>
+          <CardTitle className="flex items-center space-x-2">
+            <Briefcase className="h-5 w-5 text-orange-600" />
+            <span>Aligned Career Paths</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {archetypeData.careerPaths.map((career, index) => (
+              <div key={index} className="bg-gradient-to-r from-orange-100 to-red-100 p-3 rounded-lg text-center">
+                <p className="font-medium text-gray-800">{career}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-gray-600 mt-4 text-center">
+            These career paths align with your natural {archetypeData.name} energy and purpose.
+          </p>
         </CardContent>
       </Card>
 
@@ -184,55 +304,6 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
               <p className="text-sm text-gray-600">Your life direction</p>
             </div>
           </div>
-        </CardContent>
-      </Card>
-
-      {/* Key Insights - Now Dynamic */}
-      <Card className="border-orange-200">
-        <CardHeader>
-          <CardTitle>💡 Key Insights for {archetypeData.name}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="bg-orange-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Strengths:</h3>
-            <p className="text-gray-700">
-              {archetypeData.strengths}
-            </p>
-          </div>
-          <div className="bg-red-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Growth Areas:</h3>
-            <p className="text-gray-700">
-              {archetypeData.growthAreas}
-            </p>
-          </div>
-          <div className="bg-yellow-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">Life Purpose:</h3>
-            <p className="text-gray-700">
-              {archetypeData.lifePurpose}
-            </p>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Career Paths */}
-      <Card className="border-orange-200">
-        <CardHeader>
-          <CardTitle className="flex items-center space-x-2">
-            <Briefcase className="h-5 w-5 text-orange-600" />
-            <span>Aligned Career Paths</span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {archetypeData.careerPaths.map((career, index) => (
-              <div key={index} className="bg-gradient-to-r from-orange-100 to-red-100 p-3 rounded-lg text-center">
-                <p className="font-medium text-gray-800">{career}</p>
-              </div>
-            ))}
-          </div>
-          <p className="text-sm text-gray-600 mt-4 text-center">
-            These career paths align with your natural {archetypeData.name} energy and purpose.
-          </p>
         </CardContent>
       </Card>
 
