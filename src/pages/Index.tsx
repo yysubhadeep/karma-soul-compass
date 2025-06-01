@@ -23,9 +23,110 @@ const Index = () => {
         </nav>
       </header>
 
-      {/* Hero Section with Prominent CTA */}
-      <section className="px-4 py-8 md:py-16 max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      {/* Mobile-First Hero Section with Prominent CTA */}
+      <section className="px-4 py-4 md:py-16 max-w-6xl mx-auto">
+        {/* Mobile Layout: CTA First */}
+        <div className="block lg:hidden space-y-6">
+          {/* Mobile CTA - First Fold */}
+          <div className="text-center space-y-4">
+            <div>
+              <span className="inline-block bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                🌟 Discover Your Life Purpose
+              </span>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-tight">
+                Find Your True Path with <span className="text-orange-600">KarmaMap™</span>
+              </h1>
+              <p className="text-base text-gray-700 leading-relaxed mb-4">
+                Get instant clarity on who you are and what you're meant to do. Powered by AI and ancient wisdom.
+              </p>
+            </div>
+
+            {/* Mobile CTA Card - Prominent */}
+            {!showForm ? (
+              <Card className="bg-gradient-to-br from-orange-500 to-red-500 text-white border-0 shadow-xl mx-2">
+                <CardContent className="p-6 text-center space-y-4">
+                  <div className="text-4xl mb-3">🧭</div>
+                  <h2 className="text-xl font-bold mb-3">
+                    Get Your FREE KarmaArchetype
+                  </h2>
+                  <p className="text-sm opacity-90 mb-4">
+                    Discover your unique personality type and life purpose in just 3 minutes.
+                  </p>
+                  
+                  <div className="space-y-2 mb-4 text-xs">
+                    <div className="flex items-center justify-center space-x-2">
+                      <span>✨</span>
+                      <span>Instant personalized report</span>
+                    </div>
+                    <div className="flex items-center justify-center space-x-2">
+                      <span>🔒</span>
+                      <span>100% secure & private</span>
+                    </div>
+                    <div className="flex items-center justify-center space-x-2">
+                      <span>🆓</span>
+                      <span>Completely free forever</span>
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    onClick={() => setShowForm(true)}
+                    size="lg" 
+                    className="w-full bg-white text-orange-600 hover:bg-gray-100 font-bold text-base px-6 py-3 rounded-full"
+                  >
+                    Start My Free Reading
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                  
+                  <p className="text-xs opacity-80 mt-3">
+                    ⚡ Takes only 3 minutes • No payment required
+                  </p>
+                </CardContent>
+              </Card>
+            ) : (
+              <div className="bg-white/90 backdrop-blur-sm p-4 rounded-2xl border border-orange-200 mx-2">
+                <KarmaForm />
+              </div>
+            )}
+
+            {/* Social Proof - Mobile */}
+            <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-4 border border-green-200 mx-2">
+              <div className="flex items-center justify-center space-x-2 mb-2">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <span className="text-xs font-semibold text-gray-700">Trusted by 10,000+ people</span>
+              </div>
+              <p className="text-xs text-gray-600 italic text-center">
+                "Finally understood my life patterns" - Priya, Mumbai
+              </p>
+            </div>
+          </div>
+
+          {/* Mobile Benefits - Second Fold */}
+          <div className="grid grid-cols-2 gap-3 mt-8">
+            <div className="flex items-center space-x-2 bg-white/70 rounded-lg p-3">
+              <span className="text-xl">🎯</span>
+              <span className="font-medium text-gray-800 text-sm">Find Purpose</span>
+            </div>
+            <div className="flex items-center space-x-2 bg-white/70 rounded-lg p-3">
+              <span className="text-xl">💡</span>
+              <span className="font-medium text-gray-800 text-sm">Career Clarity</span>
+            </div>
+            <div className="flex items-center space-x-2 bg-white/70 rounded-lg p-3">
+              <span className="text-xl">💕</span>
+              <span className="font-medium text-gray-800 text-sm">Love Insights</span>
+            </div>
+            <div className="flex items-center space-x-2 bg-white/70 rounded-lg p-3">
+              <span className="text-xl">⏰</span>
+              <span className="font-medium text-gray-800 text-sm">Perfect Timing</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Layout: Original Grid */}
+        <div className="hidden lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-6">
             <div>
