@@ -2,7 +2,8 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Star, Calendar, MapPin, Clock } from "lucide-react";
+import { ArrowLeft, Star, Calendar, MapPin, Clock, Briefcase } from "lucide-react";
+import { getArchetypeData } from '@/data/archetypeData';
 
 interface FormData {
   name: string;
@@ -82,6 +83,7 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
   };
 
   const report = generateReport();
+  const archetypeData = getArchetypeData(report.archetype);
 
   return (
     <div className="space-y-6">
@@ -185,30 +187,52 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
         </CardContent>
       </Card>
 
-      {/* Key Insights */}
+      {/* Key Insights - Now Dynamic */}
       <Card className="border-orange-200">
         <CardHeader>
-          <CardTitle>💡 Key Insights for {report.archetype}</CardTitle>
+          <CardTitle>💡 Key Insights for {archetypeData.name}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="bg-orange-50 p-4 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-2">Strengths:</h3>
             <p className="text-gray-700">
-              Natural leadership qualities, strong intuition, and the ability to inspire others toward positive change.
+              {archetypeData.strengths}
             </p>
           </div>
           <div className="bg-red-50 p-4 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-2">Growth Areas:</h3>
             <p className="text-gray-700">
-              Learning to balance ambition with patience, and trusting the divine timing of your journey.
+              {archetypeData.growthAreas}
             </p>
           </div>
           <div className="bg-yellow-50 p-4 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-2">Life Purpose:</h3>
             <p className="text-gray-700">
-              You are here to guide others through transformation and help them discover their own inner wisdom.
+              {archetypeData.lifePurpose}
             </p>
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Career Paths */}
+      <Card className="border-orange-200">
+        <CardHeader>
+          <CardTitle className="flex items-center space-x-2">
+            <Briefcase className="h-5 w-5 text-orange-600" />
+            <span>Aligned Career Paths</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {archetypeData.careerPaths.map((career, index) => (
+              <div key={index} className="bg-gradient-to-r from-orange-100 to-red-100 p-3 rounded-lg text-center">
+                <p className="font-medium text-gray-800">{career}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-gray-600 mt-4 text-center">
+            These career paths align with your natural {archetypeData.name} energy and purpose.
+          </p>
         </CardContent>
       </Card>
 
