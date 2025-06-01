@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -442,7 +443,7 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
                   
                   <div className="flex justify-center mb-4">
                     <Button 
-                      className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-8 text-base rounded-lg max-w-sm"
+                      className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-6 text-base rounded-lg max-w-xs"
                     >
                       <Star className="h-5 w-5 mr-2" />
                       Get My FREE Personal Reading
