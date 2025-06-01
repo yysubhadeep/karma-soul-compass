@@ -126,8 +126,7 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
         </p>
         
         <Button 
-          size="lg" 
-          className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 text-sm rounded-xl"
+          className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-4 text-sm rounded-xl"
         >
           <MessageCircle className="h-4 w-4 mr-2" />
           Ask Your First Question FREE
@@ -440,8 +439,7 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
                   </div>
                   
                   <Button 
-                    size="lg" 
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 text-base rounded-xl mb-4"
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-6 text-base rounded-xl mb-4"
                   >
                     <Star className="h-5 w-5 mr-2" />
                     Get My FREE Personal Reading
