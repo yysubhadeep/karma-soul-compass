@@ -125,12 +125,14 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
           Get personalized answers about your love life, career path, and spiritual growth.
         </p>
         
-        <Button 
-          className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 px-4 text-sm rounded-xl"
-        >
-          <MessageCircle className="h-4 w-4 mr-2" />
-          Ask Your First Question FREE
-        </Button>
+        <div className="flex justify-center">
+          <Button 
+            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-2 px-6 text-sm rounded-lg max-w-xs"
+          >
+            <MessageCircle className="h-4 w-4 mr-2" />
+            Ask Your First Question FREE
+          </Button>
+        </div>
         
         <div className="grid grid-cols-3 gap-2 text-xs text-purple-700 font-medium mt-3">
           <div className="flex flex-col items-center space-y-1">
@@ -438,12 +440,14 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
                     <h3 className="text-xl font-bold text-purple-800">Ask Your First Question FREE</h3>
                   </div>
                   
-                  <Button 
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-6 text-base rounded-xl mb-4"
-                  >
-                    <Star className="h-5 w-5 mr-2" />
-                    Get My FREE Personal Reading
-                  </Button>
+                  <div className="flex justify-center mb-4">
+                    <Button 
+                      className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-8 text-base rounded-lg max-w-sm"
+                    >
+                      <Star className="h-5 w-5 mr-2" />
+                      Get My FREE Personal Reading
+                    </Button>
+                  </div>
                   
                   <div className="grid grid-cols-3 gap-4 text-sm text-purple-700 font-medium">
                     <div className="flex flex-col items-center space-y-2">
