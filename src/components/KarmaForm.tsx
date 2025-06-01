@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { ArrowRight } from "lucide-react";
+import AstrologyReport from './AstrologyReport';
 
 interface FormData {
   name: string;
@@ -18,6 +19,7 @@ interface FormData {
 
 const KarmaForm = () => {
   const [step, setStep] = useState(1);
+  const [showReport, setShowReport] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -68,26 +70,31 @@ const KarmaForm = () => {
 
     setLoading(true);
     
-    // Simulate KarmaMap generation with the algorithm logic
+    // Simulate KarmaMap generation
     setTimeout(() => {
       setLoading(false);
-      
-      // This would typically call the astrology calculation API
-      // For now, we'll show a success message
-      toast.success("🌟 Your KarmaArchetype is being generated! Check your email for the detailed report.");
-      
-      // Reset form
-      setStep(1);
-      setFormData({
-        name: '',
-        email: '',
-        otp: '',
-        dateOfBirth: '',
-        timeOfBirth: '',
-        placeOfBirth: ''
-      });
+      setShowReport(true);
+      toast.success("🌟 Your KarmaArchetype has been generated!");
     }, 2000);
   };
+
+  const handleBackToForm = () => {
+    setShowReport(false);
+    setStep(1);
+    setFormData({
+      name: '',
+      email: '',
+      otp: '',
+      dateOfBirth: '',
+      timeOfBirth: '',
+      placeOfBirth: ''
+    });
+  };
+
+  // Show report if generated
+  if (showReport) {
+    return <AstrologyReport formData={formData} onBack={handleBackToForm} />;
+  }
 
   return (
     <Card className="w-full max-w-md mx-auto bg-white/95 backdrop-blur-sm border-orange-200">
