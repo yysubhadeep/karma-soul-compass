@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -20,7 +19,7 @@ interface MobileAstrologyReportProps {
 }
 
 const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps) => {
-  const [activeTab, setActiveTab] = useState("overview");
+  const [activeTab, setActiveTab] = useState("profile");
 
   // Generate psychological profile based on birth data patterns
   const generatePsychologicalProfile = () => {
@@ -116,6 +115,42 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
     return emojiMap[archetype] || "🌟";
   };
 
+  // Call to Action Component
+  const CallToActionCard = () => (
+    <Card className="border-4 border-gradient-to-r from-purple-400 to-pink-400 bg-gradient-to-br from-purple-50 via-pink-50 to-violet-50 mt-4">
+      <CardContent className="text-center py-6 space-y-4">
+        <div className="text-4xl mb-3">✨</div>
+        <h3 className="text-lg font-bold text-purple-900 mb-2">Want Deeper Insights?</h3>
+        <p className="text-sm text-gray-800 leading-relaxed mb-4">
+          Get personalized answers about your love life, career path, and spiritual growth.
+        </p>
+        
+        <Button 
+          size="lg" 
+          className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 text-sm rounded-xl"
+        >
+          <MessageCircle className="h-4 w-4 mr-2" />
+          Ask Your First Question FREE
+        </Button>
+        
+        <div className="grid grid-cols-3 gap-2 text-xs text-purple-700 font-medium mt-3">
+          <div className="flex flex-col items-center space-y-1">
+            <span>💜</span>
+            <span>Love</span>
+          </div>
+          <div className="flex flex-col items-center space-y-1">
+            <span>🎯</span>
+            <span>Career</span>
+          </div>
+          <div className="flex flex-col items-center space-y-1">
+            <span>🌟</span>
+            <span>Purpose</span>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-yellow-50">
       {/* Mobile Header */}
@@ -165,43 +200,31 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
           </CardContent>
         </Card>
 
-        {/* Tabs for Mobile Navigation */}
+        {/* Simplified Tabs for Mobile Navigation */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-5 h-auto p-1">
-            <TabsTrigger value="overview" className="text-xs py-2 px-1">
+          <TabsList className="grid w-full grid-cols-3 h-auto p-1">
+            <TabsTrigger value="profile" className="text-xs py-2 px-1">
               <div className="flex flex-col items-center space-y-1">
                 <Star className="h-4 w-4" />
-                <span>Overview</span>
+                <span>Your Profile</span>
               </div>
             </TabsTrigger>
-            <TabsTrigger value="insights" className="text-xs py-2 px-1">
+            <TabsTrigger value="vedic" className="text-xs py-2 px-1">
               <div className="flex flex-col items-center space-y-1">
                 <Brain className="h-4 w-4" />
-                <span>Insights</span>
+                <span>Vedic Insights</span>
               </div>
             </TabsTrigger>
-            <TabsTrigger value="growth" className="text-xs py-2 px-1">
+            <TabsTrigger value="reading" className="text-xs py-2 px-1">
               <div className="flex flex-col items-center space-y-1">
-                <Target className="h-4 w-4" />
-                <span>Growth</span>
-              </div>
-            </TabsTrigger>
-            <TabsTrigger value="life" className="text-xs py-2 px-1">
-              <div className="flex flex-col items-center space-y-1">
-                <Heart className="h-4 w-4" />
-                <span>Life</span>
-              </div>
-            </TabsTrigger>
-            <TabsTrigger value="action" className="text-xs py-2 px-1">
-              <div className="flex flex-col items-center space-y-1">
-                <Zap className="h-4 w-4" />
-                <span>Action</span>
+                <MessageCircle className="h-4 w-4" />
+                <span>Get Reading</span>
               </div>
             </TabsTrigger>
           </TabsList>
 
-          {/* Overview Tab */}
-          <TabsContent value="overview" className="space-y-4 mt-4">
+          {/* Your Profile Tab - Consolidated Content */}
+          <TabsContent value="profile" className="space-y-4 mt-4">
             {/* Main Archetype */}
             <Card className="border-orange-200 bg-gradient-to-br from-orange-50 to-red-50">
               <CardContent className="text-center p-6">
@@ -231,10 +254,7 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
                 <p className="text-gray-800 leading-relaxed text-sm">{archetypeData.lifePurpose}</p>
               </CardContent>
             </Card>
-          </TabsContent>
 
-          {/* Insights Tab */}
-          <TabsContent value="insights" className="space-y-4 mt-4">
             {/* Core Patterns */}
             <Card className="border-orange-200">
               <CardHeader className="pb-3">
@@ -248,49 +268,20 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
                 </div>
                 
                 <div className="bg-orange-50 rounded-lg p-3">
-                  <h4 className="font-semibold text-gray-900 text-sm mb-1">Emotional Processing</h4>
-                  <p className="text-lg font-bold text-orange-600">{profile.emotionalStyle}</p>
-                  <p className="text-xs text-gray-600">How you handle emotions internally</p>
-                </div>
-                
-                <div className="bg-orange-50 rounded-lg p-3">
-                  <h4 className="font-semibold text-gray-900 text-sm mb-1">Behavior Pattern</h4>
-                  <p className="text-lg font-bold text-orange-600">{profile.behaviorPattern}</p>
-                  <p className="text-xs text-gray-600">Your external action style</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Psychological Drivers */}
-            <Card className="border-red-200">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg">🎯 Psychological Drivers</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="bg-red-50 rounded-lg p-3">
                   <h4 className="font-semibold text-gray-900 text-sm mb-1">Primary Motivation</h4>
-                  <p className="text-lg font-bold text-red-600">{profile.primaryDriver}</p>
+                  <p className="text-lg font-bold text-orange-600">{profile.primaryDriver}</p>
                   <p className="text-xs text-gray-600">What drives your decisions</p>
                 </div>
                 
-                <div className="bg-red-50 rounded-lg p-3">
-                  <h4 className="font-semibold text-gray-900 text-sm mb-1">Cognitive Style</h4>
-                  <p className="text-lg font-bold text-red-600">{profile.cognitiveStyle}</p>
-                  <p className="text-xs text-gray-600">How you process information</p>
-                </div>
-                
-                <div className="bg-red-50 rounded-lg p-3">
+                <div className="bg-orange-50 rounded-lg p-3">
                   <h4 className="font-semibold text-gray-900 text-sm mb-1">Energy Type</h4>
-                  <p className="text-lg font-bold text-red-600">{profile.energyType}</p>
+                  <p className="text-lg font-bold text-orange-600">{profile.energyType}</p>
                   <p className="text-xs text-gray-600">Your natural energy rhythm</p>
                 </div>
               </CardContent>
             </Card>
-          </TabsContent>
 
-          {/* Growth Tab */}
-          <TabsContent value="growth" className="space-y-4 mt-4">
-            {/* Strengths */}
+            {/* Strengths & Growth */}
             <Card className="border-green-200 bg-green-50">
               <CardHeader className="pb-3">
                 <CardTitle className="flex items-center space-x-2 text-lg">
@@ -326,68 +317,6 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
               </CardContent>
             </Card>
 
-            {/* Shadow Work */}
-            <Card className="border-purple-200 bg-purple-50">
-              <CardHeader className="pb-3">
-                <CardTitle className="flex items-center space-x-2 text-lg">
-                  <Shield className="h-5 w-5 text-purple-600" />
-                  <span>Shadow Integration Work</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 leading-relaxed text-sm">{archetypeData.shadows}</p>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Life Tab */}
-          <TabsContent value="life" className="space-y-4 mt-4">
-            {/* Relationships */}
-            <Card className="border-pink-200 bg-pink-50">
-              <CardHeader className="pb-3">
-                <CardTitle className="flex items-center space-x-2 text-lg">
-                  <Users className="h-5 w-5 text-pink-600" />
-                  <span>Relationship Patterns</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 leading-relaxed text-sm mb-3">
-                  In relationships, you likely attract people who complement your {profile.archetype} nature. Your {profile.behaviorPattern} behavior pattern influences how you connect with others.
-                </p>
-                <div className="bg-white/50 rounded-lg p-3">
-                  <p className="text-xs text-pink-700 font-medium">
-                    💕 Balance your natural tendencies with conscious relationship choices
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Life Evolution */}
-            <Card className="border-indigo-200 bg-indigo-50">
-              <CardHeader className="pb-3">
-                <CardTitle className="flex items-center space-x-2 text-lg">
-                  <Lightbulb className="h-5 w-5 text-indigo-600" />
-                  <span>Your Life Evolution Path</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 leading-relaxed text-sm">{archetypeData.lifeStages}</p>
-              </CardContent>
-            </Card>
-
-            {/* Healing Practices */}
-            <Card className="border-rose-200 bg-rose-50">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg">🧘 Healing & Growth Practices</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 leading-relaxed text-sm">{archetypeData.healingPractices}</p>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Action Tab */}
-          <TabsContent value="action" className="space-y-4 mt-4">
             {/* Career Paths */}
             <Card className="border-orange-200">
               <CardHeader className="pb-3">
@@ -412,10 +341,16 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
               </CardContent>
             </Card>
 
+            {/* Call to Action after Profile */}
+            <CallToActionCard />
+          </TabsContent>
+
+          {/* Vedic Insights Tab */}
+          <TabsContent value="vedic" className="space-y-4 mt-4">
             {/* Vedic Insights */}
             <Card className="border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50">
               <CardHeader className="pb-3">
-                <CardTitle className="text-lg">🕉️ Wisdom Insights</CardTitle>
+                <CardTitle className="text-lg">🕉️ Ancient Wisdom Insights</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="bg-white/60 rounded-lg p-3">
@@ -432,7 +367,7 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
                       Start Doing
                     </h4>
                     <ul className="space-y-1">
-                      {archetypeData.vedicInsights.startDoing.slice(0, 3).map((item, index) => (
+                      {archetypeData.vedicInsights.startDoing.slice(0, 5).map((item, index) => (
                         <li key={index} className="text-xs text-green-700 flex items-start">
                           <span className="text-green-500 mr-2 mt-1 flex-shrink-0">•</span>
                           <span>{item}</span>
@@ -448,7 +383,7 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
                       Stop Doing
                     </h4>
                     <ul className="space-y-1">
-                      {archetypeData.vedicInsights.stopDoing.slice(0, 3).map((item, index) => (
+                      {archetypeData.vedicInsights.stopDoing.slice(0, 5).map((item, index) => (
                         <li key={index} className="text-xs text-red-700 flex items-start">
                           <span className="text-red-500 mr-2 mt-1 flex-shrink-0">•</span>
                           <span>{item}</span>
@@ -460,41 +395,93 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
               </CardContent>
             </Card>
 
-            {/* Call to Action */}
+            {/* Shadow Work */}
+            <Card className="border-purple-200 bg-purple-50">
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center space-x-2 text-lg">
+                  <Shield className="h-5 w-5 text-purple-600" />
+                  <span>Shadow Integration Work</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 leading-relaxed text-sm">{archetypeData.shadows}</p>
+              </CardContent>
+            </Card>
+
+            {/* Healing Practices */}
+            <Card className="border-rose-200 bg-rose-50">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg">🧘 Healing & Growth Practices</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 leading-relaxed text-sm">{archetypeData.healingPractices}</p>
+              </CardContent>
+            </Card>
+
+            {/* Call to Action after Vedic */}
+            <CallToActionCard />
+          </TabsContent>
+
+          {/* Get Personal Reading Tab */}
+          <TabsContent value="reading" className="space-y-4 mt-4">
+            {/* Main Call to Action */}
             <Card className="border-4 border-gradient-to-r from-purple-400 to-pink-400 bg-gradient-to-br from-purple-50 via-pink-50 to-violet-50">
-              <CardContent className="text-center py-6 space-y-4">
-                <div className="text-4xl mb-3">✨</div>
-                <h2 className="text-xl font-bold text-purple-900 mb-3">Ready to Go Deeper?</h2>
-                <p className="text-sm text-gray-800 leading-relaxed mb-4">
+              <CardContent className="text-center py-8 space-y-6">
+                <div className="text-6xl mb-4">✨</div>
+                <h2 className="text-2xl font-bold text-purple-900 mb-4">Ready to Go Deeper?</h2>
+                <p className="text-base text-gray-800 leading-relaxed mb-6">
                   Get personalized answers to your most pressing questions about love, career, purpose, and personal growth.
                 </p>
                 
-                <div className="bg-white/70 rounded-2xl p-4 border-2 border-purple-200">
-                  <div className="flex items-center justify-center space-x-2 mb-3">
-                    <MessageCircle className="h-5 w-5 text-purple-600" />
-                    <h3 className="text-base font-bold text-purple-800">Ask Your First Question FREE</h3>
+                <div className="bg-white/70 rounded-2xl p-6 border-2 border-purple-200">
+                  <div className="flex items-center justify-center space-x-2 mb-4">
+                    <MessageCircle className="h-6 w-6 text-purple-600" />
+                    <h3 className="text-xl font-bold text-purple-800">Ask Your First Question FREE</h3>
                   </div>
                   
                   <Button 
                     size="lg" 
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 text-sm rounded-xl"
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 text-base rounded-xl mb-4"
                   >
-                    <Star className="h-4 w-4 mr-2" />
+                    <Star className="h-5 w-5 mr-2" />
                     Get My FREE Personal Reading
                   </Button>
                   
-                  <div className="grid grid-cols-3 gap-2 text-xs text-purple-700 font-medium mt-3">
-                    <div className="flex flex-col items-center space-y-1">
-                      <span>💜</span>
-                      <span>Love</span>
+                  <div className="grid grid-cols-3 gap-4 text-sm text-purple-700 font-medium">
+                    <div className="flex flex-col items-center space-y-2">
+                      <span className="text-2xl">💜</span>
+                      <span>Love & Relationships</span>
                     </div>
-                    <div className="flex flex-col items-center space-y-1">
-                      <span>🎯</span>
-                      <span>Career</span>
+                    <div className="flex flex-col items-center space-y-2">
+                      <span className="text-2xl">🎯</span>
+                      <span>Career & Money</span>
                     </div>
-                    <div className="flex flex-col items-center space-y-1">
-                      <span>🌟</span>
-                      <span>Purpose</span>
+                    <div className="flex flex-col items-center space-y-2">
+                      <span className="text-2xl">🌟</span>
+                      <span>Life Purpose</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* What You'll Get */}
+                <div className="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-xl p-4 border border-indigo-200">
+                  <h4 className="text-lg font-bold text-indigo-900 mb-3">What You'll Get:</h4>
+                  <div className="space-y-2 text-sm text-indigo-800">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-indigo-600">✓</span>
+                      <span>Personalized answers to your specific questions</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-indigo-600">✓</span>
+                      <span>Deeper insights into your {profile.archetype} nature</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-indigo-600">✓</span>
+                      <span>Guidance for your next life steps</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-indigo-600">✓</span>
+                      <span>No commitment - first question is completely free</span>
                     </div>
                   </div>
                 </div>
