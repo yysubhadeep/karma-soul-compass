@@ -1,4 +1,3 @@
-
 export interface ArchetypeData {
   name: string;
   strengths: string;
@@ -471,7 +470,34 @@ export const getArchetypeData = (archetype: string): ArchetypeData => {
     shadows: "Tendency to take on too much responsibility and difficulty accepting help from others.",
     lifeStages: "Early development of independence, mid-life mastery, elder wisdom sharing.",
     healingPractices: "Meditation, nature connection, community service",
-    careerPaths: ["Life Coach", "Teacher", "Counselor", "Entrepreneur", "Healer", "Writer"]
+    careerPaths: ["Life Coach", "Teacher", "Counselor", "Entrepreneur", "Healer", "Writer"],
+    vedicInsights: {
+      view: "A balanced soul walking the path of dharma, meant to guide and inspire others through authentic living and conscious growth.",
+      startDoing: [
+        "Practice daily meditation or mindfulness",
+        "Set clear intentions aligned with your values",
+        "Serve others in meaningful ways",
+        "Study wisdom traditions",
+        "Take care of your physical and mental health",
+        "Build authentic relationships",
+        "Follow your intuition",
+        "Express gratitude daily",
+        "Learn from challenges",
+        "Stay connected to nature"
+      ],
+      stopDoing: [
+        "Overthinking every decision",
+        "Comparing yourself to others",
+        "Neglecting self-care",
+        "Avoiding difficult conversations",
+        "Seeking external validation constantly",
+        "Procrastinating on important goals",
+        "Holding grudges",
+        "Ignoring your inner voice",
+        "Taking on too much responsibility",
+        "Avoiding personal growth"
+      ]
+    }
   };
 };
 
