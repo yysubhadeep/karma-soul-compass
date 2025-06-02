@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -55,6 +56,83 @@ const EasternAstroExperiment = () => {
             <div className="flex items-center space-x-2">
               <Heart className="h-4 w-4 text-orange-600" />
               <span>True Sidereal Calculations</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Key Areas Section - Top Fold */}
+      <section className="px-3 sm:px-4 py-6 sm:py-8 max-w-6xl mx-auto">
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
+            🌟 Key Areas You'll Get Profound Answers About
+          </h2>
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+            Discover deep insights across all major life domains through authentic Vedic wisdom
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-8">
+          {[
+            {
+              title: "Life Purpose & Soul Mission",
+              description: "Your dharmic path and cosmic calling",
+              icon: "🎯"
+            },
+            {
+              title: "Career & Professional Growth",
+              description: "Optimal timing and aligned opportunities",
+              icon: "💼"
+            },
+            {
+              title: "Relationships & Love Life",
+              description: "Compatibility patterns and karmic connections",
+              icon: "💕"
+            },
+            {
+              title: "Health & Vitality Patterns",
+              description: "Physical constitution and wellness insights",
+              icon: "🌿"
+            },
+            {
+              title: "Wealth & Abundance Flow",
+              description: "Financial karma and prosperity timing",
+              icon: "💰"
+            },
+            {
+              title: "Spiritual Growth Journey",
+              description: "Meditation practices and consciousness evolution",
+              icon: "🧘"
+            }
+          ].map((area, index) => (
+            <Card key={index} className="border-orange-200 hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm h-full">
+              <CardContent className="p-4 sm:p-5 text-center">
+                <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">{area.icon}</div>
+                <h3 className="font-bold text-orange-700 text-sm sm:text-base mb-2 leading-tight">{area.title}</h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{area.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Quick Benefits */}
+        <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-4 sm:p-6 border border-orange-200 text-center">
+          <h3 className="text-lg sm:text-xl font-bold text-orange-800 mb-3">✨ What Makes This Different?</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-sm">
+            <div className="flex flex-col items-center space-y-1">
+              <span className="text-lg">🔮</span>
+              <span className="font-semibold text-orange-700">Precise Timing</span>
+              <span className="text-gray-600 text-xs">Exact planetary periods for decisions</span>
+            </div>
+            <div className="flex flex-col items-center space-y-1">
+              <span className="text-lg">🌙</span>
+              <span className="font-semibold text-orange-700">Karmic Patterns</span>
+              <span className="text-gray-600 text-xs">Understand your soul's journey</span>
+            </div>
+            <div className="flex flex-col items-center space-y-1">
+              <span className="text-lg">⚡</span>
+              <span className="font-semibold text-orange-700">Practical Remedies</span>
+              <span className="text-gray-600 text-xs">Ancient solutions for modern life</span>
             </div>
           </div>
         </div>
