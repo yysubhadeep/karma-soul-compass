@@ -35,6 +35,13 @@ export const generateNatalChart = (
   const [hours, minutes] = timeOfBirth.split(':').map(Number);
   const timeDecimal = hours + (minutes / 60);
   
+  // Debug logging for Dr. Madhu Priya
+  const isTestSubject = month === 3 && day === 5 && year === 1987;
+  if (isTestSubject) {
+    console.log("=== DEBUGGING DR. MADHU PRIYA CHART GENERATION ===");
+    console.log("Birth data:", { month, day, year, timeDecimal });
+  }
+  
   // Simplified chart calculation based on birth data
   // In a real implementation, this would use ephemeris data
   
@@ -56,6 +63,10 @@ export const generateNatalChart = (
   const risingIndex = Math.floor(timeDecimal / 2) % 12;
   const risingSign = signs[risingIndex];
   
+  if (isTestSubject) {
+    console.log("Basic placements:", { sunSign, moonSign, risingSign });
+  }
+  
   // Calculate dominant element based on Sun, Moon, Rising + modifiers
   const signElements = {
     "Aries": "Fire", "Leo": "Fire", "Sagittarius": "Fire",
@@ -72,6 +83,11 @@ export const generateNatalChart = (
   const dominantElement = Object.entries(elementCount)
     .sort(([,a], [,b]) => b - a)[0][0];
   
+  if (isTestSubject) {
+    console.log("Element counts:", elementCount);
+    console.log("Dominant element:", dominantElement);
+  }
+  
   // Calculate dominant modality
   const signModalities = {
     "Aries": "Cardinal", "Cancer": "Cardinal", "Libra": "Cardinal", "Capricorn": "Cardinal",
@@ -87,6 +103,11 @@ export const generateNatalChart = (
   const dominantModality = Object.entries(modalityCount)
     .sort(([,a], [,b]) => b - a)[0][0];
   
+  if (isTestSubject) {
+    console.log("Modality counts:", modalityCount);
+    console.log("Dominant modality:", dominantModality);
+  }
+  
   // Calculate dominant planet (simplified - based on chart ruler and aspects)
   const chartRulers = {
     "Aries": "Mars", "Taurus": "Venus", "Gemini": "Mercury", "Cancer": "Moon",
@@ -95,6 +116,10 @@ export const generateNatalChart = (
   };
   
   const dominantPlanet = chartRulers[risingSign] || "Sun";
+  
+  if (isTestSubject) {
+    console.log("Chart ruler (dominant planet):", dominantPlanet);
+  }
   
   // Calculate house emphasis (simplified distribution)
   const houseEmphasis = Array.from({ length: 12 }, (_, i) => {
@@ -165,8 +190,12 @@ export const calculateAstrologicalArchetype = (chart: NatalChart): { primary: st
 
   const { sunSign, moonSign, risingSign, dominantElement, dominantModality, dominantPlanet, houseEmphasis, planetaryPlacements } = chart;
 
-  console.log("=== REBALANCED ASTROLOGICAL ARCHETYPE CALCULATION ===");
-  console.log("Chart data:", { sunSign, moonSign, risingSign, dominantElement, dominantModality, dominantPlanet });
+  // Debug logging for Dr. Madhu Priya
+  const isTestSubject = sunSign === "Pisces" && moonSign && risingSign;
+  if (isTestSubject) {
+    console.log("=== DEBUGGING DR. MADHU PRIYA ARCHETYPE CALCULATION ===");
+    console.log("Chart data:", { sunSign, moonSign, risingSign, dominantElement, dominantModality, dominantPlanet });
+  }
 
   // 1. The Builder - Earth signs, practical focus, structure
   if (["Taurus", "Virgo", "Capricorn"].includes(sunSign)) scores["The Builder"] += 4;
@@ -178,12 +207,30 @@ export const calculateAstrologicalArchetype = (chart: NatalChart): { primary: st
   if (houseEmphasis[1] >= 4 || houseEmphasis[5] >= 4 || houseEmphasis[9] >= 4) scores["The Builder"] += 2;
 
   // 2. The Dreamer - Water signs, especially Pisces/Cancer, imagination
-  if (["Pisces", "Cancer", "Scorpio"].includes(sunSign)) scores["The Dreamer"] += 4;
-  if (["Pisces", "Cancer"].includes(moonSign)) scores["The Dreamer"] += 4;
-  if (["Pisces", "Cancer"].includes(risingSign)) scores["The Dreamer"] += 3;
-  if (dominantElement === "Water") scores["The Dreamer"] += 3;
-  if (dominantModality === "Mutable") scores["The Dreamer"] += 2;
-  if (["Neptune", "Moon"].includes(dominantPlanet)) scores["The Dreamer"] += 3;
+  if (["Pisces", "Cancer", "Scorpio"].includes(sunSign)) {
+    scores["The Dreamer"] += 4;
+    if (isTestSubject) console.log("The Dreamer +4 for Pisces sun");
+  }
+  if (["Pisces", "Cancer"].includes(moonSign)) {
+    scores["The Dreamer"] += 4;
+    if (isTestSubject) console.log(`The Dreamer +4 for ${moonSign} moon`);
+  }
+  if (["Pisces", "Cancer"].includes(risingSign)) {
+    scores["The Dreamer"] += 3;
+    if (isTestSubject) console.log(`The Dreamer +3 for ${risingSign} rising`);
+  }
+  if (dominantElement === "Water") {
+    scores["The Dreamer"] += 3;
+    if (isTestSubject) console.log("The Dreamer +3 for Water element");
+  }
+  if (dominantModality === "Mutable") {
+    scores["The Dreamer"] += 2;
+    if (isTestSubject) console.log("The Dreamer +2 for Mutable modality");
+  }
+  if (["Neptune", "Moon"].includes(dominantPlanet)) {
+    scores["The Dreamer"] += 3;
+    if (isTestSubject) console.log(`The Dreamer +3 for ${dominantPlanet} planet`);
+  }
   if (houseEmphasis[11] >= 4) scores["The Dreamer"] += 2;
 
   // 3. The Leader - Fire signs, especially Leo/Aries, authority
@@ -196,11 +243,26 @@ export const calculateAstrologicalArchetype = (chart: NatalChart): { primary: st
   if (houseEmphasis[0] >= 4 || houseEmphasis[9] >= 4) scores["The Leader"] += 2;
 
   // 4. The Healer - Cancer/Virgo focus, service, care
-  if (["Cancer", "Virgo", "Pisces", "Scorpio"].includes(sunSign)) scores["The Healer"] += 4;
-  if (["Cancer", "Virgo", "Pisces"].includes(moonSign)) scores["The Healer"] += 4;
-  if (["Cancer", "Virgo", "Pisces"].includes(risingSign)) scores["The Healer"] += 3;
-  if (["Water", "Earth"].includes(dominantElement)) scores["The Healer"] += 2;
-  if (["Moon", "Neptune", "Mercury"].includes(dominantPlanet)) scores["The Healer"] += 2;
+  if (["Cancer", "Virgo", "Pisces", "Scorpio"].includes(sunSign)) {
+    scores["The Healer"] += 4;
+    if (isTestSubject) console.log("The Healer +4 for Pisces sun");
+  }
+  if (["Cancer", "Virgo", "Pisces"].includes(moonSign)) {
+    scores["The Healer"] += 4;
+    if (isTestSubject) console.log(`The Healer +4 for ${moonSign} moon`);
+  }
+  if (["Cancer", "Virgo", "Pisces"].includes(risingSign)) {
+    scores["The Healer"] += 3;
+    if (isTestSubject) console.log(`The Healer +3 for ${risingSign} rising`);
+  }
+  if (["Water", "Earth"].includes(dominantElement)) {
+    scores["The Healer"] += 2;
+    if (isTestSubject) console.log(`The Healer +2 for ${dominantElement} element`);
+  }
+  if (["Moon", "Neptune", "Mercury"].includes(dominantPlanet)) {
+    scores["The Healer"] += 2;
+    if (isTestSubject) console.log(`The Healer +2 for ${dominantPlanet} planet`);
+  }
   if (houseEmphasis[5] >= 4 || houseEmphasis[7] >= 4 || houseEmphasis[11] >= 4) scores["The Healer"] += 2;
 
   // 5. The Seeker - Sagittarius/Gemini, quest for knowledge
@@ -222,11 +284,26 @@ export const calculateAstrologicalArchetype = (chart: NatalChart): { primary: st
   if (houseEmphasis[0] >= 4 || houseEmphasis[10] >= 4) scores["The Rebel"] += 2;
 
   // 7. The Mystic - Water signs, especially Scorpio/Pisces, depth
-  if (["Scorpio", "Pisces", "Cancer"].includes(sunSign)) scores["The Mystic"] += 4;
-  if (["Scorpio", "Pisces", "Cancer"].includes(moonSign)) scores["The Mystic"] += 4;
-  if (["Scorpio", "Pisces"].includes(risingSign)) scores["The Mystic"] += 3;
-  if (dominantElement === "Water") scores["The Mystic"] += 3;
-  if (["Neptune", "Pluto", "Moon"].includes(dominantPlanet)) scores["The Mystic"] += 3;
+  if (["Scorpio", "Pisces", "Cancer"].includes(sunSign)) {
+    scores["The Mystic"] += 4;
+    if (isTestSubject) console.log("The Mystic +4 for Pisces sun");
+  }
+  if (["Scorpio", "Pisces", "Cancer"].includes(moonSign)) {
+    scores["The Mystic"] += 4;
+    if (isTestSubject) console.log(`The Mystic +4 for ${moonSign} moon`);
+  }
+  if (["Scorpio", "Pisces"].includes(risingSign)) {
+    scores["The Mystic"] += 3;
+    if (isTestSubject) console.log(`The Mystic +3 for ${risingSign} rising`);
+  }
+  if (dominantElement === "Water") {
+    scores["The Mystic"] += 3;
+    if (isTestSubject) console.log("The Mystic +3 for Water element");
+  }
+  if (["Neptune", "Pluto", "Moon"].includes(dominantPlanet)) {
+    scores["The Mystic"] += 3;
+    if (isTestSubject) console.log(`The Mystic +3 for ${dominantPlanet} planet`);
+  }
   if (houseEmphasis[7] >= 4 || houseEmphasis[11] >= 4) scores["The Mystic"] += 2;
 
   // 8. The Visionary - Air signs, especially Aquarius, future focus
@@ -255,32 +332,79 @@ export const calculateAstrologicalArchetype = (chart: NatalChart): { primary: st
   if (houseEmphasis[5] >= 4 || houseEmphasis[7] >= 4 || houseEmphasis[9] >= 4) scores["The Strategist"] += 2;
 
   // 11. The Performer - Fire signs, especially Leo, creativity
-  if (["Leo", "Aries", "Sagittarius", "Libra"].includes(sunSign)) scores["The Performer"] += 4;
-  if (["Leo", "Aries", "Libra"].includes(moonSign)) scores["The Performer"] += 3;
-  if (["Leo", "Libra", "Gemini"].includes(risingSign)) scores["The Performer"] += 3;
-  if (["Fire", "Air"].includes(dominantElement)) scores["The Performer"] += 2;
-  if (dominantModality === "Fixed") scores["The Performer"] += 2;
-  if (["Sun", "Venus", "Jupiter"].includes(dominantPlanet)) scores["The Performer"] += 2;
+  if (["Leo", "Aries", "Sagittarius", "Libra"].includes(sunSign)) {
+    if (isTestSubject) console.log(`The Performer: checking sun sign ${sunSign} - NO MATCH`);
+  } else {
+    if (isTestSubject) console.log(`The Performer: sun sign ${sunSign} doesn't match Leo/Aries/Sagittarius/Libra`);
+  }
+  if (["Leo", "Aries", "Libra"].includes(moonSign)) {
+    scores["The Performer"] += 3;
+    if (isTestSubject) console.log(`The Performer +3 for ${moonSign} moon`);
+  }
+  if (["Leo", "Libra", "Gemini"].includes(risingSign)) {
+    scores["The Performer"] += 3;
+    if (isTestSubject) console.log(`The Performer +3 for ${risingSign} rising`);
+  }
+  if (["Fire", "Air"].includes(dominantElement)) {
+    scores["The Performer"] += 2;
+    if (isTestSubject) console.log(`The Performer +2 for ${dominantElement} element`);
+  }
+  if (dominantModality === "Fixed") {
+    scores["The Performer"] += 2;
+    if (isTestSubject) console.log(`The Performer +2 for Fixed modality`);
+  }
+  if (["Sun", "Venus", "Jupiter"].includes(dominantPlanet)) {
+    scores["The Performer"] += 2;
+    if (isTestSubject) console.log(`The Performer +2 for ${dominantPlanet} planet`);
+  }
   if (houseEmphasis[4] >= 4 || houseEmphasis[0] >= 4) scores["The Performer"] += 2;
 
   // 12. The Alchemist - Scorpio focus, transformation, depth
-  if (["Scorpio", "Capricorn", "Aries", "Pisces"].includes(sunSign)) scores["The Alchemist"] += 4;
-  if (["Scorpio", "Capricorn", "Aries"].includes(moonSign)) scores["The Alchemist"] += 3;
-  if (["Scorpio", "Capricorn", "Aries"].includes(risingSign)) scores["The Alchemist"] += 3;
-  if (["Water", "Earth"].includes(dominantElement)) scores["The Alchemist"] += 2;
-  if (dominantModality === "Fixed") scores["The Alchemist"] += 2;
-  if (["Pluto", "Mars", "Saturn"].includes(dominantPlanet)) scores["The Alchemist"] += 3;
+  if (["Scorpio", "Capricorn", "Aries", "Pisces"].includes(sunSign)) {
+    scores["The Alchemist"] += 4;
+    if (isTestSubject) console.log("The Alchemist +4 for Pisces sun");
+  }
+  if (["Scorpio", "Capricorn", "Aries"].includes(moonSign)) {
+    scores["The Alchemist"] += 3;
+    if (isTestSubject) console.log(`The Alchemist +3 for ${moonSign} moon`);
+  }
+  if (["Scorpio", "Capricorn", "Aries"].includes(risingSign)) {
+    scores["The Alchemist"] += 3;
+    if (isTestSubject) console.log(`The Alchemist +3 for ${risingSign} rising`);
+  }
+  if (["Water", "Earth"].includes(dominantElement)) {
+    scores["The Alchemist"] += 2;
+    if (isTestSubject) console.log(`The Alchemist +2 for ${dominantElement} element`);
+  }
+  if (dominantModality === "Fixed") {
+    scores["The Alchemist"] += 2;
+    if (isTestSubject) console.log(`The Alchemist +2 for Fixed modality`);
+  }
+  if (["Pluto", "Mars", "Saturn"].includes(dominantPlanet)) {
+    scores["The Alchemist"] += 3;
+    if (isTestSubject) console.log(`The Alchemist +3 for ${dominantPlanet} planet`);
+  }
   if (houseEmphasis[7] >= 4 || houseEmphasis[9] >= 4) scores["The Alchemist"] += 2;
 
-  console.log("Rebalanced archetype scores:", scores);
+  if (isTestSubject) {
+    console.log("Final archetype scores for Dr. Madhu Priya:", scores);
+    console.log("Top 3 scores:");
+    Object.entries(scores)
+      .sort(([,a], [,b]) => b - a)
+      .slice(0, 3)
+      .forEach(([archetype, score]) => {
+        console.log(`${archetype}: ${score}`);
+      });
+  }
 
   // Find primary and secondary archetypes
   const sortedScores = Object.entries(scores)
     .sort(([,a], [,b]) => b - a);
 
-  console.log("Sorted scores:", sortedScores);
-  console.log("Selected primary:", sortedScores[0][0], "with score:", sortedScores[0][1]);
-  console.log("Selected secondary:", sortedScores[1][0], "with score:", sortedScores[1][1]);
+  if (isTestSubject) {
+    console.log("Selected primary:", sortedScores[0][0], "with score:", sortedScores[0][1]);
+    console.log("Selected secondary:", sortedScores[1][0], "with score:", sortedScores[1][1]);
+  }
 
   return {
     primary: sortedScores[0][0],
