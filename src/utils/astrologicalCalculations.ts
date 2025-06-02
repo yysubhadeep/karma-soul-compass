@@ -35,11 +35,11 @@ export const generateNatalChart = (
   const [hours, minutes] = timeOfBirth.split(':').map(Number);
   const timeDecimal = hours + (minutes / 60);
   
-  // Debug logging for Dr. Madhu Priya
+  // Debug logging for the specific test case
   const isTestSubject = month === 3 && day === 5 && year === 1987;
   if (isTestSubject) {
-    console.log("=== DEBUGGING DR. MADHU PRIYA CHART GENERATION ===");
-    console.log("Birth data:", { month, day, year, timeDecimal });
+    console.log("=== DEBUGGING MARCH 5, 1987 CHART GENERATION ===");
+    console.log("Birth data:", { month, day, year, timeDecimal, placeOfBirth });
   }
   
   // Simplified chart calculation based on birth data
@@ -65,6 +65,9 @@ export const generateNatalChart = (
   
   if (isTestSubject) {
     console.log("Basic placements:", { sunSign, moonSign, risingSign });
+    console.log("Calculation details:");
+    console.log("- Moon index:", moonIndex, "from (day + timeFloor):", day, "+", Math.floor(timeDecimal));
+    console.log("- Rising index:", risingIndex, "from timeDecimal/2:", timeDecimal/2);
   }
   
   // Calculate dominant element based on Sun, Moon, Rising + modifiers
@@ -85,6 +88,10 @@ export const generateNatalChart = (
   
   if (isTestSubject) {
     console.log("Element counts:", elementCount);
+    console.log("Element breakdown:");
+    console.log(`- ${sunSign} (Sun): ${signElements[sunSign]} +3`);
+    console.log(`- ${moonSign} (Moon): ${signElements[moonSign]} +3`);
+    console.log(`- ${risingSign} (Rising): ${signElements[risingSign]} +2`);
     console.log("Dominant element:", dominantElement);
   }
   
@@ -105,6 +112,10 @@ export const generateNatalChart = (
   
   if (isTestSubject) {
     console.log("Modality counts:", modalityCount);
+    console.log("Modality breakdown:");
+    console.log(`- ${sunSign}: ${signModalities[sunSign]} +3`);
+    console.log(`- ${moonSign}: ${signModalities[moonSign]} +3`);
+    console.log(`- ${risingSign}: ${signModalities[risingSign]} +2`);
     console.log("Dominant modality:", dominantModality);
   }
   
@@ -190,11 +201,12 @@ export const calculateAstrologicalArchetype = (chart: NatalChart): { primary: st
 
   const { sunSign, moonSign, risingSign, dominantElement, dominantModality, dominantPlanet, houseEmphasis, planetaryPlacements } = chart;
 
-  // Debug logging for Dr. Madhu Priya
-  const isTestSubject = sunSign === "Pisces" && moonSign && risingSign;
+  // Debug logging for specific test case
+  const isTestSubject = sunSign === "Pisces";
   if (isTestSubject) {
-    console.log("=== DEBUGGING DR. MADHU PRIYA ARCHETYPE CALCULATION ===");
+    console.log("=== DEBUGGING ARCHETYPE CALCULATION FOR PISCES ===");
     console.log("Chart data:", { sunSign, moonSign, risingSign, dominantElement, dominantModality, dominantPlanet });
+    console.log("Starting archetype calculation...");
   }
 
   // 1. The Builder - Earth signs, practical focus, structure
@@ -333,9 +345,8 @@ export const calculateAstrologicalArchetype = (chart: NatalChart): { primary: st
 
   // 11. The Performer - Fire signs, especially Leo, creativity
   if (["Leo", "Aries", "Sagittarius", "Libra"].includes(sunSign)) {
-    if (isTestSubject) console.log(`The Performer: checking sun sign ${sunSign} - NO MATCH`);
-  } else {
-    if (isTestSubject) console.log(`The Performer: sun sign ${sunSign} doesn't match Leo/Aries/Sagittarius/Libra`);
+    scores["The Performer"] += 4;
+    if (isTestSubject) console.log(`The Performer +4 for ${sunSign} sun`);
   }
   if (["Leo", "Aries", "Libra"].includes(moonSign)) {
     scores["The Performer"] += 3;
@@ -387,11 +398,9 @@ export const calculateAstrologicalArchetype = (chart: NatalChart): { primary: st
   if (houseEmphasis[7] >= 4 || houseEmphasis[9] >= 4) scores["The Alchemist"] += 2;
 
   if (isTestSubject) {
-    console.log("Final archetype scores for Dr. Madhu Priya:", scores);
-    console.log("Top 3 scores:");
+    console.log("=== FINAL SCORES FOR PISCES TEST CASE ===");
     Object.entries(scores)
       .sort(([,a], [,b]) => b - a)
-      .slice(0, 3)
       .forEach(([archetype, score]) => {
         console.log(`${archetype}: ${score}`);
       });
