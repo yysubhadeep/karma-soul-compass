@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -41,7 +42,7 @@ const EasternAstroExperiment = () => {
               </p>
             </div>
 
-            {/* Prominent CTA in Hero Section */}
+            {/* Enhanced CTA in Hero Section with better alignment */}
             <div className="relative mb-8">
               {/* Enhanced attention-grabbing border animation */}
               <div className="absolute -inset-3 bg-gradient-to-r from-orange-400 via-red-400 to-orange-400 rounded-3xl blur-xl opacity-50 animate-pulse"></div>
@@ -75,19 +76,22 @@ const EasternAstroExperiment = () => {
                   </div>
                 </div>
                 
-                {/* Enhanced CTA Button with pulsing effect */}
-                <Button 
-                  onClick={() => setShowForm(true)}
-                  size="lg" 
-                  className="w-full sm:w-auto bg-white text-orange-600 hover:bg-gray-100 font-bold text-lg sm:text-2xl px-8 sm:px-12 py-4 sm:py-6 rounded-full touch-manipulation transform hover:scale-110 transition-all duration-300 shadow-2xl animate-pulse"
-                >
-                  🕉️ Decode My Life Now
-                  <ArrowRight className="ml-2 h-6 w-6 sm:h-8 sm:w-8" />
-                </Button>
-                
-                {/* Enhanced urgency indicator */}
-                <div className="bg-white/20 rounded-lg px-4 py-3 text-sm font-bold border border-white/30 mt-4 inline-block">
-                  🚀 Get your karmic map in just 3 minutes
+                {/* Better aligned CTA section */}
+                <div className="flex flex-col items-center space-y-4">
+                  <Button 
+                    onClick={() => setShowForm(true)}
+                    size="lg" 
+                    className="w-full sm:w-auto bg-white text-orange-600 hover:bg-gray-100 font-bold text-lg sm:text-2xl px-8 sm:px-12 py-4 sm:py-6 rounded-full touch-manipulation transform hover:scale-110 transition-all duration-300 shadow-2xl animate-pulse min-w-[280px] sm:min-w-[320px]"
+                  >
+                    🕉️ Decode My Life Now
+                    <ArrowRight className="ml-2 h-6 w-6 sm:h-8 sm:w-8" />
+                  </Button>
+                  
+                  {/* Better aligned urgency indicator */}
+                  <div className="bg-white/20 rounded-full px-6 py-3 text-sm sm:text-base font-bold border border-white/30 inline-flex items-center space-x-2">
+                    <span>🚀</span>
+                    <span>Get your karmic map in just 3 minutes</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -203,7 +207,7 @@ const EasternAstroExperiment = () => {
         </div>
       </section>
 
-      {/* Enhanced CTA Section */}
+      {/* Enhanced CTA Section with better alignment */}
       <section className="px-3 sm:px-4 py-8 max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content - Benefits */}
@@ -265,7 +269,7 @@ const EasternAstroExperiment = () => {
             </div>
           </div>
 
-          {/* Right Content - Enhanced CTA Form with increased visibility */}
+          {/* Right Content - Enhanced CTA Form with improved alignment */}
           <div className="order-1 lg:order-2">
             {!showForm ? (
               <div className="relative">
@@ -279,7 +283,7 @@ const EasternAstroExperiment = () => {
                       Get Your Vedic Archetype Map
                     </h2>
                     <p className="text-sm sm:text-lg opacity-90 mb-6">
-                      Discover your authentic karmic blueprint using 5,000-year-old Jyotish wisdom with Swiss-grade astronomical precision.
+                      Discover your authentic karmic blueprint using 5,000-year-old Vedic wisdom with Swiss-grade astronomical precision.
                     </p>
                     
                     <div className="space-y-3 mb-6 text-sm">
@@ -293,7 +297,7 @@ const EasternAstroExperiment = () => {
                       </div>
                       <div className="flex items-center justify-center space-x-2">
                         <span>🌙</span>
-                        <span>Ancient Jyotish wisdom</span>
+                        <span>Ancient Vedic wisdom</span>
                       </div>
                       <div className="flex items-center justify-center space-x-2">
                         <span>🔒</span>
@@ -301,20 +305,21 @@ const EasternAstroExperiment = () => {
                       </div>
                     </div>
                     
-                    {/* Enhanced CTA Button with pulsing effect */}
-                    <div className="space-y-4">
+                    {/* Better aligned CTA section */}
+                    <div className="flex flex-col items-center space-y-4">
                       <Button 
                         onClick={() => setShowForm(true)}
                         size="lg" 
-                        className="w-full bg-white text-orange-600 hover:bg-gray-100 font-bold text-base sm:text-xl px-6 sm:px-8 py-5 sm:py-6 rounded-full touch-manipulation transform hover:scale-110 transition-all duration-300 shadow-2xl animate-pulse"
+                        className="w-full sm:w-auto bg-white text-orange-600 hover:bg-gray-100 font-bold text-base sm:text-xl px-6 sm:px-8 py-5 sm:py-6 rounded-full touch-manipulation transform hover:scale-110 transition-all duration-300 shadow-2xl animate-pulse min-w-[260px]"
                       >
                         🕉️ Decode My Life Now
                         <ArrowRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6" />
                       </Button>
                       
-                      {/* Enhanced urgency indicator */}
-                      <div className="bg-white/20 rounded-lg px-4 py-3 text-sm font-bold border border-white/30">
-                        🚀 Get your karmic map in just 3 minutes
+                      {/* Better aligned urgency indicator */}
+                      <div className="bg-white/20 rounded-full px-6 py-3 text-sm font-bold border border-white/30 inline-flex items-center space-x-2">
+                        <span>🚀</span>
+                        <span>Get your karmic map in just 3 minutes</span>
                       </div>
                     </div>
                     
