@@ -28,7 +28,6 @@ interface MobileAstrologyReportProps {
 
 const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps) => {
   const [activeTab, setActiveTab] = useState("profile");
-  const [selfFutureSubTab, setSelfFutureSubTab] = useState("self");
 
   // Run archetype test when component mounts
   useEffect(() => {
@@ -210,120 +209,9 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
             <CallToActionCard />
           </TabsContent>
 
-          {/* SELF + FUTURE Tab with Sub-navigation */}
+          {/* SELF + FUTURE Tab with comprehensive content */}
           <TabsContent value="selffuture" className="space-y-4 mt-4">
-            {/* Sub-navigation for Self + Future */}
-            <Card className="border-indigo-200 bg-indigo-50">
-              <CardContent className="p-3">
-                <div className="grid grid-cols-2 gap-2">
-                  <Button
-                    onClick={() => setSelfFutureSubTab("self")}
-                    variant={selfFutureSubTab === "self" ? "default" : "outline"}
-                    size="sm"
-                    className={`text-xs py-2 px-3 rounded-lg touch-manipulation ${
-                      selfFutureSubTab === "self" 
-                        ? "bg-indigo-600 text-white hover:bg-indigo-700" 
-                        : "border-indigo-300 text-indigo-700 hover:bg-indigo-100"
-                    }`}
-                  >
-                    <Heart className="h-3 w-3 mr-1" />
-                    Self Understanding
-                  </Button>
-                  <Button
-                    onClick={() => setSelfFutureSubTab("future")}
-                    variant={selfFutureSubTab === "future" ? "default" : "outline"}
-                    size="sm"
-                    className={`text-xs py-2 px-3 rounded-lg touch-manipulation ${
-                      selfFutureSubTab === "future" 
-                        ? "bg-indigo-600 text-white hover:bg-indigo-700" 
-                        : "border-indigo-300 text-indigo-700 hover:bg-indigo-100"
-                    }`}
-                  >
-                    <Compass className="h-3 w-3 mr-1" />
-                    Future Guidance
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Content based on sub-tab selection using detailed archetype data */}
-            {selfFutureSubTab === "self" && (
-              <Card className="border-purple-200 bg-purple-50">
-                <CardHeader className="pb-3 px-4 pt-4">
-                  <CardTitle className="text-base sm:text-lg">🌟 Deep Self Understanding - {profile.archetype}</CardTitle>
-                </CardHeader>
-                <CardContent className="px-4 pb-4 space-y-3">
-                  <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Your Core Nature & Strengths</h4>
-                    <p className="text-xs text-purple-800 leading-relaxed">
-                      {archetypeData.strengths}
-                    </p>
-                  </div>
-                  
-                  <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Life Stage Development Path</h4>
-                    <p className="text-xs text-purple-800 leading-relaxed">
-                      {archetypeData.lifeStages}
-                    </p>
-                  </div>
-                  
-                  <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Shadow Integration & Growth</h4>
-                    <p className="text-xs text-purple-800 leading-relaxed">
-                      {archetypeData.shadows}
-                    </p>
-                  </div>
-
-                  <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Areas for Personal Growth</h4>
-                    <p className="text-xs text-purple-800 leading-relaxed">
-                      {archetypeData.growthAreas}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-
-            {selfFutureSubTab === "future" && (
-              <Card className="border-emerald-200 bg-emerald-50">
-                <CardHeader className="pb-3 px-4 pt-4">
-                  <CardTitle className="text-base sm:text-lg">🔮 Future Path Guidance - {profile.archetype}</CardTitle>
-                </CardHeader>
-                <CardContent className="px-4 pb-4 space-y-3">
-                  <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Your Life Purpose & Mission</h4>
-                    <p className="text-xs text-emerald-800 leading-relaxed">
-                      {archetypeData.lifePurpose}
-                    </p>
-                  </div>
-                  
-                  <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Healing & Transformation Practices</h4>
-                    <p className="text-xs text-emerald-800 leading-relaxed">
-                      {archetypeData.healingPractices}
-                    </p>
-                  </div>
-                  
-                  <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Career Evolution & Paths</h4>
-                    <p className="text-xs text-emerald-800 leading-relaxed">
-                      Your natural career alignment includes: {archetypeData.careerPaths.slice(0, 3).join(", ")}. 
-                      These paths allow you to express your {profile.archetype} qualities while fulfilling your deeper purpose of service and growth.
-                    </p>
-                  </div>
-
-                  <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Vedic Wisdom for Your Path</h4>
-                    <p className="text-xs text-emerald-800 leading-relaxed">
-                      {archetypeData.vedicInsights.view}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-            
-            {/* Call to Action after Self + Future */}
-            <CallToActionCard />
+            <SelfFutureContent archetype={profile.archetype} />
           </TabsContent>
 
           {/* Vedic Insights Tab */}
