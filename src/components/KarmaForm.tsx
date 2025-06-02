@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { ArrowRight } from "lucide-react";
+import PlaceAutosuggest from './PlaceAutosuggest';
 
 interface FormData {
   name: string;
@@ -182,13 +183,16 @@ const KarmaForm = () => {
                 
                 <div className="space-y-2">
                   <Label htmlFor="place" className="text-sm font-medium text-gray-700">Place of Birth</Label>
-                  <Input
+                  <PlaceAutosuggest
                     id="place"
-                    placeholder="City, State, Country"
+                    placeholder="Start typing your city name..."
                     value={formData.placeOfBirth}
-                    onChange={(e) => handleInputChange('placeOfBirth', e.target.value)}
-                    className="h-12 text-base border-2 border-gray-200 focus:border-orange-400 rounded-lg"
+                    onChange={(value) => handleInputChange('placeOfBirth', value)}
+                    className="h-12 text-base border-2 border-gray-200 focus:border-orange-400 rounded-lg pr-10"
                   />
+                  <p className="text-xs text-gray-500 mt-1">
+                    💡 Start typing to see suggestions for Indian cities
+                  </p>
                 </div>
               </div>
               

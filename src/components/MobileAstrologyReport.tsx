@@ -11,6 +11,7 @@ import PersonalInfoCard from './PersonalInfoCard';
 import ArchetypeCard from './ArchetypeCard';
 import CallToActionCard from './CallToActionCard';
 import SelfFutureContent from './SelfFutureContent';
+import FloatingCTA from './FloatingCTA';
 
 interface FormData {
   name: string;
@@ -27,6 +28,7 @@ interface MobileAstrologyReportProps {
 
 const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps) => {
   const [activeTab, setActiveTab] = useState("profile");
+  const [selfFutureSubTab, setSelfFutureSubTab] = useState("self");
 
   // Run archetype test when component mounts
   useEffect(() => {
@@ -199,9 +201,110 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
             <CallToActionCard />
           </TabsContent>
 
-          {/* SELF + FUTURE Tab */}
+          {/* SELF + FUTURE Tab with Sub-navigation */}
           <TabsContent value="selffuture" className="space-y-4 mt-4">
-            <SelfFutureContent archetype={profile.archetype} />
+            {/* Sub-navigation for Self + Future */}
+            <Card className="border-indigo-200 bg-indigo-50">
+              <CardContent className="p-3">
+                <div className="grid grid-cols-2 gap-2">
+                  <Button
+                    onClick={() => setSelfFutureSubTab("self")}
+                    variant={selfFutureSubTab === "self" ? "default" : "outline"}
+                    size="sm"
+                    className={`text-xs py-2 px-3 rounded-lg touch-manipulation ${
+                      selfFutureSubTab === "self" 
+                        ? "bg-indigo-600 text-white hover:bg-indigo-700" 
+                        : "border-indigo-300 text-indigo-700 hover:bg-indigo-100"
+                    }`}
+                  >
+                    <Heart className="h-3 w-3 mr-1" />
+                    Self Understanding
+                  </Button>
+                  <Button
+                    onClick={() => setSelfFutureSubTab("future")}
+                    variant={selfFutureSubTab === "future" ? "default" : "outline"}
+                    size="sm"
+                    className={`text-xs py-2 px-3 rounded-lg touch-manipulation ${
+                      selfFutureSubTab === "future" 
+                        ? "bg-indigo-600 text-white hover:bg-indigo-700" 
+                        : "border-indigo-300 text-indigo-700 hover:bg-indigo-100"
+                    }`}
+                  >
+                    <Compass className="h-3 w-3 mr-1" />
+                    Future Guidance
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Content based on sub-tab selection */}
+            {selfFutureSubTab === "self" && (
+              <Card className="border-purple-200 bg-purple-50">
+                <CardHeader className="pb-3 px-4 pt-4">
+                  <CardTitle className="text-base sm:text-lg">🌟 Deep Self Understanding</CardTitle>
+                </CardHeader>
+                <CardContent className="px-4 pb-4 space-y-3">
+                  <div className="bg-white/60 rounded-lg p-3">
+                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Your Core Essence</h4>
+                    <p className="text-xs text-purple-800 leading-relaxed">
+                      As a {profile.archetype}, you possess a unique combination of {profile.corePersonality.trait.toLowerCase()} 
+                      energy with {profile.emotionalStyle.toLowerCase()} emotional processing. This creates a powerful foundation 
+                      for your personal growth journey.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white/60 rounded-lg p-3">
+                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Your Inner Drives</h4>
+                    <p className="text-xs text-purple-800 leading-relaxed">
+                      Your primary motivation of "{profile.primaryDriver}" shapes how you approach challenges and opportunities. 
+                      Understanding this helps you align your actions with your authentic nature.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white/60 rounded-lg p-3">
+                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Energy & Relationships</h4>
+                    <p className="text-xs text-purple-800 leading-relaxed">
+                      Your {profile.energyType.toLowerCase()} energy type influences how you connect with others and recharge. 
+                      Honoring this rhythm is crucial for maintaining balance and authentic relationships.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {selfFutureSubTab === "future" && (
+              <Card className="border-emerald-200 bg-emerald-50">
+                <CardHeader className="pb-3 px-4 pt-4">
+                  <CardTitle className="text-base sm:text-lg">🔮 Future Path Guidance</CardTitle>
+                </CardHeader>
+                <CardContent className="px-4 pb-4 space-y-3">
+                  <div className="bg-white/60 rounded-lg p-3">
+                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Next 6 Months Focus</h4>
+                    <p className="text-xs text-emerald-800 leading-relaxed">
+                      Channel your {profile.archetype} energy into developing your natural strengths while gently working 
+                      on your growth areas. Focus on {profile.cognitiveStyle.toLowerCase()} approaches to new challenges.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white/60 rounded-lg p-3">
+                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Career Evolution</h4>
+                    <p className="text-xs text-emerald-800 leading-relaxed">
+                      Your ideal career path should honor your {profile.corePersonality.tendency.toLowerCase()} nature. 
+                      Look for opportunities that allow you to express your {profile.primaryDriver.toLowerCase()} drive.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white/60 rounded-lg p-3">
+                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Relationship Guidance</h4>
+                    <p className="text-xs text-emerald-800 leading-relaxed">
+                      In relationships, embrace your {profile.emotionalStyle.toLowerCase()} emotional style while 
+                      being patient with others who may process differently. Your {profile.energyType.toLowerCase()} 
+                      energy creates natural compatibility with certain personality types.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
             
             {/* Call to Action after Self + Future */}
             <CallToActionCard />
@@ -353,6 +456,9 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Floating CTA */}
+      <FloatingCTA />
     </div>
   );
 };
