@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, Star, Brain, Target, Heart, Zap, Shield, Lightbulb, Briefcase, MessageCircle, Compass, Mirror } from "lucide-react";
+import { ArrowLeft, Star, Brain, Target, Heart, Zap, Shield, Lightbulb, Briefcase, MessageCircle, Compass, Eye } from "lucide-react";
 import { getArchetypeData } from '@/data/archetypeData';
 import { generatePsychologicalProfile } from '@/utils/psychologicalProfile';
 import { testArchetypeGeneration } from '@/utils/archetypeTestRunner';
@@ -217,7 +217,7 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
                   <TabsList className="grid w-full grid-cols-2 h-auto bg-transparent rounded-t-lg">
                     <TabsTrigger value="soulmirror" className="data-[state=active]:bg-indigo-100 rounded-tl-lg rounded-tr-none rounded-bl-none rounded-br-none py-3 touch-manipulation">
                       <div className="flex items-center space-x-1">
-                        <Mirror className="h-4 w-4 text-indigo-600" />
+                        <Eye className="h-4 w-4 text-indigo-600" />
                         <span className="text-sm font-semibold">Soul Mirror</span>
                       </div>
                     </TabsTrigger>

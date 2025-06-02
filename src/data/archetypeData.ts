@@ -1,3 +1,4 @@
+
 export interface ArchetypeData {
   name: string;
   strengths: string;
@@ -7,6 +8,8 @@ export interface ArchetypeData {
   lifeStages: string;
   healingPractices: string;
   careerPaths: string[];
+  selfDiscoveryQuestions: string[];
+  futurePathQuestions: string[];
   vedicInsights: {
     view: string;
     startDoing: string[];
@@ -24,6 +27,50 @@ export const archetypeInsights: Record<string, ArchetypeData> = {
     lifeStages: "Early responsibility, mid-life leadership, legacy wisdom",
     healingPractices: "Journaling, body relaxation, trust-building with others",
     careerPaths: ["Policy", "Public Service", "Manufacturing", "Finance", "Law", "Real Estate", "Education"],
+    selfDiscoveryQuestions: [
+      "What foundational values guide every decision you make?",
+      "When have you felt most proud of something you built or created?",
+      "What legacy do you want to leave for future generations?",
+      "How do you balance perfectionism with progress?",
+      "What traditions or structures feel most meaningful to you?",
+      "When do you feel most grounded and secure?",
+      "What responsibilities do you willingly carry for others?",
+      "How has your relationship with authority shaped who you are?",
+      "What would you build if resources were unlimited?",
+      "How do you maintain stability while embracing necessary change?",
+      "What childhood experiences taught you about hard work?",
+      "When do you feel most connected to your purpose?",
+      "How do you nurture yourself when feeling overwhelmed?",
+      "What patterns of behavior serve you well in leadership?",
+      "How has your sense of duty evolved over time?",
+      "What gives your life structure and meaning?",
+      "How do you balance personal needs with collective responsibility?",
+      "What would make you feel truly accomplished?",
+      "How do you handle situations that require flexibility?",
+      "What does authentic success look like to you?"
+    ],
+    futurePathQuestions: [
+      "What impact do you want to make in the next 5 years?",
+      "How can you build systems that serve beyond your lifetime?",
+      "What skills do you need to develop to reach your goals?",
+      "How will you measure progress toward your vision?",
+      "What partnerships could amplify your impact?",
+      "How can you create more sustainable work habits?",
+      "What would you regret not attempting in your career?",
+      "How can you mentor others while pursuing your own growth?",
+      "What changes in your industry excite or concern you?",
+      "How will you adapt your leadership style as you grow?",
+      "What resources do you need to acquire or develop?",
+      "How can you balance ambition with well-being?",
+      "What would financial freedom allow you to focus on?",
+      "How can you contribute to solving larger societal problems?",
+      "What relationships need nurturing for your future success?",
+      "How will you stay relevant as the world changes?",
+      "What would make your work feel more meaningful?",
+      "How can you create opportunities for others while advancing yourself?",
+      "What legacy projects call to your heart?",
+      "How will you know when you've achieved your life's work?"
+    ],
     vedicInsights: {
       view: "Embodiment of Karma Yoga. This soul is born to create lasting legacies through discipline and structure, aligned with Saturn's dharmic purpose.",
       startDoing: [
@@ -471,6 +518,50 @@ export const getArchetypeData = (archetype: string): ArchetypeData => {
     lifeStages: "Early development of independence, mid-life mastery, elder wisdom sharing.",
     healingPractices: "Meditation, nature connection, community service",
     careerPaths: ["Life Coach", "Teacher", "Counselor", "Entrepreneur", "Healer", "Writer"],
+    selfDiscoveryQuestions: [
+      "What patterns in your life keep repeating?",
+      "When do you feel most authentic and true to yourself?",
+      "What fears hold you back from your fullest expression?",
+      "How do you define success for yourself?",
+      "What brings you the deepest sense of joy and fulfillment?",
+      "What would you do if you knew you couldn't fail?",
+      "How has your understanding of yourself changed over time?",
+      "What relationships have shaped you the most?",
+      "What gifts do you have that the world needs?",
+      "How do you handle conflict and challenges?",
+      "What does love mean to you?",
+      "When do you feel most connected to something greater?",
+      "What would you tell your younger self?",
+      "How do you recharge and restore your energy?",
+      "What beliefs about yourself are you ready to release?",
+      "What aspects of yourself are you still discovering?",
+      "How do you express your creativity?",
+      "What makes you feel most alive?",
+      "What is your relationship with money and abundance?",
+      "How do you want to be remembered?"
+    ],
+    futurePathQuestions: [
+      "What vision for your future excites you most?",
+      "How do you want to grow and evolve in the next chapter?",
+      "What impact do you want to have on others?",
+      "What new experiences are calling to you?",
+      "How can you align your work with your deepest values?",
+      "What skills or knowledge do you want to develop?",
+      "What relationships do you want to cultivate?",
+      "How do you want to contribute to your community?",
+      "What adventures or journeys are on your horizon?",
+      "How can you create more meaning in your daily life?",
+      "What legacy do you want to leave?",
+      "How will you know you're living your purpose?",
+      "What changes do you need to make to honor your truth?",
+      "How can you better serve others with your gifts?",
+      "What dreams have you put on hold?",
+      "How do you want to age and grow wiser?",
+      "What would financial freedom allow you to do?",
+      "How can you be more courageous in pursuing your goals?",
+      "What would make your life feel complete?",
+      "How will you continue learning and growing?"
+    ],
     vedicInsights: {
       view: "A balanced soul walking the path of dharma, meant to guide and inspire others through authentic living and conscious growth.",
       startDoing: [
