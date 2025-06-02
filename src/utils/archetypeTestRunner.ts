@@ -42,41 +42,74 @@ export const testArchetypeGeneration = () => {
     }
   ];
 
-  console.log("=== TESTING ARCHETYPE GENERATION FOR 5 PEOPLE ===");
+  console.log("=== DETAILED ARCHETYPE ANALYSIS FOR 5 PEOPLE ===");
   
   const results = testPeople.map(person => {
-    console.log(`\n--- Testing ${person.name} ---`);
+    console.log(`\n==================================================`);
+    console.log(`ANALYZING: ${person.name}`);
     console.log(`Birth: ${person.dateOfBirth} at ${person.timeOfBirth} in ${person.placeOfBirth}`);
+    console.log(`==================================================`);
     
     // Generate natal chart
     const natalChart = generateNatalChart(person.dateOfBirth, person.timeOfBirth, person.placeOfBirth);
-    console.log(`Chart: Sun=${natalChart.sunSign}, Moon=${natalChart.moonSign}, Rising=${natalChart.risingSign}`);
-    console.log(`Dominant: Element=${natalChart.dominantElement}, Modality=${natalChart.dominantModality}, Planet=${natalChart.dominantPlanet}`);
+    console.log(`\n📊 NATAL CHART ANALYSIS:`);
+    console.log(`   Sun Sign: ${natalChart.sunSign}`);
+    console.log(`   Moon Sign: ${natalChart.moonSign}`);
+    console.log(`   Rising Sign: ${natalChart.risingSign}`);
+    console.log(`   Dominant Element: ${natalChart.dominantElement}`);
+    console.log(`   Dominant Modality: ${natalChart.dominantModality}`);
+    console.log(`   Dominant Planet: ${natalChart.dominantPlanet}`);
     
-    // Calculate archetype
+    // Calculate archetype with detailed scoring
     const archetypeResult = calculateAstrologicalArchetype(natalChart);
-    console.log(`Primary Archetype: ${archetypeResult.primary} (Score: ${archetypeResult.scoreBreakdown[archetypeResult.primary]})`);
-    console.log(`Secondary Archetype: ${archetypeResult.secondary} (Score: ${archetypeResult.scoreBreakdown[archetypeResult.secondary]})`);
+    
+    console.log(`\n🎯 ARCHETYPE RESULTS:`);
+    console.log(`   PRIMARY: ${archetypeResult.primary} (Score: ${archetypeResult.scoreBreakdown[archetypeResult.primary]})`);
+    console.log(`   SECONDARY: ${archetypeResult.secondary} (Score: ${archetypeResult.scoreBreakdown[archetypeResult.secondary]})`);
+    
+    // Show top 5 scores for detailed analysis
+    const sortedScores = Object.entries(archetypeResult.scoreBreakdown)
+      .sort(([,a], [,b]) => b - a)
+      .slice(0, 5);
+    
+    console.log(`\n📈 TOP 5 ARCHETYPE SCORES:`);
+    sortedScores.forEach(([archetype, score], index) => {
+      console.log(`   ${index + 1}. ${archetype}: ${score}`);
+    });
     
     return {
       name: person.name,
       natalChart,
       primary: archetypeResult.primary,
       secondary: archetypeResult.secondary,
-      scores: archetypeResult.scoreBreakdown
+      scores: archetypeResult.scoreBreakdown,
+      topScores: sortedScores
     };
   });
 
-  // Summary of all generated archetypes
+  // Final summary
+  console.log("\n" + "=".repeat(60));
+  console.log("FINAL ARCHETYPE SUMMARY");
+  console.log("=".repeat(60));
+  
+  results.forEach(result => {
+    console.log(`\n${result.name}:`);
+    console.log(`  Primary: ${result.primary}`);
+    console.log(`  Secondary: ${result.secondary}`);
+    console.log(`  Chart: Sun=${result.natalChart.sunSign}, Moon=${result.natalChart.moonSign}, Rising=${result.natalChart.risingSign}`);
+    console.log(`  Dominants: ${result.natalChart.dominantElement}/${result.natalChart.dominantModality}/${result.natalChart.dominantPlanet}`);
+  });
+
+  // Check archetype diversity
   const allPrimaryArchetypes = results.map(r => r.primary);
   const allSecondaryArchetypes = results.map(r => r.secondary);
   const uniqueArchetypes = [...new Set([...allPrimaryArchetypes, ...allSecondaryArchetypes])];
 
-  console.log("\n=== ARCHETYPE GENERATION SUMMARY ===");
-  console.log("Primary archetypes generated:", allPrimaryArchetypes);
-  console.log("Secondary archetypes generated:", allSecondaryArchetypes);
-  console.log("Unique archetypes generated:", uniqueArchetypes);
-  console.log(`Total unique archetypes: ${uniqueArchetypes.length}/12`);
+  console.log(`\n📊 ARCHETYPE DIVERSITY ANALYSIS:`);
+  console.log(`Primary archetypes: ${allPrimaryArchetypes.join(', ')}`);
+  console.log(`Secondary archetypes: ${allSecondaryArchetypes.join(', ')}`);
+  console.log(`Unique archetypes generated: ${uniqueArchetypes.length}/12`);
+  console.log(`List: ${uniqueArchetypes.join(', ')}`);
 
   const allArchetypes = [
     "The Builder", "The Dreamer", "The Leader", "The Healer", 
@@ -86,7 +119,7 @@ export const testArchetypeGeneration = () => {
 
   const missingArchetypes = allArchetypes.filter(archetype => !uniqueArchetypes.includes(archetype));
   if (missingArchetypes.length > 0) {
-    console.log("Missing archetypes:", missingArchetypes);
+    console.log(`❌ Missing archetypes: ${missingArchetypes.join(', ')}`);
   } else {
     console.log("✅ All 12 archetypes can be generated!");
   }
