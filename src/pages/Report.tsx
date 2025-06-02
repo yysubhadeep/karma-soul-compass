@@ -1,8 +1,6 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
-import { Button } from "@/components/ui/button";
 import MobileAstrologyReport from '@/components/MobileAstrologyReport';
 
 const Report = () => {
@@ -10,9 +8,15 @@ const Report = () => {
   const navigate = useNavigate();
   const formData = location.state?.formData;
 
+  // Fix navigation warning by using useEffect
+  useEffect(() => {
+    if (!formData) {
+      navigate('/');
+    }
+  }, [formData, navigate]);
+
   // Redirect if no form data
   if (!formData) {
-    navigate('/');
     return null;
   }
 
