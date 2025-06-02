@@ -42,7 +42,7 @@ const FloatingCTA = () => {
               Your report unlocked the map — now meet the guide.
             </p>
             <p className="text-xs opacity-90 leading-relaxed">
-              Chat with our certified karma life-guide for 10 minutes — free, real, and eye-opening.
+              Chat with our certified karma life-guide for 15 minutes — free, real, and eye-opening.
             </p>
             <Button
               onClick={() => setIsDialogOpen(true)}
@@ -50,7 +50,7 @@ const FloatingCTA = () => {
               className="w-full bg-white text-purple-600 hover:bg-gray-100 text-xs font-semibold py-2 px-3 h-8"
             >
               <Eye className="h-3 w-3 mr-2" />
-              Claim My Free 10-min Reading
+              Claim My Free 15-min Reading
             </Button>
           </div>
         </div>
