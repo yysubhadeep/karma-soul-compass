@@ -246,7 +246,7 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
               </CardContent>
             </Card>
 
-            {/* Content based on sub-tab selection using proper archetype data */}
+            {/* Content based on sub-tab selection using detailed archetype data */}
             {selfFutureSubTab === "self" && (
               <Card className="border-purple-200 bg-purple-50">
                 <CardHeader className="pb-3 px-4 pt-4">
@@ -254,23 +254,30 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Your Archetype Essence</h4>
+                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Your Core Nature & Strengths</h4>
                     <p className="text-xs text-purple-800 leading-relaxed">
                       {archetypeData.strengths}
                     </p>
                   </div>
                   
                   <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Life Stage Development</h4>
+                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Life Stage Development Path</h4>
                     <p className="text-xs text-purple-800 leading-relaxed">
                       {archetypeData.lifeStages}
                     </p>
                   </div>
                   
                   <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Shadow Integration</h4>
+                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Shadow Integration & Growth</h4>
                     <p className="text-xs text-purple-800 leading-relaxed">
                       {archetypeData.shadows}
+                    </p>
+                  </div>
+
+                  <div className="bg-white/60 rounded-lg p-3">
+                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Areas for Personal Growth</h4>
+                    <p className="text-xs text-purple-800 leading-relaxed">
+                      {archetypeData.growthAreas}
                     </p>
                   </div>
                 </CardContent>
@@ -284,24 +291,31 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Life Purpose Direction</h4>
+                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Your Life Purpose & Mission</h4>
                     <p className="text-xs text-emerald-800 leading-relaxed">
                       {archetypeData.lifePurpose}
                     </p>
                   </div>
                   
                   <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Healing & Growth Practices</h4>
+                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Healing & Transformation Practices</h4>
                     <p className="text-xs text-emerald-800 leading-relaxed">
                       {archetypeData.healingPractices}
                     </p>
                   </div>
                   
                   <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Career Evolution Path</h4>
+                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Career Evolution & Paths</h4>
                     <p className="text-xs text-emerald-800 leading-relaxed">
-                      Aligned career paths include: {archetypeData.careerPaths.slice(0, 3).join(", ")}. 
-                      These areas allow you to express your natural {profile.archetype} qualities effectively.
+                      Your natural career alignment includes: {archetypeData.careerPaths.slice(0, 3).join(", ")}. 
+                      These paths allow you to express your {profile.archetype} qualities while fulfilling your deeper purpose of service and growth.
+                    </p>
+                  </div>
+
+                  <div className="bg-white/60 rounded-lg p-3">
+                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Vedic Wisdom for Your Path</h4>
+                    <p className="text-xs text-emerald-800 leading-relaxed">
+                      {archetypeData.vedicInsights.view}
                     </p>
                   </div>
                 </CardContent>
