@@ -74,7 +74,7 @@ const EasternKarmaForm = () => {
     // Simulate Eastern KarmaMap generation with Vedic sciences
     setTimeout(() => {
       setLoading(false);
-      toast.success("🕉️ Your Sacred Healing Archetype has been calculated!");
+      toast.success("🕉️ Your Sacred Archetype has been calculated!");
       // Navigate to eastern report page with form data
       navigate('/eastern-report', { state: { formData, isEastern: true } });
     }, 3000);
@@ -204,11 +204,11 @@ const EasternKarmaForm = () => {
                 disabled={loading}
                 className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-bold h-14 text-base mt-6 rounded-lg touch-manipulation"
               >
-                {loading ? "Analyzing with Vedic Sciences..." : "🕉️ Discover My Healing Archetype"}
+                {loading ? "Analyzing with Vedic Sciences..." : "🕉️ Discover My Sacred Archetype"}
               </Button>
               
               <div className="text-xs text-gray-500 text-center mt-4 px-2 leading-relaxed">
-                Your data is secure and will only be used for authentic Vedic sciences calculations and healing insights.
+                Your data is secure and will only be used for authentic Vedic sciences calculations and transformation insights.
               </div>
             </>
           )}

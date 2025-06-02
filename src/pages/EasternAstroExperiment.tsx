@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -28,13 +27,13 @@ const EasternAstroExperiment = () => {
         <div className="text-center space-y-6 max-w-4xl mx-auto">
           <div>
             <span className="inline-block bg-gradient-to-r from-orange-100 to-red-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-orange-200">
-              🕉️ Ancient Vedic Sciences for Modern Healing
+              🕉️ Ancient Vedic Sciences for Modern Life
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Heal & Transform with <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Sacred Vedic Sciences</span>
+              Transform & Align with <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Sacred Vedic Sciences</span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-700 leading-relaxed mb-8 max-w-3xl mx-auto">
-              Unlock your healing potential using 5,000-year-old Vedic sciences. Achieve psychological alignment and future-readiness through personalized archetype mapping and ancient wisdom practices.
+              Unlock your transformation potential using 5,000-year-old Vedic sciences. Achieve psychological alignment and future-readiness through personalized archetype mapping and ancient wisdom practices.
             </p>
           </div>
 
@@ -63,20 +62,20 @@ const EasternAstroExperiment = () => {
           <div className="space-y-6 order-2 lg:order-1">
             <div>
               <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-                Why <span className="text-orange-600">Vedic Sciences</span> for Healing?
+                Why <span className="text-orange-600">Vedic Sciences</span> for Transformation?
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Vedic sciences offer profound healing through understanding your cosmic blueprint. This ancient wisdom provides psychological alignment and practical tools for future-readiness and personal transformation.
+                Vedic sciences offer profound transformation through understanding your cosmic blueprint. This ancient wisdom provides psychological alignment and practical tools for future-readiness and personal growth.
               </p>
             </div>
 
-            {/* Healing Benefits */}
+            {/* Transformation Benefits */}
             <div className="grid grid-cols-1 gap-4 mb-8">
               <div className="flex items-start space-x-3 bg-white/70 rounded-lg p-4 border border-orange-200">
                 <span className="text-2xl">🧘</span>
                 <div>
-                  <h3 className="font-semibold text-gray-800 mb-1">Deep Psychological Healing</h3>
-                  <p className="text-sm text-gray-600">Understand your mind patterns and emotional blocks for profound healing</p>
+                  <h3 className="font-semibold text-gray-800 mb-1">Deep Psychological Alignment</h3>
+                  <p className="text-sm text-gray-600">Understand your mind patterns and emotional blocks for profound growth</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3 bg-white/70 rounded-lg p-4 border border-orange-200">
@@ -97,7 +96,7 @@ const EasternAstroExperiment = () => {
                 <span className="text-2xl">⚡</span>
                 <div>
                   <h3 className="font-semibold text-gray-800 mb-1">Practical Transformation Tools</h3>
-                  <p className="text-sm text-gray-600">Ancient remedies and practices for modern healing challenges</p>
+                  <p className="text-sm text-gray-600">Ancient remedies and practices for modern life challenges</p>
                 </div>
               </div>
             </div>
@@ -110,60 +109,72 @@ const EasternAstroExperiment = () => {
                     <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <span className="text-sm font-semibold text-gray-700">Transformative Healing Experience</span>
+                <span className="text-sm font-semibold text-gray-700">Transformative Experience</span>
               </div>
               <p className="text-sm text-gray-600 italic">
-                "The insights helped me understand my patterns and provided practical tools for healing" - Healing Journey Client
+                "The insights helped me understand my patterns and provided practical tools for growth" - Transformation Journey Client
               </p>
             </div>
           </div>
 
-          {/* Right Content - CTA Form */}
+          {/* Right Content - Enhanced CTA Form */}
           <div className="order-1 lg:order-2">
             {!showForm ? (
-              <Card className="bg-gradient-to-br from-orange-500 to-red-500 text-white border-0 shadow-2xl">
-                <CardContent className="p-6 sm:p-8 text-center space-y-6">
-                  <div className="text-4xl sm:text-5xl mb-4">🕉️</div>
-                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">
-                    Begin Your Sacred Healing Journey
-                  </h2>
-                  <p className="text-sm sm:text-lg opacity-90 mb-6">
-                    Discover your healing archetype using authentic Vedic sciences for psychological alignment and future-readiness.
-                  </p>
-                  
-                  <div className="space-y-3 mb-6 text-sm">
-                    <div className="flex items-center justify-center space-x-2">
-                      <span>✨</span>
-                      <span>Ancient Vedic wisdom</span>
+              <div className="relative">
+                {/* Attention-grabbing border animation */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 via-red-400 to-orange-400 rounded-2xl blur opacity-30 animate-pulse"></div>
+                <Card className="relative bg-gradient-to-br from-orange-500 to-red-500 text-white border-0 shadow-2xl">
+                  <CardContent className="p-6 sm:p-8 text-center space-y-6">
+                    <div className="text-4xl sm:text-5xl mb-4 animate-bounce">🕉️</div>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">
+                      Discover Your Sacred Archetype
+                    </h2>
+                    <p className="text-sm sm:text-lg opacity-90 mb-6">
+                      Unlock your transformation blueprint using authentic Vedic sciences for psychological alignment and future-readiness.
+                    </p>
+                    
+                    <div className="space-y-3 mb-6 text-sm">
+                      <div className="flex items-center justify-center space-x-2">
+                        <span>✨</span>
+                        <span>Ancient Vedic wisdom</span>
+                      </div>
+                      <div className="flex items-center justify-center space-x-2">
+                        <span>🧘</span>
+                        <span>Psychology-aligned insights</span>
+                      </div>
+                      <div className="flex items-center justify-center space-x-2">
+                        <span>🌙</span>
+                        <span>Cosmic pattern recognition</span>
+                      </div>
+                      <div className="flex items-center justify-center space-x-2">
+                        <span>🔒</span>
+                        <span>Completely secure & private</span>
+                      </div>
                     </div>
-                    <div className="flex items-center justify-center space-x-2">
-                      <span>🧘</span>
-                      <span>Psychology-aligned insights</span>
+                    
+                    {/* Enhanced CTA Button */}
+                    <div className="space-y-4">
+                      <Button 
+                        onClick={() => setShowForm(true)}
+                        size="lg" 
+                        className="w-full bg-white text-orange-600 hover:bg-gray-100 font-bold text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 rounded-full touch-manipulation transform hover:scale-105 transition-all duration-200 shadow-lg"
+                      >
+                        Get My Sacred Archetype Now
+                        <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                      </Button>
+                      
+                      {/* Urgency indicator */}
+                      <div className="bg-white/20 rounded-lg px-4 py-2 text-xs font-medium">
+                        🚀 Start your transformation journey in 3 minutes
+                      </div>
                     </div>
-                    <div className="flex items-center justify-center space-x-2">
-                      <span>🌙</span>
-                      <span>Cosmic pattern recognition</span>
-                    </div>
-                    <div className="flex items-center justify-center space-x-2">
-                      <span>🔒</span>
-                      <span>Completely secure & private</span>
-                    </div>
-                  </div>
-                  
-                  <Button 
-                    onClick={() => setShowForm(true)}
-                    size="lg" 
-                    className="w-full bg-white text-orange-600 hover:bg-gray-100 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full touch-manipulation"
-                  >
-                    Start Your Healing Journey
-                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  </Button>
-                  
-                  <p className="text-xs opacity-80 mt-4">
-                    ⚡ Authentic Vedic sciences • Transform & heal
-                  </p>
-                </CardContent>
-              </Card>
+                    
+                    <p className="text-xs opacity-80 mt-4">
+                      ⚡ Authentic Vedic sciences • Transform & align
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
             ) : (
               <div className="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-2xl border border-white/20">
                 <EasternKarmaForm />
@@ -177,10 +188,10 @@ const EasternAstroExperiment = () => {
       <section id="features" className="px-4 py-12 sm:py-16 max-w-6xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-            🕉️ Vedic Sciences Healing Features
+            🕉️ Vedic Sciences Transformation Features
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Experience profound transformation through authentic Vedic sciences designed for modern healing and future-readiness
+            Experience profound transformation through authentic Vedic sciences designed for modern growth and future-readiness
           </p>
         </div>
 
@@ -222,7 +233,7 @@ const EasternAstroExperiment = () => {
         </div>
       </section>
 
-      {/* Healing Benefits Section */}
+      {/* Transformation Benefits Section */}
       <section className="px-4 py-12 sm:py-16 bg-white/50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -230,7 +241,7 @@ const EasternAstroExperiment = () => {
               How Vedic Sciences Transform Your Life
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Experience deep healing and psychological alignment through time-tested Vedic practices designed for future-readiness.
+              Experience deep transformation and psychological alignment through time-tested Vedic practices designed for future-readiness.
             </p>
           </div>
 
@@ -239,7 +250,7 @@ const EasternAstroExperiment = () => {
               <CardHeader>
                 <CardTitle className="text-xl text-orange-700 flex items-center space-x-2">
                   <span>🧘</span>
-                  <span>Psychological Healing Benefits</span>
+                  <span>Psychological Transformation Benefits</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -308,10 +319,10 @@ const EasternAstroExperiment = () => {
             <span className="text-xl sm:text-2xl font-bold">Vedic KarmaMap™</span>
           </div>
           <p className="text-gray-400 mb-4 text-sm sm:text-base">
-            Ancient Vedic sciences for modern healing and transformation
+            Ancient Vedic sciences for modern transformation and alignment
           </p>
           <p className="text-xs sm:text-sm text-gray-500">
-            © 2025 Vedic KarmaMap™. Authentic healing through sacred wisdom
+            © 2025 Vedic KarmaMap™. Authentic transformation through sacred wisdom
           </p>
         </div>
       </footer>
