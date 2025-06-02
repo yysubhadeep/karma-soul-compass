@@ -7,8 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ABTestRouter from "./components/ABTestRouter";
 import Index from "./pages/Index";
 import Report from "./pages/Report";
-import WesternAstroExperiment from "./pages/WesternAstroExperiment";
-import WesternReport from "./pages/WesternReport";
 import EasternAstroExperiment from "./pages/EasternAstroExperiment";
 import EasternReport from "./pages/EasternReport";
 import NotFound from "./pages/NotFound";
@@ -26,8 +24,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/report" element={<Report />} />
-            <Route path="/western-experiment" element={<WesternAstroExperiment />} />
-            <Route path="/western-report" element={<WesternReport />} />
             <Route path="/vedicscience" element={<EasternAstroExperiment />} />
             <Route path="/vedicreport" element={<EasternReport />} />
             <Route path="/ab-stats" element={<ABTestStats />} />
