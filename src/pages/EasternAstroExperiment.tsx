@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -34,7 +33,7 @@ const EasternAstroExperiment = () => {
               🕉️ Decode Your Life with <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Vedic Archetype Mapping™</span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-700 leading-relaxed mb-8 max-w-3xl mx-auto">
-              Step into the most authentic self-mapping system—built on ancient Vedic sciences, true sidereal calculations, and the power of Swiss-grade astronomical precision.
+              Enter the most accurate self-mapping system—where timeless Vedic astrology reveals your true path in career, wealth, relationships, and the life you're meant to live.
             </p>
             <div className="bg-gradient-to-r from-orange-100 to-red-100 rounded-xl p-4 border border-orange-200 max-w-2xl mx-auto mb-8">
               <p className="text-lg font-semibold text-orange-800">
@@ -54,7 +53,7 @@ const EasternAstroExperiment = () => {
                   Get Your Vedic Archetype Map Now
                 </h2>
                 <p className="text-sm sm:text-lg opacity-90 mb-6 max-w-2xl mx-auto">
-                  Discover your authentic karmic blueprint using 5,000-year-old Vedic sciences with Swiss-grade astronomical precision.
+                  Discover your authentic karmic blueprint using 5,000-year-old Vedic wisdom with Swiss-grade astronomical precision.
                 </p>
                 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mb-6 text-xs sm:text-sm">
@@ -68,11 +67,11 @@ const EasternAstroExperiment = () => {
                   </div>
                   <div className="flex flex-col items-center space-y-1">
                     <span>🌙</span>
-                    <span>Ancient Vedic sciences</span>
+                    <span>Ancient Vedic wisdom</span>
                   </div>
                   <div className="flex flex-col items-center space-y-1">
                     <span>🔒</span>
-                    <span>Completely secure</span>
+                    <span>Completely secure & private</span>
                   </div>
                 </div>
                 
