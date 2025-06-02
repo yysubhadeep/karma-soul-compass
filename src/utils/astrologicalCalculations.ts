@@ -146,7 +146,7 @@ const getSunSign = (month: number, day: number): string => {
   return "Pisces";
 };
 
-// Calculate archetype scores based on astrological rules
+// REBALANCED Calculate archetype scores based on astrological rules
 export const calculateAstrologicalArchetype = (chart: NatalChart): { primary: string; secondary: string; scoreBreakdown: Record<string, number> } => {
   const scores: Record<string, number> = {
     "The Builder": 0,
@@ -165,140 +165,114 @@ export const calculateAstrologicalArchetype = (chart: NatalChart): { primary: st
 
   const { sunSign, moonSign, risingSign, dominantElement, dominantModality, dominantPlanet, houseEmphasis, planetaryPlacements } = chart;
 
-  console.log("=== ASTROLOGICAL ARCHETYPE CALCULATION ===");
+  console.log("=== REBALANCED ASTROLOGICAL ARCHETYPE CALCULATION ===");
   console.log("Chart data:", { sunSign, moonSign, risingSign, dominantElement, dominantModality, dominantPlanet });
 
-  // 1. The Builder
-  if (["Taurus", "Virgo", "Capricorn"].includes(sunSign)) scores["The Builder"] += 3;
+  // 1. The Builder - Earth signs, practical focus, structure
+  if (["Taurus", "Virgo", "Capricorn"].includes(sunSign)) scores["The Builder"] += 4;
   if (["Taurus", "Virgo", "Capricorn"].includes(moonSign)) scores["The Builder"] += 3;
   if (["Taurus", "Virgo", "Capricorn"].includes(risingSign)) scores["The Builder"] += 3;
-  
-  // Strong 2nd, 6th, or 10th house concentration
-  if (houseEmphasis[1] >= 4 || houseEmphasis[5] >= 4 || houseEmphasis[9] >= 4) scores["The Builder"] += 2;
-  
-  // Saturn or Mercury dominant
+  if (dominantElement === "Earth") scores["The Builder"] += 3;
+  if (dominantModality === "Fixed") scores["The Builder"] += 2;
   if (["Saturn", "Mercury"].includes(dominantPlanet)) scores["The Builder"] += 2;
+  if (houseEmphasis[1] >= 4 || houseEmphasis[5] >= 4 || houseEmphasis[9] >= 4) scores["The Builder"] += 2;
 
-  // 2. The Dreamer
-  if (sunSign === "Pisces") scores["The Dreamer"] += 3;
-  if (moonSign === "Pisces") scores["The Dreamer"] += 3;
-  if (risingSign === "Pisces") scores["The Dreamer"] += 3;
-  
-  // Neptune dominant or 12th house emphasis
-  if (dominantPlanet === "Neptune") scores["The Dreamer"] += 3;
+  // 2. The Dreamer - Water signs, especially Pisces/Cancer, imagination
+  if (["Pisces", "Cancer", "Scorpio"].includes(sunSign)) scores["The Dreamer"] += 4;
+  if (["Pisces", "Cancer"].includes(moonSign)) scores["The Dreamer"] += 4;
+  if (["Pisces", "Cancer"].includes(risingSign)) scores["The Dreamer"] += 3;
+  if (dominantElement === "Water") scores["The Dreamer"] += 3;
+  if (dominantModality === "Mutable") scores["The Dreamer"] += 2;
+  if (["Neptune", "Moon"].includes(dominantPlanet)) scores["The Dreamer"] += 3;
   if (houseEmphasis[11] >= 4) scores["The Dreamer"] += 2;
-  
-  // Water dominant + Mutable
-  if (dominantElement === "Water" && dominantModality === "Mutable") scores["The Dreamer"] += 2;
 
-  // 3. The Leader
-  if (["Leo", "Aries"].includes(sunSign)) scores["The Leader"] += 3;
+  // 3. The Leader - Fire signs, especially Leo/Aries, authority
+  if (["Leo", "Aries", "Sagittarius"].includes(sunSign)) scores["The Leader"] += 4;
   if (["Leo", "Aries"].includes(moonSign)) scores["The Leader"] += 3;
-  if (["Leo", "Aries"].includes(risingSign)) scores["The Leader"] += 3;
-  
-  // Sun or Mars in 1st or 10th house
-  if (planetaryPlacements["Sun"]?.house === 1 || planetaryPlacements["Sun"]?.house === 10) scores["The Leader"] += 3;
-  if (planetaryPlacements["Mars"]?.house === 1 || planetaryPlacements["Mars"]?.house === 10) scores["The Leader"] += 2;
-  
-  // Sun dominant
-  if (dominantPlanet === "Sun") scores["The Leader"] += 2;
+  if (["Leo", "Aries", "Capricorn"].includes(risingSign)) scores["The Leader"] += 3;
+  if (dominantElement === "Fire") scores["The Leader"] += 3;
+  if (dominantModality === "Cardinal") scores["The Leader"] += 2;
+  if (["Sun", "Mars", "Jupiter"].includes(dominantPlanet)) scores["The Leader"] += 2;
+  if (houseEmphasis[0] >= 4 || houseEmphasis[9] >= 4) scores["The Leader"] += 2;
 
-  // 4. The Healer
-  if (["Cancer", "Scorpio", "Pisces"].includes(moonSign)) scores["The Healer"] += 3;
-  
-  // Neptune in 6th, 8th, or 12th house
-  if (planetaryPlacements["Neptune"]?.house === 6 || planetaryPlacements["Neptune"]?.house === 8 || planetaryPlacements["Neptune"]?.house === 12) {
-    scores["The Healer"] += 3;
-  }
+  // 4. The Healer - Cancer/Virgo focus, service, care
+  if (["Cancer", "Virgo", "Pisces", "Scorpio"].includes(sunSign)) scores["The Healer"] += 4;
+  if (["Cancer", "Virgo", "Pisces"].includes(moonSign)) scores["The Healer"] += 4;
+  if (["Cancer", "Virgo", "Pisces"].includes(risingSign)) scores["The Healer"] += 3;
+  if (["Water", "Earth"].includes(dominantElement)) scores["The Healer"] += 2;
+  if (["Moon", "Neptune", "Mercury"].includes(dominantPlanet)) scores["The Healer"] += 2;
+  if (houseEmphasis[5] >= 4 || houseEmphasis[7] >= 4 || houseEmphasis[11] >= 4) scores["The Healer"] += 2;
 
-  // 5. The Seeker
-  if (sunSign === "Sagittarius") scores["The Seeker"] += 3;
-  if (moonSign === "Sagittarius") scores["The Seeker"] += 3;
-  if (risingSign === "Sagittarius") scores["The Seeker"] += 3;
-  
-  // Jupiter dominant
-  if (dominantPlanet === "Jupiter") scores["The Seeker"] += 3;
-  
-  // 9th house strong
-  if (houseEmphasis[8] >= 4) scores["The Seeker"] += 2;
+  // 5. The Seeker - Sagittarius/Gemini, quest for knowledge
+  if (["Sagittarius", "Gemini", "Aquarius"].includes(sunSign)) scores["The Seeker"] += 4;
+  if (["Sagittarius", "Gemini", "Aquarius"].includes(moonSign)) scores["The Seeker"] += 3;
+  if (["Sagittarius", "Gemini"].includes(risingSign)) scores["The Seeker"] += 3;
+  if (["Fire", "Air"].includes(dominantElement)) scores["The Seeker"] += 2;
+  if (dominantModality === "Mutable") scores["The Seeker"] += 2;
+  if (["Jupiter", "Mercury", "Uranus"].includes(dominantPlanet)) scores["The Seeker"] += 2;
+  if (houseEmphasis[8] >= 4 || houseEmphasis[2] >= 4) scores["The Seeker"] += 2;
 
-  // 6. The Rebel
-  if (["Aquarius", "Aries"].includes(risingSign)) scores["The Rebel"] += 3;
-  
-  // Uranus in 1st or 10th house
-  if (planetaryPlacements["Uranus"]?.house === 1 || planetaryPlacements["Uranus"]?.house === 10) scores["The Rebel"] += 3;
-  
-  // Pluto rising or Scorpio stellium
-  if (planetaryPlacements["Pluto"]?.house === 1) scores["The Rebel"] += 2;
-  if (risingSign === "Scorpio") scores["The Rebel"] += 1;
+  // 6. The Rebel - Aquarius/Aries, revolution, independence
+  if (["Aquarius", "Aries", "Scorpio"].includes(sunSign)) scores["The Rebel"] += 4;
+  if (["Aquarius", "Aries", "Scorpio"].includes(moonSign)) scores["The Rebel"] += 3;
+  if (["Aquarius", "Aries", "Scorpio"].includes(risingSign)) scores["The Rebel"] += 3;
+  if (["Air", "Fire"].includes(dominantElement)) scores["The Rebel"] += 2;
+  if (dominantModality === "Fixed") scores["The Rebel"] += 2;
+  if (["Uranus", "Mars", "Pluto"].includes(dominantPlanet)) scores["The Rebel"] += 3;
+  if (houseEmphasis[0] >= 4 || houseEmphasis[10] >= 4) scores["The Rebel"] += 2;
 
-  // 7. The Mystic
-  if (planetaryPlacements["Moon"]?.house === 12 || planetaryPlacements["Venus"]?.house === 12) scores["The Mystic"] += 3;
-  
-  // Neptune dominant
-  if (dominantPlanet === "Neptune") scores["The Mystic"] += 3;
-  
-  // Pisces or Scorpio Rising
-  if (["Pisces", "Scorpio"].includes(risingSign)) scores["The Mystic"] += 2;
+  // 7. The Mystic - Water signs, especially Scorpio/Pisces, depth
+  if (["Scorpio", "Pisces", "Cancer"].includes(sunSign)) scores["The Mystic"] += 4;
+  if (["Scorpio", "Pisces", "Cancer"].includes(moonSign)) scores["The Mystic"] += 4;
+  if (["Scorpio", "Pisces"].includes(risingSign)) scores["The Mystic"] += 3;
+  if (dominantElement === "Water") scores["The Mystic"] += 3;
+  if (["Neptune", "Pluto", "Moon"].includes(dominantPlanet)) scores["The Mystic"] += 3;
+  if (houseEmphasis[7] >= 4 || houseEmphasis[11] >= 4) scores["The Mystic"] += 2;
 
-  // 8. The Visionary
-  if (["Uranus", "Jupiter"].includes(dominantPlanet)) scores["The Visionary"] += 3;
-  
-  // Sun or Moon in Sagittarius, Aquarius, or 11th house
-  if (["Sagittarius", "Aquarius"].includes(sunSign)) scores["The Visionary"] += 2;
-  if (["Sagittarius", "Aquarius"].includes(moonSign)) scores["The Visionary"] += 2;
-  if (planetaryPlacements["Sun"]?.house === 11 || planetaryPlacements["Moon"]?.house === 11) scores["The Visionary"] += 2;
-  
-  // Fire + Air dominance
-  if (dominantElement === "Fire" || dominantElement === "Air") scores["The Visionary"] += 1;
+  // 8. The Visionary - Air signs, especially Aquarius, future focus
+  if (["Aquarius", "Gemini", "Sagittarius"].includes(sunSign)) scores["The Visionary"] += 4;
+  if (["Aquarius", "Gemini", "Sagittarius"].includes(moonSign)) scores["The Visionary"] += 3;
+  if (["Aquarius", "Gemini"].includes(risingSign)) scores["The Visionary"] += 3;
+  if (["Air", "Fire"].includes(dominantElement)) scores["The Visionary"] += 2;
+  if (["Uranus", "Jupiter", "Mercury"].includes(dominantPlanet)) scores["The Visionary"] += 2;
+  if (houseEmphasis[10] >= 4 || houseEmphasis[8] >= 4) scores["The Visionary"] += 2;
 
-  // 9. The Connector
-  if (["Libra", "Gemini", "Cancer"].includes(sunSign)) scores["The Connector"] += 3;
+  // 9. The Connector - Air signs, especially Libra/Gemini, relationships
+  if (["Libra", "Gemini", "Cancer", "Leo"].includes(sunSign)) scores["The Connector"] += 4;
   if (["Libra", "Gemini", "Cancer"].includes(moonSign)) scores["The Connector"] += 3;
-  if (["Libra", "Gemini", "Cancer"].includes(risingSign)) scores["The Connector"] += 3;
-  
-  // Venus or Moon in 3rd, 7th, or 11th house
-  if ([3, 7, 11].includes(planetaryPlacements["Venus"]?.house || 0)) scores["The Connector"] += 2;
-  if ([3, 7, 11].includes(planetaryPlacements["Moon"]?.house || 0)) scores["The Connector"] += 2;
+  if (["Libra", "Gemini", "Leo"].includes(risingSign)) scores["The Connector"] += 3;
+  if (["Air", "Water"].includes(dominantElement)) scores["The Connector"] += 2;
+  if (dominantModality === "Cardinal") scores["The Connector"] += 2;
+  if (["Venus", "Mercury", "Moon"].includes(dominantPlanet)) scores["The Connector"] += 2;
+  if (houseEmphasis[6] >= 4 || houseEmphasis[2] >= 4 || houseEmphasis[10] >= 4) scores["The Connector"] += 2;
 
-  // 10. The Strategist
-  if (["Virgo", "Capricorn", "Scorpio"].includes(sunSign)) scores["The Strategist"] += 3;
+  // 10. The Strategist - Earth/Water signs, planning, analysis
+  if (["Virgo", "Capricorn", "Scorpio", "Gemini"].includes(sunSign)) scores["The Strategist"] += 4;
   if (["Virgo", "Capricorn", "Scorpio"].includes(moonSign)) scores["The Strategist"] += 3;
   if (["Virgo", "Capricorn", "Scorpio"].includes(risingSign)) scores["The Strategist"] += 3;
-  
-  // Mercury, Saturn, or Pluto dominant
+  if (["Earth", "Water"].includes(dominantElement)) scores["The Strategist"] += 2;
   if (["Mercury", "Saturn", "Pluto"].includes(dominantPlanet)) scores["The Strategist"] += 2;
-  
-  // 6th, 8th, or 10th house concentration
   if (houseEmphasis[5] >= 4 || houseEmphasis[7] >= 4 || houseEmphasis[9] >= 4) scores["The Strategist"] += 2;
 
-  // 11. The Performer
-  if (["Leo", "Libra"].includes(sunSign)) scores["The Performer"] += 3;
-  if (["Leo", "Libra"].includes(moonSign)) scores["The Performer"] += 3;
-  if (["Leo", "Libra"].includes(risingSign)) scores["The Performer"] += 3;
-  
-  // Sun or Venus in 5th house
-  if (planetaryPlacements["Sun"]?.house === 5) scores["The Performer"] += 3;
-  if (planetaryPlacements["Venus"]?.house === 5) scores["The Performer"] += 2;
-  
-  // 5th house emphasis
-  if (houseEmphasis[4] >= 4) scores["The Performer"] += 2;
+  // 11. The Performer - Fire signs, especially Leo, creativity
+  if (["Leo", "Aries", "Sagittarius", "Libra"].includes(sunSign)) scores["The Performer"] += 4;
+  if (["Leo", "Aries", "Libra"].includes(moonSign)) scores["The Performer"] += 3;
+  if (["Leo", "Libra", "Gemini"].includes(risingSign)) scores["The Performer"] += 3;
+  if (["Fire", "Air"].includes(dominantElement)) scores["The Performer"] += 2;
+  if (dominantModality === "Fixed") scores["The Performer"] += 2;
+  if (["Sun", "Venus", "Jupiter"].includes(dominantPlanet)) scores["The Performer"] += 2;
+  if (houseEmphasis[4] >= 4 || houseEmphasis[0] >= 4) scores["The Performer"] += 2;
 
-  // 12. The Alchemist
-  if (sunSign === "Scorpio") scores["The Alchemist"] += 3;
-  if (moonSign === "Scorpio") scores["The Alchemist"] += 3;
-  if (risingSign === "Scorpio") scores["The Alchemist"] += 3;
-  
-  // Pluto in 1st, 8th, or 12th house
-  if ([1, 8, 12].includes(planetaryPlacements["Pluto"]?.house || 0)) scores["The Alchemist"] += 3;
-  
-  // 8th house emphasis
-  if (houseEmphasis[7] >= 4) scores["The Alchemist"] += 2;
-  
-  // Pluto dominant
-  if (dominantPlanet === "Pluto") scores["The Alchemist"] += 2;
+  // 12. The Alchemist - Scorpio focus, transformation, depth
+  if (["Scorpio", "Capricorn", "Aries", "Pisces"].includes(sunSign)) scores["The Alchemist"] += 4;
+  if (["Scorpio", "Capricorn", "Aries"].includes(moonSign)) scores["The Alchemist"] += 3;
+  if (["Scorpio", "Capricorn", "Aries"].includes(risingSign)) scores["The Alchemist"] += 3;
+  if (["Water", "Earth"].includes(dominantElement)) scores["The Alchemist"] += 2;
+  if (dominantModality === "Fixed") scores["The Alchemist"] += 2;
+  if (["Pluto", "Mars", "Saturn"].includes(dominantPlanet)) scores["The Alchemist"] += 3;
+  if (houseEmphasis[7] >= 4 || houseEmphasis[9] >= 4) scores["The Alchemist"] += 2;
 
-  console.log("Archetype scores:", scores);
+  console.log("Rebalanced archetype scores:", scores);
 
   // Find primary and secondary archetypes
   const sortedScores = Object.entries(scores)
