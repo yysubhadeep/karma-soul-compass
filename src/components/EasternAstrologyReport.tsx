@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Download, Share2 } from "lucide-react";
 import { calculateEasternArchetype } from '@/utils/easternAstrologyCalculations';
+import CallToActionCard from './CallToActionCard';
 
 interface FormData {
   name: string;
@@ -148,19 +149,6 @@ const EasternAstrologyReport = ({ formData, onBack }: EasternAstrologyReportProp
           </p>
         </div>
 
-        {/* Debug Information */}
-        <Card className="mb-6 border-blue-200 bg-blue-50">
-          <CardContent className="p-4">
-            <p className="text-sm text-blue-700">
-              <strong>Calculation Details:</strong> Moon Sign: {calculatedResults.moonSign}, 
-              Nakshatra: {calculatedResults.nakshatra}, Lagna: {calculatedResults.lagna}
-            </p>
-            <p className="text-xs text-blue-600 mt-1">
-              Birth: {formData.dateOfBirth} at {formData.timeOfBirth} IST in {formData.placeOfBirth}
-            </p>
-          </CardContent>
-        </Card>
-
         {/* Primary Archetype */}
         <Card className="mb-6 border-orange-200 shadow-lg">
           <CardHeader className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-t-lg">
@@ -189,7 +177,7 @@ const EasternAstrologyReport = ({ formData, onBack }: EasternAstrologyReportProp
               </div>
               
               <div>
-                <h3 className="font-semibold text-lg mb-3 text-orange-700">🎯 Growth Areas</h3>
+                <h3 className="font-semibold text-lg mb-3 text-orange-700">🎯 Areas of Improvement</h3>
                 <ul className="space-y-1 mb-4">
                   {(primaryInfo?.challenges || ['Integration', 'Balance']).map((challenge, index) => (
                     <li key={index} className="flex items-center text-gray-700">
@@ -206,45 +194,17 @@ const EasternAstrologyReport = ({ formData, onBack }: EasternAstrologyReportProp
           </CardContent>
         </Card>
 
-        {/* Vedic Details */}
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
-          <Card className="border-orange-200">
-            <CardHeader>
-              <CardTitle className="text-orange-700">🌙 Vedic Details</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span className="font-medium">Moon Sign (Rashi):</span>
-                  <span className="text-orange-600">{calculatedResults.moonSign}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="font-medium">Nakshatra:</span>
-                  <span className="text-orange-600">{calculatedResults.nakshatra}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="font-medium">Lagna (Ascendant):</span>
-                  <span className="text-orange-600">{calculatedResults.lagna}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="font-medium">Atmakaraka:</span>
-                  <span className="text-orange-600">{calculatedResults.atmakaraka}</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border-orange-200">
-            <CardHeader>
-              <CardTitle className="text-orange-700">🕉️ Sacred Message</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-700 italic text-lg leading-relaxed">
-                "{calculatedResults.vedicMessage}"
-              </p>
-            </CardContent>
-          </Card>
-        </div>
+        {/* Sacred Message */}
+        <Card className="mb-6 border-orange-200">
+          <CardHeader>
+            <CardTitle className="text-orange-700">🕉️ Sacred Message</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-700 italic text-lg leading-relaxed">
+              "{calculatedResults.vedicMessage}"
+            </p>
+          </CardContent>
+        </Card>
 
         {/* Career & Remedies */}
         <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -300,8 +260,11 @@ const EasternAstrologyReport = ({ formData, onBack }: EasternAstrologyReportProp
           </Card>
         )}
 
+        {/* Add the CTA Card */}
+        <CallToActionCard />
+
         {/* Disclaimer */}
-        <Card className="border-orange-200 bg-orange-50">
+        <Card className="border-orange-200 bg-orange-50 mt-6">
           <CardContent className="p-4">
             <p className="text-sm text-gray-600 text-center">
               This report is based on Eastern Vedic astrology calculations using sidereal positions. 
