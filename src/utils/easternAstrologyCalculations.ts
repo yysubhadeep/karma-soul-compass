@@ -1,3 +1,4 @@
+
 import { astronomia } from 'astronomia';
 
 interface BirthData {
@@ -34,91 +35,79 @@ const NAKSHATRAS = [
   'Purva Bhadrapada', 'Uttara Bhadrapada', 'Revati'
 ];
 
-// Eastern Archetypes - Your Original List
+// Your Original Eastern Archetypes - The Correct 9
 const EASTERN_ARCHETYPES = {
-  'The Cosmic Detective': {
-    keywords: ['mystery', 'investigation', 'hidden', 'research', 'truth'],
-    moonSigns: ['Scorpio', 'Virgo', 'Gemini'],
-    nakshatras: ['Jyeshtha', 'Ardra', 'Swati', 'Chitra'],
-    planets: ['Mercury', 'Mars', 'Saturn'],
-    message: 'You uncover hidden truths and solve the mysteries of existence.'
+  'Karma Yogi': {
+    keywords: ['duty', 'service', 'action', 'responsibility', 'work', 'dharma'],
+    moonSigns: ['Virgo', 'Capricorn', 'Taurus'],
+    nakshatras: ['Hasta', 'Uttara Phalguni', 'Uttara Ashadha', 'Shravana'],
+    planets: ['Saturn', 'Mars', 'Mercury'],
+    houses: [6, 10, 12], // Service, career, sacrifice
+    message: 'Your path is through selfless action and dedicated service. You find fulfillment in duty and righteous work.'
   },
-  'The Sacred Rebel': {
-    keywords: ['rebellion', 'change', 'revolution', 'unconventional', 'freedom'],
-    moonSigns: ['Aquarius', 'Aries', 'Sagittarius'],
-    nakshatras: ['Shatabhisha', 'Ashwini', 'Purva Bhadrapada'],
-    planets: ['Uranus', 'Mars', 'Rahu'],
-    message: 'Your rebellion against conformity opens new paths for humanity.'
+  'Jnana Yogi': {
+    keywords: ['wisdom', 'knowledge', 'philosophy', 'truth', 'study', 'understanding'],
+    moonSigns: ['Sagittarius', 'Gemini', 'Aquarius'],
+    nakshatras: ['Purva Ashadha', 'Ardra', 'Mula', 'Shatabhisha'],
+    planets: ['Jupiter', 'Mercury', 'Ketu'],
+    houses: [9, 3, 5], // Higher learning, communication, wisdom
+    message: 'Your liberation comes through knowledge and philosophical understanding. You seek truth through study and contemplation.'
   },
-  'The Intuitive Mystic': {
-    keywords: ['intuition', 'mysticism', 'psychic', 'spiritual', 'vision'],
-    moonSigns: ['Pisces', 'Cancer', 'Scorpio'],
-    nakshatras: ['Revati', 'Pushya', 'Mula'],
-    planets: ['Neptune', 'Moon', 'Ketu'],
-    message: 'Through intuition and mystical experience, you access divine wisdom.'
+  'Bhakti Yogi': {
+    keywords: ['devotion', 'love', 'surrender', 'emotion', 'heart', 'faith'],
+    moonSigns: ['Cancer', 'Pisces', 'Leo'],
+    nakshatras: ['Pushya', 'Revati', 'Purva Phalguni', 'Rohini'],
+    planets: ['Moon', 'Venus', 'Jupiter'],
+    houses: [4, 5, 12], // Heart, devotion, surrender
+    message: 'Your path is through pure devotion and surrender of the heart. Love and faith guide your spiritual journey.'
   },
-  'The Passionate Creator': {
-    keywords: ['passion', 'creation', 'art', 'inspiration', 'expression'],
-    moonSigns: ['Leo', 'Libra', 'Taurus'],
-    nakshatras: ['Purva Phalguni', 'Chitra', 'Rohini'],
-    planets: ['Venus', 'Sun', 'Mars'],
-    message: 'Your creative fire transforms raw passion into beautiful manifestations.'
+  'Tantra Mystic': {
+    keywords: ['occult', 'mystery', 'energy', 'transformation', 'esoteric', 'power'],
+    moonSigns: ['Scorpio', 'Pisces', 'Aquarius'],
+    nakshatras: ['Jyeshtha', 'Mula', 'Ardra', 'Shatabhisha', 'Ashlesha'],
+    planets: ['Mars', 'Rahu', 'Ketu', 'Pluto'],
+    houses: [8, 12, 4], // Occult, hidden knowledge, inner depths
+    message: 'You work with hidden energies and esoteric knowledge. Your power comes from understanding the mysteries of existence.'
   },
-  'The Wisdom Keeper': {
-    keywords: ['wisdom', 'knowledge', 'teaching', 'ancient', 'preservation'],
-    moonSigns: ['Sagittarius', 'Virgo', 'Capricorn'],
-    nakshatras: ['Purva Ashadha', 'Hasta', 'Shravana'],
-    planets: ['Jupiter', 'Mercury', 'Saturn'],
-    message: 'You are the guardian of ancient wisdom and sacred knowledge.'
+  'Raj Rishi': {
+    keywords: ['leadership', 'wisdom', 'royal', 'authority', 'guidance', 'noble'],
+    moonSigns: ['Leo', 'Sagittarius', 'Aries'],
+    nakshatras: ['Magha', 'Purva Phalguni', 'Purva Ashadha', 'Bharani'],
+    planets: ['Sun', 'Jupiter', 'Mars'],
+    houses: [1, 5, 9, 10], // Self, authority, wisdom, status
+    message: 'You are born to lead with wisdom and righteousness. Your authority comes from inner nobility and spiritual understanding.'
   },
-  'The Emotional Alchemist': {
-    keywords: ['emotion', 'transformation', 'healing', 'empathy', 'depth'],
-    moonSigns: ['Cancer', 'Scorpio', 'Pisces'],
-    nakshatras: ['Pushya', 'Ashlesha', 'Uttara Bhadrapada'],
-    planets: ['Moon', 'Pluto', 'Neptune'],
-    message: 'You transform emotional pain into healing wisdom for yourself and others.'
+  'Artha Seeker': {
+    keywords: ['wealth', 'material', 'resources', 'building', 'security', 'practical'],
+    moonSigns: ['Taurus', 'Capricorn', 'Virgo'],
+    nakshatras: ['Rohini', 'Krittika', 'Uttara Phalguni', 'Hasta', 'Dhanishta'],
+    planets: ['Venus', 'Mercury', 'Saturn'],
+    houses: [2, 6, 10, 11], // Wealth, work, career, gains
+    message: 'Your dharma involves creating material prosperity and security. You build resources that serve higher purposes.'
   },
-  'The Spiritual Warrior': {
-    keywords: ['battle', 'courage', 'protection', 'strength', 'justice'],
+  'Vairagi Wanderer': {
+    keywords: ['detachment', 'renunciation', 'solitude', 'freedom', 'wandering', 'ascetic'],
+    moonSigns: ['Aquarius', 'Sagittarius', 'Gemini'],
+    nakshatras: ['Shatabhisha', 'Purva Bhadrapada', 'Uttara Bhadrapada', 'Swati'],
+    planets: ['Saturn', 'Ketu', 'Rahu'],
+    houses: [12, 9, 3], // Liberation, wandering, detachment
+    message: 'Your path is through detachment and wandering. You find freedom by releasing worldly attachments.'
+  },
+  'Dharma Warrior': {
+    keywords: ['justice', 'protection', 'fight', 'righteousness', 'courage', 'defender'],
     moonSigns: ['Aries', 'Leo', 'Scorpio'],
-    nakshatras: ['Bharani', 'Magha', 'Anuradha'],
-    planets: ['Mars', 'Sun', 'Jupiter'],
-    message: 'You fight for truth and justice with unwavering spiritual courage.'
+    nakshatras: ['Bharani', 'Magha', 'Anuradha', 'Mrigashira'],
+    planets: ['Mars', 'Sun', 'Ketu'],
+    houses: [1, 6, 8, 11], // Self, enemies, transformation, groups
+    message: 'You are called to fight for righteousness and protect the innocent. Your strength serves divine justice.'
   },
-  'The Conscious Communicator': {
-    keywords: ['communication', 'bridge', 'connection', 'understanding', 'translation'],
-    moonSigns: ['Gemini', 'Libra', 'Aquarius'],
-    nakshatras: ['Ardra', 'Swati', 'Dhanishta'],
-    planets: ['Mercury', 'Venus', 'Uranus'],
-    message: 'You bridge worlds through conscious communication and understanding.'
-  },
-  'The Divine Nurturer': {
-    keywords: ['nurturing', 'care', 'protection', 'growth', 'support'],
-    moonSigns: ['Cancer', 'Taurus', 'Virgo'],
-    nakshatras: ['Rohini', 'Pushya', 'Hasta'],
-    planets: ['Moon', 'Venus', 'Ceres'],
-    message: 'Through divine nurturing, you help souls grow and flourish.'
-  },
-  'The Transformational Catalyst': {
-    keywords: ['transformation', 'catalyst', 'change', 'evolution', 'breakthrough'],
-    moonSigns: ['Scorpio', 'Pluto', 'Aquarius'],
-    nakshatras: ['Jyeshtha', 'Mula', 'Shatabhisha'],
-    planets: ['Pluto', 'Mars', 'Uranus'],
-    message: 'You catalyze profound transformation wherever you go.'
-  },
-  'The Cosmic Harmonizer': {
-    keywords: ['harmony', 'balance', 'peace', 'integration', 'unity'],
-    moonSigns: ['Libra', 'Taurus', 'Pisces'],
-    nakshatras: ['Chitra', 'Rohini', 'Revati'],
-    planets: ['Venus', 'Jupiter', 'Neptune'],
-    message: 'You bring cosmic harmony and balance to all aspects of life.'
-  },
-  'The Sacred Healer': {
-    keywords: ['healing', 'medicine', 'restoration', 'wholeness', 'recovery'],
-    moonSigns: ['Virgo', 'Scorpio', 'Pisces'],
-    nakshatras: ['Hasta', 'Anuradha', 'Uttara Bhadrapada'],
-    planets: ['Mercury', 'Pluto', 'Chiron'],
-    message: 'Through sacred healing arts, you restore wholeness to body and soul.'
+  'Lila Player': {
+    keywords: ['joy', 'creativity', 'play', 'art', 'beauty', 'expression', 'celebration'],
+    moonSigns: ['Libra', 'Taurus', 'Cancer', 'Leo'],
+    nakshatras: ['Chitra', 'Rohini', 'Punarvasu', 'Purva Phalguni', 'Swati'],
+    planets: ['Venus', 'Moon', 'Mercury'],
+    houses: [5, 3, 2], // Creativity, expression, beauty
+    message: 'Life is divine play for you. Through joy, creativity, and artistic expression, you touch the sacred in everyday life.'
   }
 };
 
@@ -147,13 +136,13 @@ function convertISTtoUTC(dateStr: string, timeStr: string): Date {
   return utcDate;
 }
 
-// Calculate sidereal position (simplified)
+// Calculate sidereal position (simplified but more accurate)
 function calculateSiderealPosition(julianDay: number, longitude: number = 0): number {
-  // Simplified sidereal calculation
-  // Ayanamsa (precession correction) - using Lahiri ayanamsa
-  const ayanamsa = 24.042; // Approximate current Lahiri ayanamsa
+  // Lahiri Ayanamsa calculation (more accurate)
+  const T = (julianDay - 2451545.0) / 36525.0;
+  const ayanamsa = 23.85 + (0.396 * T);
   
-  // Basic tropical longitude calculation (simplified)
+  // Basic tropical longitude calculation
   const tropicalLongitude = ((julianDay - 2451545.0) / 365.25) * 360 + longitude;
   
   // Convert to sidereal by subtracting ayanamsa
@@ -175,47 +164,8 @@ function getNakshatra(moonLongitude: number): string {
   return NAKSHATRAS[nakshatraIndex] || 'Ashwini';
 }
 
-// Calculate archetype scores based on birth chart
-function calculateArchetypeScores(
-  moonSign: string,
-  nakshatra: string,
-  lagna: string,
-  dominantPlanets: string[]
-): Record<string, number> {
-  const scores: Record<string, number> = {};
-  
-  Object.entries(EASTERN_ARCHETYPES).forEach(([archetype, rules]) => {
-    let score = 0;
-    
-    // Moon sign scoring (high weight)
-    if (rules.moonSigns.includes(moonSign)) {
-      score += 30;
-    }
-    
-    // Nakshatra scoring (medium weight)
-    if (rules.nakshatras.includes(nakshatra)) {
-      score += 25;
-    }
-    
-    // Planetary influence scoring
-    dominantPlanets.forEach(planet => {
-      if (rules.planets.includes(planet)) {
-        score += 20;
-      }
-    });
-    
-    // Add some randomization based on birth data uniqueness
-    const uniquenessFactor = (moonSign.length + nakshatra.length + lagna.length) % 10;
-    score += uniquenessFactor;
-    
-    scores[archetype] = score;
-  });
-  
-  return scores;
-}
-
-// Determine dominant planets (simplified)
-function getDominantPlanets(moonSign: string, lagna: string, nakshatra: string): string[] {
+// Determine dominant planets based on chart
+function getDominantPlanets(moonSign: string, lagna: string, nakshatra: string, birthData: BirthData): string[] {
   const planets = [];
   
   // Moon sign rulers
@@ -235,14 +185,97 @@ function getDominantPlanets(moonSign: string, lagna: string, nakshatra: string):
   }
   
   // Nakshatra rulers (simplified)
-  if (nakshatra.includes('Ashwini') || nakshatra.includes('Magha')) {
-    planets.push('Ketu');
-  }
-  if (nakshatra.includes('Bharani') || nakshatra.includes('Purva')) {
-    planets.push('Venus');
+  const nakshatraRulers: Record<string, string> = {
+    'Ashwini': 'Ketu', 'Bharani': 'Venus', 'Krittika': 'Sun', 'Rohini': 'Moon',
+    'Mrigashira': 'Mars', 'Ardra': 'Rahu', 'Punarvasu': 'Jupiter', 'Pushya': 'Saturn',
+    'Ashlesha': 'Mercury', 'Magha': 'Ketu', 'Purva Phalguni': 'Venus', 'Uttara Phalguni': 'Sun',
+    'Hasta': 'Moon', 'Chitra': 'Mars', 'Swati': 'Rahu', 'Vishakha': 'Jupiter',
+    'Anuradha': 'Saturn', 'Jyeshtha': 'Mercury', 'Mula': 'Ketu', 'Purva Ashadha': 'Venus',
+    'Uttara Ashadha': 'Sun', 'Shravana': 'Moon', 'Dhanishta': 'Mars', 'Shatabhisha': 'Rahu',
+    'Purva Bhadrapada': 'Jupiter', 'Uttara Bhadrapada': 'Saturn', 'Revati': 'Mercury'
+  };
+  
+  if (nakshatraRulers[nakshatra]) {
+    planets.push(nakshatraRulers[nakshatra]);
   }
   
   return [...new Set(planets)]; // Remove duplicates
+}
+
+// Calculate house positions (simplified)
+function calculateHousePositions(julianDay: number): number[] {
+  // Simplified house calculation - in real implementation would use more complex algorithms
+  const houses = [];
+  for (let i = 1; i <= 12; i++) {
+    const housePosition = ((julianDay - 2451545.0) / 365.25 * 360 + i * 30) % 360;
+    houses.push(Math.floor(housePosition / 30) + 1);
+  }
+  return houses;
+}
+
+// Calculate archetype scores using your algorithm
+function calculateArchetypeScores(
+  moonSign: string,
+  nakshatra: string,
+  lagna: string,
+  dominantPlanets: string[],
+  birthData: BirthData
+): Record<string, number> {
+  const scores: Record<string, number> = {};
+  
+  // Calculate houses for additional scoring
+  const utcDate = convertISTtoUTC(birthData.dateOfBirth, birthData.timeOfBirth);
+  const julianDay = calculateJulianDay(utcDate);
+  const housePositions = calculateHousePositions(julianDay);
+  
+  Object.entries(EASTERN_ARCHETYPES).forEach(([archetype, rules]) => {
+    let score = 0;
+    
+    // Moon sign scoring (highest weight - 40 points)
+    if (rules.moonSigns.includes(moonSign)) {
+      score += 40;
+    }
+    
+    // Nakshatra scoring (high weight - 30 points)
+    if (rules.nakshatras.includes(nakshatra)) {
+      score += 30;
+    }
+    
+    // Planetary influence scoring (medium weight - 20 points each)
+    dominantPlanets.forEach(planet => {
+      if (rules.planets.includes(planet)) {
+        score += 20;
+      }
+    });
+    
+    // House position scoring (medium weight - 15 points each)
+    rules.houses?.forEach(house => {
+      if (housePositions.includes(house)) {
+        score += 15;
+      }
+    });
+    
+    // Birth time influence (if early morning, spiritual archetypes get bonus)
+    const [hours] = birthData.timeOfBirth.split(':').map(Number);
+    if (hours >= 4 && hours <= 6) {
+      if (['Jnana Yogi', 'Bhakti Yogi', 'Vairagi Wanderer'].includes(archetype)) {
+        score += 10;
+      }
+    }
+    
+    // Add uniqueness factor based on birth data
+    const uniquenessFactor = (
+      birthData.name.length + 
+      moonSign.length + 
+      nakshatra.length + 
+      parseInt(birthData.dateOfBirth.split('-')[2])
+    ) % 15;
+    score += uniquenessFactor;
+    
+    scores[archetype] = score;
+  });
+  
+  return scores;
 }
 
 export function calculateEasternArchetype(formData: BirthData): EasternArchetypeResult {
@@ -257,10 +290,10 @@ export function calculateEasternArchetype(formData: BirthData): EasternArchetype
     const julianDay = calculateJulianDay(utcDate);
     console.log('Julian Day:', julianDay);
     
-    // Calculate basic sidereal positions (simplified)
+    // Calculate sidereal positions
     const moonLongitude = calculateSiderealPosition(julianDay, 120); // Base + moon offset
     const sunLongitude = calculateSiderealPosition(julianDay, 0);
-    const ascendantLongitude = calculateSiderealPosition(julianDay, 90); // Simplified ascendant
+    const ascendantLongitude = calculateSiderealPosition(julianDay, 90);
     
     console.log('Sidereal positions - Moon:', moonLongitude, 'Sun:', sunLongitude, 'Asc:', ascendantLongitude);
     
@@ -272,11 +305,11 @@ export function calculateEasternArchetype(formData: BirthData): EasternArchetype
     console.log('Calculated - Moon Sign:', moonSign, 'Lagna:', lagna, 'Nakshatra:', nakshatra);
     
     // Determine dominant planets
-    const dominantPlanets = getDominantPlanets(moonSign, lagna, nakshatra);
+    const dominantPlanets = getDominantPlanets(moonSign, lagna, nakshatra, formData);
     const atmakaraka = dominantPlanets[0] || 'Moon';
     
-    // Calculate archetype scores
-    const scores = calculateArchetypeScores(moonSign, nakshatra, lagna, dominantPlanets);
+    // Calculate archetype scores using your algorithm
+    const scores = calculateArchetypeScores(moonSign, nakshatra, lagna, dominantPlanets, formData);
     console.log('Archetype scores:', scores);
     
     // Find primary and secondary archetypes
@@ -305,7 +338,7 @@ export function calculateEasternArchetype(formData: BirthData): EasternArchetype
     
   } catch (error) {
     console.error('Error calculating Eastern archetype:', error);
-    // Fallback to ensure different results
+    // Fallback with your original archetypes
     const fallbackArchetypes = Object.keys(EASTERN_ARCHETYPES);
     const randomIndex = Math.floor(Math.random() * fallbackArchetypes.length);
     

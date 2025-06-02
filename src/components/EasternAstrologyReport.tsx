@@ -24,115 +24,88 @@ const EasternAstrologyReport = ({ formData, onBack }: EasternAstrologyReportProp
     return calculateEasternArchetype(formData);
   }, [formData]);
 
-  // Your Original Eastern Archetypes with detailed information
+  // Your Original Eastern Archetypes - The Correct 9
   const easternArchetypes = {
-    "The Cosmic Detective": {
-      title: "The Truth Seeker",
-      description: "You have an innate ability to uncover hidden truths and solve life's deepest mysteries. Your investigative nature leads you to profound discoveries.",
-      strengths: ["Investigative insight", "Pattern recognition", "Truth-seeking nature", "Research abilities"],
-      challenges: ["Overthinking", "Suspicion", "Isolation", "Obsessive tendencies"],
-      career: ["Research", "Investigation", "Psychology", "Scientific analysis"],
-      relationships: "You seek partners who appreciate your depth and can handle your need to understand everything deeply.",
-      remedies: ["Meditation for clarity", "Journaling insights", "Study of mysteries", "Mindful investigation"]
+    "Karma Yogi": {
+      title: "The Duty-bound Doer",
+      description: "Your spiritual path unfolds through selfless action and dedicated service. You find deep fulfillment in duty, work, and righteous action that serves the greater good.",
+      strengths: ["Strong work ethic", "Sense of duty", "Service orientation", "Practical wisdom", "Reliable nature"],
+      challenges: ["Workaholism", "Self-neglect", "Rigidity", "Burnout from overgiving"],
+      career: ["Social work", "Healthcare", "Public service", "Non-profit leadership", "Teaching"],
+      relationships: "You express love through acts of service and seek partners who appreciate your dedication and share your values of service.",
+      remedies: ["Daily karma yoga practice", "Selfless service", "Work-life balance", "Meditation on duty"]
     },
-    "The Sacred Rebel": {
-      title: "The Revolutionary Spirit",
-      description: "You challenge conventional wisdom and create new paths. Your rebellion serves a higher purpose of liberation and freedom.",
-      strengths: ["Revolutionary thinking", "Courage to challenge", "Independent spirit", "Change catalyst"],
-      challenges: ["Confrontational nature", "Difficulty with authority", "Isolation", "Restlessness"],
-      career: ["Social activism", "Innovation", "Entrepreneurship", "Reform movements"],
-      relationships: "You need partners who support your independence and share your vision for positive change.",
-      remedies: ["Channeled activism", "Creative expression", "Freedom practices", "Revolutionary service"]
+    "Jnana Yogi": {
+      title: "The Wisdom-seeking Philosopher",
+      description: "Your liberation comes through knowledge, study, and philosophical understanding. You are driven to seek truth and understand the deeper meaning of existence.",
+      strengths: ["Deep thinking", "Philosophical insight", "Love of learning", "Truth-seeking nature", "Analytical mind"],
+      challenges: ["Overthinking", "Intellectual pride", "Detachment from emotions", "Analysis paralysis"],
+      career: ["Research", "Philosophy", "Writing", "Academia", "Consulting"],
+      relationships: "You connect through intellectual discourse and need partners who can engage with your philosophical nature and quest for truth.",
+      remedies: ["Study of sacred texts", "Philosophical discussions", "Contemplative meditation", "Knowledge sharing"]
     },
-    "The Intuitive Mystic": {
-      title: "The Divine Channel",
-      description: "You access wisdom through intuition and mystical experience. Your psychic abilities connect you to higher realms of consciousness.",
-      strengths: ["Psychic abilities", "Intuitive wisdom", "Spiritual connection", "Mystical understanding"],
-      challenges: ["Overwhelm from sensitivity", "Difficulty grounding", "Misunderstood gifts", "Energy depletion"],
-      career: ["Spiritual counseling", "Energy healing", "Mystical arts", "Intuitive guidance"],
-      relationships: "You seek soul connections with those who understand and honor your mystical nature.",
-      remedies: ["Psychic protection", "Grounding practices", "Mystical study", "Energy clearing"]
+    "Bhakti Yogi": {
+      title: "The Heart-led Empath/Devotee",
+      description: "Your path is through pure devotion, emotional connection, and surrender of the heart. Love, faith, and emotional intelligence guide your spiritual journey.",
+      strengths: ["Deep empathy", "Emotional intelligence", "Devotional nature", "Compassionate heart", "Faith and surrender"],
+      challenges: ["Emotional overwhelm", "Boundary issues", "Idealization", "Attachment"],
+      career: ["Counseling", "Healing arts", "Spiritual guidance", "Creative arts", "Community building"],
+      relationships: "You love deeply and devotionally, seeking soulmate connections with those who can match your emotional depth and spiritual devotion.",
+      remedies: ["Devotional practices", "Emotional healing", "Heart-centered meditation", "Sacred relationships"]
     },
-    "The Passionate Creator": {
-      title: "The Artistic Fire",
-      description: "Your creative passion transforms raw energy into beautiful expressions. You inspire others through your artistic vision and emotional intensity.",
-      strengths: ["Creative genius", "Passionate expression", "Artistic vision", "Inspirational presence"],
-      challenges: ["Emotional volatility", "Creative blocks", "Perfectionism", "Burnout"],
-      career: ["Arts and entertainment", "Creative direction", "Passionate pursuits", "Inspirational work"],
-      relationships: "You bring intense passion to relationships and need partners who match your creative fire.",
-      remedies: ["Creative rituals", "Passion channeling", "Artistic meditation", "Expressive practices"]
+    "Tantra Mystic": {
+      title: "The Occultist & Esoteric Energy Worker",
+      description: "You work with hidden energies, esoteric knowledge, and transformational mysteries. Your power comes from understanding the deeper occult forces of existence.",
+      strengths: ["Psychic abilities", "Energy work", "Transformational power", "Occult knowledge", "Mystical insight"],
+      challenges: ["Intensity", "Misunderstood gifts", "Power struggles", "Emotional volatility"],
+      career: ["Energy healing", "Occult studies", "Transformational coaching", "Mystical arts", "Psychology"],
+      relationships: "You seek deep, transformational connections with those who can handle your intensity and appreciate your mystical nature.",
+      remedies: ["Tantric practices", "Energy protection", "Mystical study", "Grounding techniques"]
     },
-    "The Wisdom Keeper": {
-      title: "The Ancient Scholar",
-      description: "You preserve and share sacred knowledge across generations. Your wisdom comes from deep study and understanding of ancient truths.",
-      strengths: ["Deep knowledge", "Teaching ability", "Wisdom preservation", "Ancient understanding"],
-      challenges: ["Information overload", "Academic isolation", "Rigid thinking", "Knowledge hoarding"],
-      career: ["Teaching", "Research", "Library sciences", "Ancient studies"],
-      relationships: "You connect through shared learning and seek intellectually stimulating partnerships.",
-      remedies: ["Sacred study", "Knowledge sharing", "Wisdom meditation", "Ancient practices"]
+    "Raj Rishi": {
+      title: "The Royal Leader with Inner Wisdom",
+      description: "You are born to lead with wisdom, nobility, and righteousness. Your authority comes from inner spiritual understanding combined with natural leadership abilities.",
+      strengths: ["Natural leadership", "Inner wisdom", "Noble character", "Authority", "Inspiring presence"],
+      challenges: ["Pride", "Isolation of leadership", "Responsibility burden", "Ego inflation"],
+      career: ["Leadership roles", "Politics", "Executive positions", "Spiritual teaching", "Mentoring"],
+      relationships: "You seek partnerships that honor your leadership while providing emotional support and understanding of your noble responsibilities.",
+      remedies: ["Leadership meditation", "Wisdom cultivation", "Humble service", "Royal yoga practices"]
     },
-    "The Emotional Alchemist": {
-      title: "The Feeling Transformer",
-      description: "You have the rare gift of transforming emotional pain into healing wisdom. Your empathy and depth help others process their emotions.",
-      strengths: ["Emotional intelligence", "Healing abilities", "Deep empathy", "Transformational gifts"],
-      challenges: ["Emotional overwhelm", "Boundary issues", "Depression", "Energy absorption"],
-      career: ["Therapy and counseling", "Emotional healing", "Depth psychology", "Transformational work"],
-      relationships: "You offer deep emotional support and need partners who can reciprocate your emotional depth.",
-      remedies: ["Emotional alchemy", "Boundary setting", "Healing practices", "Depth work"]
+    "Artha Seeker": {
+      title: "The Finance/Impact-oriented Builder",
+      description: "Your dharma involves creating material prosperity, security, and resources that serve higher purposes. You understand the spiritual value of material abundance.",
+      strengths: ["Business acumen", "Resource creation", "Practical skills", "Financial wisdom", "Building abilities"],
+      challenges: ["Materialism", "Greed", "Work obsession", "Status anxiety"],
+      career: ["Business", "Finance", "Real estate", "Entrepreneurship", "Resource management"],
+      relationships: "You seek stable, prosperous partnerships and express love by providing security and building a strong foundation together.",
+      remedies: ["Ethical wealth creation", "Generous giving", "Material detachment practices", "Abundance meditation"]
     },
-    "The Spiritual Warrior": {
-      title: "The Sacred Fighter",
-      description: "You fight for truth and justice with unwavering courage. Your battles are always in service of higher principles and spiritual values.",
-      strengths: ["Spiritual courage", "Justice orientation", "Protective nature", "Righteous strength"],
-      challenges: ["Aggressive tendencies", "Righteous anger", "Conflict attraction", "Warrior exhaustion"],
-      career: ["Justice work", "Protection services", "Advocacy", "Spiritual leadership"],
-      relationships: "You are fiercely loyal and protective, seeking partners who share your values and strength.",
-      remedies: ["Warrior meditation", "Justice service", "Strength training", "Sacred combat"]
+    "Vairagi Wanderer": {
+      title: "The Detached Seeker, Monk-like",
+      description: "Your path is through detachment, renunciation, and spiritual wandering. You find freedom by releasing worldly attachments and seeking higher truth.",
+      strengths: ["Spiritual detachment", "Freedom", "Non-attachment", "Inner peace", "Wandering wisdom"],
+      challenges: ["Isolation", "Difficulty with commitment", "Escapism", "Emotional distance"],
+      career: ["Spiritual teaching", "Travel", "Minimalist lifestyle", "Retreat facilitation", "Nomadic work"],
+      relationships: "You need space and freedom in relationships, seeking partners who understand your need for independence and spiritual seeking.",
+      remedies: ["Detachment practices", "Wandering meditation", "Renunciation rituals", "Freedom cultivation"]
     },
-    "The Conscious Communicator": {
-      title: "The Bridge Builder",
-      description: "You bridge different worlds through conscious communication. Your gift is translating complex ideas and connecting diverse groups.",
-      strengths: ["Communication skills", "Bridge building", "Translation abilities", "Connection facilitation"],
-      challenges: ["Message overwhelm", "Misunderstanding", "Communication fatigue", "Bridge burden"],
-      career: ["Communication arts", "Translation", "Mediation", "Bridge building"],
-      relationships: "You excel at creating understanding and need partners who appreciate your communication gifts.",
-      remedies: ["Conscious speaking", "Bridge meditation", "Communication practice", "Translation service"]
+    "Dharma Warrior": {
+      title: "The Righteous Protector/Activist",
+      description: "You are called to fight for righteousness, protect the innocent, and defend justice. Your strength and courage serve divine principles and moral causes.",
+      strengths: ["Courage", "Justice orientation", "Protective nature", "Moral strength", "Fighting spirit"],
+      challenges: ["Anger", "Conflict attraction", "Righteous pride", "Aggressive tendencies"],
+      career: ["Activism", "Law enforcement", "Legal advocacy", "Social justice", "Protection services"],
+      relationships: "You are fiercely loyal and protective, seeking partners who share your values and can appreciate your warrior nature.",
+      remedies: ["Righteous action", "Warrior meditation", "Justice service", "Anger transformation"]
     },
-    "The Divine Nurturer": {
-      title: "The Sacred Caregiver",
-      description: "You provide divine nurturing that helps souls grow and flourish. Your care extends beyond the physical to touch the spiritual essence.",
-      strengths: ["Nurturing abilities", "Growth facilitation", "Caring nature", "Protective instincts"],
-      challenges: ["Caregiver burnout", "Boundary issues", "Self-neglect", "Overgiving"],
-      career: ["Healthcare", "Childcare", "Nurturing professions", "Growth facilitation"],
-      relationships: "You provide abundant care and support, seeking partners who appreciate and reciprocate your nurturing.",
-      remedies: ["Self-nurturing", "Boundary practices", "Care meditation", "Nurturing balance"]
-    },
-    "The Transformational Catalyst": {
-      title: "The Change Agent",
-      description: "You catalyze profound transformation wherever you go. Your presence alone can trigger breakthrough and evolution in others.",
-      strengths: ["Transformation abilities", "Change catalyst", "Breakthrough facilitation", "Evolution support"],
-      challenges: ["Intensity management", "Change resistance", "Catalyst burden", "Transformation fatigue"],
-      career: ["Transformational coaching", "Change management", "Evolution facilitation", "Breakthrough work"],
-      relationships: "You bring profound change to relationships and need partners ready for constant growth and evolution.",
-      remedies: ["Transformation practices", "Change meditation", "Evolution support", "Catalyst balance"]
-    },
-    "The Cosmic Harmonizer": {
-      title: "The Universal Balancer",
-      description: "You bring cosmic harmony and balance to all aspects of life. Your presence creates peace and integration wherever you go.",
-      strengths: ["Harmony creation", "Balance facilitation", "Peace bringing", "Integration abilities"],
-      challenges: ["Conflict avoidance", "Balance burden", "Harmony pressure", "Integration overwhelm"],
-      career: ["Mediation", "Balance work", "Harmony creation", "Peace facilitation"],
-      relationships: "You create beautiful harmony in relationships and seek partners who value peace and balance.",
-      remedies: ["Harmony practices", "Balance meditation", "Peace cultivation", "Integration work"]
-    },
-    "The Sacred Healer": {
-      title: "The Divine Physician",
-      description: "Through sacred healing arts, you restore wholeness to body and soul. Your healing touch goes beyond the physical to address spiritual wounds.",
-      strengths: ["Healing abilities", "Restoration skills", "Wholeness facilitation", "Sacred touch"],
-      challenges: ["Healer's burden", "Energy depletion", "Healing overwhelm", "Sacred responsibility"],
-      career: ["Healing arts", "Medicine", "Restoration work", "Sacred healing"],
-      relationships: "You bring healing energy to relationships and attract those in need of your sacred healing gifts.",
-      remedies: ["Healing practices", "Energy restoration", "Sacred medicine", "Healer's self-care"]
+    "Lila Player": {
+      title: "The Joyful Artist, Creative Soul",
+      description: "Life is divine play for you. Through joy, creativity, artistic expression, and celebration, you touch the sacred in everyday life and bring beauty to the world.",
+      strengths: ["Creativity", "Joy", "Artistic expression", "Playfulness", "Beauty creation"],
+      challenges: ["Lack of seriousness", "Inconsistency", "Escapism through art", "Responsibility avoidance"],
+      career: ["Arts", "Entertainment", "Creative industries", "Design", "Performance"],
+      relationships: "You bring joy and creativity to relationships, seeking partners who can play, create, and celebrate life's beauty together.",
+      remedies: ["Creative practices", "Joyful meditation", "Artistic expression", "Play therapy"]
     }
   };
 
