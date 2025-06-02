@@ -12,7 +12,7 @@ const EasternReport = () => {
   // Fix navigation warning by using useEffect
   useEffect(() => {
     if (!formData || !isEastern) {
-      navigate('/easternexperiment');
+      navigate('/vedicscience');
     }
   }, [formData, isEastern, navigate]);
 
@@ -22,7 +22,7 @@ const EasternReport = () => {
   }
 
   const handleBack = () => {
-    navigate('/easternexperiment');
+    navigate('/vedicscience');
   };
 
   return (

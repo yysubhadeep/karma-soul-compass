@@ -76,7 +76,7 @@ const EasternKarmaForm = () => {
       setLoading(false);
       toast.success("🕉️ Your Sacred Archetype has been calculated!");
       // Navigate to eastern report page with form data
-      navigate('/eastern-report', { state: { formData, isEastern: true } });
+      navigate('/vedicreport', { state: { formData, isEastern: true } });
     }, 3000);
   };
 
