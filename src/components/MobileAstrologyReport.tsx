@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -36,8 +36,17 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
     testArchetypeGeneration();
   }, []);
 
-  const profile = generatePsychologicalProfile(formData);
-  const archetypeData = getArchetypeData(profile.archetype);
+  // Memoize the profile calculation to prevent re-calculation on every render
+  const profile = useMemo(() => {
+    console.log("=== CALCULATING PROFILE FOR:", formData.name, "===");
+    const calculatedProfile = generatePsychologicalProfile(formData);
+    console.log("=== FINAL PROFILE RESULT ===");
+    console.log("Primary archetype:", calculatedProfile.archetype);
+    console.log("Secondary archetype:", calculatedProfile.secondaryArchetype);
+    return calculatedProfile;
+  }, [formData.dateOfBirth, formData.timeOfBirth, formData.placeOfBirth]);
+
+  const archetypeData = useMemo(() => getArchetypeData(profile.archetype), [profile.archetype]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-yellow-50">
@@ -237,35 +246,31 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
               </CardContent>
             </Card>
 
-            {/* Content based on sub-tab selection */}
+            {/* Content based on sub-tab selection using proper archetype data */}
             {selfFutureSubTab === "self" && (
               <Card className="border-purple-200 bg-purple-50">
                 <CardHeader className="pb-3 px-4 pt-4">
-                  <CardTitle className="text-base sm:text-lg">🌟 Deep Self Understanding</CardTitle>
+                  <CardTitle className="text-base sm:text-lg">🌟 Deep Self Understanding - {profile.archetype}</CardTitle>
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Your Core Essence</h4>
+                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Your Archetype Essence</h4>
                     <p className="text-xs text-purple-800 leading-relaxed">
-                      As a {profile.archetype}, you possess a unique combination of {profile.corePersonality.trait.toLowerCase()} 
-                      energy with {profile.emotionalStyle.toLowerCase()} emotional processing. This creates a powerful foundation 
-                      for your personal growth journey.
+                      {archetypeData.strengths}
                     </p>
                   </div>
                   
                   <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Your Inner Drives</h4>
+                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Life Stage Development</h4>
                     <p className="text-xs text-purple-800 leading-relaxed">
-                      Your primary motivation of "{profile.primaryDriver}" shapes how you approach challenges and opportunities. 
-                      Understanding this helps you align your actions with your authentic nature.
+                      {archetypeData.lifeStages}
                     </p>
                   </div>
                   
                   <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Energy & Relationships</h4>
+                    <h4 className="font-semibold text-purple-900 text-sm mb-2">Shadow Integration</h4>
                     <p className="text-xs text-purple-800 leading-relaxed">
-                      Your {profile.energyType.toLowerCase()} energy type influences how you connect with others and recharge. 
-                      Honoring this rhythm is crucial for maintaining balance and authentic relationships.
+                      {archetypeData.shadows}
                     </p>
                   </div>
                 </CardContent>
@@ -275,31 +280,28 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
             {selfFutureSubTab === "future" && (
               <Card className="border-emerald-200 bg-emerald-50">
                 <CardHeader className="pb-3 px-4 pt-4">
-                  <CardTitle className="text-base sm:text-lg">🔮 Future Path Guidance</CardTitle>
+                  <CardTitle className="text-base sm:text-lg">🔮 Future Path Guidance - {profile.archetype}</CardTitle>
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Next 6 Months Focus</h4>
+                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Life Purpose Direction</h4>
                     <p className="text-xs text-emerald-800 leading-relaxed">
-                      Channel your {profile.archetype} energy into developing your natural strengths while gently working 
-                      on your growth areas. Focus on {profile.cognitiveStyle.toLowerCase()} approaches to new challenges.
+                      {archetypeData.lifePurpose}
                     </p>
                   </div>
                   
                   <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Career Evolution</h4>
+                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Healing & Growth Practices</h4>
                     <p className="text-xs text-emerald-800 leading-relaxed">
-                      Your ideal career path should honor your {profile.corePersonality.tendency.toLowerCase()} nature. 
-                      Look for opportunities that allow you to express your {profile.primaryDriver.toLowerCase()} drive.
+                      {archetypeData.healingPractices}
                     </p>
                   </div>
                   
                   <div className="bg-white/60 rounded-lg p-3">
-                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Relationship Guidance</h4>
+                    <h4 className="font-semibold text-emerald-900 text-sm mb-2">Career Evolution Path</h4>
                     <p className="text-xs text-emerald-800 leading-relaxed">
-                      In relationships, embrace your {profile.emotionalStyle.toLowerCase()} emotional style while 
-                      being patient with others who may process differently. Your {profile.energyType.toLowerCase()} 
-                      energy creates natural compatibility with certain personality types.
+                      Aligned career paths include: {archetypeData.careerPaths.slice(0, 3).join(", ")}. 
+                      These areas allow you to express your natural {profile.archetype} qualities effectively.
                     </p>
                   </div>
                 </CardContent>

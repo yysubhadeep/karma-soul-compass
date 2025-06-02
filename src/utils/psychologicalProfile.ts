@@ -9,7 +9,20 @@ interface FormData {
   placeOfBirth: string;
 }
 
+// Cache to store calculated profiles to prevent re-calculation
+const profileCache = new Map<string, any>();
+
 export const generatePsychologicalProfile = (formData: FormData) => {
+  // Create a stable cache key from the birth data
+  const cacheKey = `${formData.dateOfBirth}_${formData.timeOfBirth}_${formData.placeOfBirth}`;
+  
+  // Check if we already calculated this profile
+  if (profileCache.has(cacheKey)) {
+    console.log("=== RETURNING CACHED PROFILE ===");
+    return profileCache.get(cacheKey);
+  }
+
+  console.log("=== GENERATING NEW PROFILE ===");
   const birthDate = new Date(formData.dateOfBirth);
   const month = birthDate.getMonth() + 1;
   const day = birthDate.getDate();
@@ -95,7 +108,7 @@ export const generatePsychologicalProfile = (formData: FormData) => {
     energyType
   });
 
-  return {
+  const profile = {
     corePersonality,
     emotionalStyle,
     behaviorPattern,
@@ -107,4 +120,9 @@ export const generatePsychologicalProfile = (formData: FormData) => {
     scoreBreakdown: archetypeResult.scoreBreakdown,
     natalChart
   };
+
+  // Cache the calculated profile
+  profileCache.set(cacheKey, profile);
+  
+  return profile;
 };
