@@ -1,5 +1,5 @@
 
-import { calculatePersonalityArchetype } from './archetypeCalculation';
+import { generateNatalChart, calculateAstrologicalArchetype } from './astrologicalCalculations';
 
 interface FormData {
   name: string;
@@ -14,59 +14,79 @@ export const generatePsychologicalProfile = (formData: FormData) => {
   const month = birthDate.getMonth() + 1;
   const day = birthDate.getDate();
   
-  // Psychological personality patterns based on birth timing
-  const getPersonalityPattern = (month: number, day: number) => {
-    const dayMonth = day + month;
+  // Generate natal chart from astrological data
+  const natalChart = generateNatalChart(formData.dateOfBirth, formData.timeOfBirth, formData.placeOfBirth);
+  
+  // Calculate archetype using astrological algorithm
+  const archetypeResult = calculateAstrologicalArchetype(natalChart);
+
+  // Generate supporting psychological patterns for display
+  const getPersonalityPattern = (sunSign: string, moonSign: string) => {
+    const personalityMap: Record<string, { name: string; trait: string; tendency: string }> = {
+      "Aries": { name: "The Pioneer", trait: "Action-oriented", tendency: "Leadership drive" },
+      "Taurus": { name: "The Builder", trait: "Practical", tendency: "Steady persistence" },
+      "Gemini": { name: "The Communicator", trait: "Adaptable", tendency: "Quick learning" },
+      "Cancer": { name: "The Nurturer", trait: "Caring", tendency: "Protective instincts" },
+      "Leo": { name: "The Creator", trait: "Confident", tendency: "Self-expression drive" },
+      "Virgo": { name: "The Analyzer", trait: "Detail-oriented", tendency: "Systematic approach" },
+      "Libra": { name: "The Harmonizer", trait: "Balanced", tendency: "Relationship focus" },
+      "Scorpio": { name: "The Transformer", trait: "Intense", tendency: "Deep thinking" },
+      "Sagittarius": { name: "The Explorer", trait: "Optimistic", tendency: "Growth mindset" },
+      "Capricorn": { name: "The Achiever", trait: "Goal-oriented", tendency: "Structured thinking" },
+      "Aquarius": { name: "The Innovator", trait: "Forward-thinking", tendency: "Independent mindset" },
+      "Pisces": { name: "The Intuitive", trait: "Empathetic", tendency: "Emotional intelligence" }
+    };
     
-    // More varied personality distribution
-    if (dayMonth % 12 === 0) {
-      return { name: "The Achiever", trait: "Goal-oriented", tendency: "Structured thinking" };
-    } else if (dayMonth % 12 === 1) {
-      return { name: "The Innovator", trait: "Forward-thinking", tendency: "Independent mindset" };
-    } else if (dayMonth % 12 === 2) {
-      return { name: "The Intuitive", trait: "Empathetic", tendency: "Emotional intelligence" };
-    } else if (dayMonth % 12 === 3) {
-      return { name: "The Pioneer", trait: "Action-oriented", tendency: "Leadership drive" };
-    } else if (dayMonth % 12 === 4) {
-      return { name: "The Builder", trait: "Practical", tendency: "Steady persistence" };
-    } else if (dayMonth % 12 === 5) {
-      return { name: "The Communicator", trait: "Adaptable", tendency: "Quick learning" };
-    } else if (dayMonth % 12 === 6) {
-      return { name: "The Nurturer", trait: "Caring", tendency: "Protective instincts" };
-    } else if (dayMonth % 12 === 7) {
-      return { name: "The Creator", trait: "Confident", tendency: "Self-expression drive" };
-    } else if (dayMonth % 12 === 8) {
-      return { name: "The Analyzer", trait: "Detail-oriented", tendency: "Systematic approach" };
-    } else if (dayMonth % 12 === 9) {
-      return { name: "The Harmonizer", trait: "Balanced", tendency: "Relationship focus" };
-    } else if (dayMonth % 12 === 10) {
-      return { name: "The Transformer", trait: "Intense", tendency: "Deep thinking" };
-    } else {
-      return { name: "The Explorer", trait: "Optimistic", tendency: "Growth mindset" };
-    }
+    return personalityMap[sunSign] || personalityMap["Leo"];
   };
 
-  const corePersonality = getPersonalityPattern(month, day);
+  const corePersonality = getPersonalityPattern(natalChart.sunSign, natalChart.moonSign);
 
-  // Generate more varied secondary psychological patterns
-  const personalityTypes = ["Achiever", "Innovator", "Intuitive", "Pioneer", "Builder", "Communicator", "Nurturer", "Creator", "Analyzer", "Harmonizer", "Transformer", "Explorer"];
-  const timeHour = parseInt(formData.timeOfBirth.split(':')[0]);
-  const timeMinute = parseInt(formData.timeOfBirth.split(':')[1] || '0');
-  
-  // More varied distribution for emotional style and behavior
-  const emotionalStyle = personalityTypes[(timeHour + day * 2) % 12];
-  const behaviorPattern = personalityTypes[(timeMinute + month * 3) % 12];
-  
-  // Generate dominant psychological drivers with more variation
-  const motivationalDrivers = ["Achievement", "Innovation", "Connection", "Independence", "Security", "Growth"];
-  const primaryDriver = motivationalDrivers[(timeHour + day) % 6];
-  const cognitiveStyle = ["Analytical", "Intuitive", "Practical"][(timeHour + month) % 3];
-  const energyType = ["High-energy", "Steady-energy", "Reflective-energy"][(day * month) % 3];
+  // Generate secondary patterns based on chart
+  const emotionalStyleMap: Record<string, string> = {
+    "Fire": "Passionate",
+    "Earth": "Grounded", 
+    "Air": "Intellectual",
+    "Water": "Intuitive"
+  };
 
-  console.log("=== PROFILE GENERATION DEBUG ===");
-  console.log("Birth date:", formData.dateOfBirth);
-  console.log("Month:", month, "Day:", day, "Hour:", timeHour, "Minute:", timeMinute);
-  console.log("Generated profile:", {
+  const behaviorPatternMap: Record<string, string> = {
+    "Cardinal": "Initiative-taking",
+    "Fixed": "Determined",
+    "Mutable": "Adaptable"
+  };
+
+  const driverMap: Record<string, string> = {
+    "Fire": "Achievement",
+    "Earth": "Security",
+    "Air": "Innovation", 
+    "Water": "Connection"
+  };
+
+  const cognitiveStyleMap: Record<string, string> = {
+    "Fire": "Intuitive",
+    "Earth": "Practical",
+    "Air": "Analytical",
+    "Water": "Intuitive"
+  };
+
+  const energyTypeMap: Record<string, string> = {
+    "Fire": "High-energy",
+    "Earth": "Steady-energy",
+    "Air": "High-energy",
+    "Water": "Reflective-energy"
+  };
+
+  const emotionalStyle = emotionalStyleMap[natalChart.dominantElement] || "Balanced";
+  const behaviorPattern = behaviorPatternMap[natalChart.dominantModality] || "Flexible";
+  const primaryDriver = driverMap[natalChart.dominantElement] || "Growth";
+  const cognitiveStyle = cognitiveStyleMap[natalChart.dominantElement] || "Intuitive";
+  const energyType = energyTypeMap[natalChart.dominantElement] || "Steady-energy";
+
+  console.log("=== ASTROLOGICAL PROFILE GENERATION ===");
+  console.log("Natal chart:", natalChart);
+  console.log("Archetype result:", archetypeResult);
+  console.log("Supporting patterns:", {
     corePersonality: corePersonality.name,
     emotionalStyle,
     behaviorPattern,
@@ -74,16 +94,6 @@ export const generatePsychologicalProfile = (formData: FormData) => {
     cognitiveStyle,
     energyType
   });
-
-  // Calculate archetype using the fixed personality-based system
-  const archetypeResult = calculatePersonalityArchetype(
-    corePersonality.name,
-    emotionalStyle,
-    behaviorPattern,
-    primaryDriver,
-    cognitiveStyle,
-    energyType
-  );
 
   return {
     corePersonality,
@@ -94,6 +104,7 @@ export const generatePsychologicalProfile = (formData: FormData) => {
     energyType,
     archetype: archetypeResult.primary,
     secondaryArchetype: archetypeResult.secondary,
-    scoreBreakdown: archetypeResult.scoreBreakdown
+    scoreBreakdown: archetypeResult.scoreBreakdown,
+    natalChart
   };
 };
