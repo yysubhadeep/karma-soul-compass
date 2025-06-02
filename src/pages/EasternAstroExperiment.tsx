@@ -27,14 +27,19 @@ const EasternAstroExperiment = () => {
         <div className="text-center space-y-6 max-w-4xl mx-auto">
           <div>
             <span className="inline-block bg-gradient-to-r from-orange-100 to-red-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-orange-200">
-              🕉️ Ancient Vedic Sciences for Modern Life
+              🕉️ 5,000-Year-Old Vedic Wisdom Meets Modern Clarity
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Transform & Align with <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Sacred Vedic Sciences</span>
+              🕉️ Decode Your Life with <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Vedic Archetype Mapping™</span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-700 leading-relaxed mb-8 max-w-3xl mx-auto">
-              Unlock your transformation potential using 5,000-year-old Vedic sciences. Achieve psychological alignment and future-readiness through personalized archetype mapping and ancient wisdom practices.
+              Step into the most authentic self-mapping system—built on ancient Jyotish (Vedic astrology), true sidereal calculations, and the power of Swiss-grade astronomical precision.
             </p>
+            <div className="bg-gradient-to-r from-orange-100 to-red-100 rounded-xl p-4 border border-orange-200 max-w-2xl mx-auto">
+              <p className="text-lg font-semibold text-orange-800">
+                ✨ Not just a horoscope. A karmic map for your entire life.
+              </p>
+            </div>
           </div>
 
           {/* Trust Indicators */}
@@ -45,17 +50,17 @@ const EasternAstroExperiment = () => {
             </div>
             <div className="flex items-center space-x-2">
               <Eye className="h-4 w-4 text-orange-600" />
-              <span>Psychology-Aligned Insights</span>
+              <span>Swiss-Grade Precision</span>
             </div>
             <div className="flex items-center space-x-2">
               <Heart className="h-4 w-4 text-orange-600" />
-              <span>Future-Ready Transformation</span>
+              <span>True Sidereal Calculations</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Enhanced CTA Section */}
       <section className="px-3 sm:px-4 py-8 max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content - Benefits */}
@@ -117,34 +122,35 @@ const EasternAstroExperiment = () => {
             </div>
           </div>
 
-          {/* Right Content - Enhanced CTA Form */}
+          {/* Right Content - Enhanced CTA Form with increased visibility */}
           <div className="order-1 lg:order-2">
             {!showForm ? (
               <div className="relative">
-                {/* Attention-grabbing border animation */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 via-red-400 to-orange-400 rounded-2xl blur opacity-30 animate-pulse"></div>
-                <Card className="relative bg-gradient-to-br from-orange-500 to-red-500 text-white border-0 shadow-2xl">
+                {/* Enhanced attention-grabbing border animation */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-orange-400 via-red-400 to-orange-400 rounded-3xl blur-lg opacity-40 animate-pulse"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 via-red-500 to-orange-500 rounded-2xl opacity-60 animate-pulse"></div>
+                <Card className="relative bg-gradient-to-br from-orange-500 to-red-500 text-white border-0 shadow-2xl transform hover:scale-105 transition-all duration-300">
                   <CardContent className="p-6 sm:p-8 text-center space-y-6">
-                    <div className="text-4xl sm:text-5xl mb-4 animate-bounce">🕉️</div>
+                    <div className="text-5xl sm:text-6xl mb-4 animate-bounce">🕉️</div>
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">
-                      Discover Your Sacred Archetype
+                      Get Your Vedic Archetype Map
                     </h2>
                     <p className="text-sm sm:text-lg opacity-90 mb-6">
-                      Unlock your transformation blueprint using authentic Vedic sciences for psychological alignment and future-readiness.
+                      Discover your authentic karmic blueprint using 5,000-year-old Jyotish wisdom with Swiss-grade astronomical precision.
                     </p>
                     
                     <div className="space-y-3 mb-6 text-sm">
                       <div className="flex items-center justify-center space-x-2">
                         <span>✨</span>
-                        <span>Ancient Vedic wisdom</span>
+                        <span>True sidereal calculations</span>
                       </div>
                       <div className="flex items-center justify-center space-x-2">
-                        <span>🧘</span>
-                        <span>Psychology-aligned insights</span>
+                        <span>🎯</span>
+                        <span>Karmic pattern mapping</span>
                       </div>
                       <div className="flex items-center justify-center space-x-2">
                         <span>🌙</span>
-                        <span>Cosmic pattern recognition</span>
+                        <span>Ancient Jyotish wisdom</span>
                       </div>
                       <div className="flex items-center justify-center space-x-2">
                         <span>🔒</span>
@@ -152,25 +158,25 @@ const EasternAstroExperiment = () => {
                       </div>
                     </div>
                     
-                    {/* Enhanced CTA Button */}
+                    {/* Enhanced CTA Button with pulsing effect */}
                     <div className="space-y-4">
                       <Button 
                         onClick={() => setShowForm(true)}
                         size="lg" 
-                        className="w-full bg-white text-orange-600 hover:bg-gray-100 font-bold text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 rounded-full touch-manipulation transform hover:scale-105 transition-all duration-200 shadow-lg"
+                        className="w-full bg-white text-orange-600 hover:bg-gray-100 font-bold text-base sm:text-xl px-6 sm:px-8 py-5 sm:py-6 rounded-full touch-manipulation transform hover:scale-110 transition-all duration-300 shadow-2xl animate-pulse"
                       >
-                        Get My Sacred Archetype Now
-                        <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                        🕉️ Decode My Life Now
+                        <ArrowRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6" />
                       </Button>
                       
-                      {/* Urgency indicator */}
-                      <div className="bg-white/20 rounded-lg px-4 py-2 text-xs font-medium">
-                        🚀 Start your transformation journey in 3 minutes
+                      {/* Enhanced urgency indicator */}
+                      <div className="bg-white/20 rounded-lg px-4 py-3 text-sm font-bold border border-white/30">
+                        🚀 Get your karmic map in just 3 minutes
                       </div>
                     </div>
                     
                     <p className="text-xs opacity-80 mt-4">
-                      ⚡ Authentic Vedic sciences • Transform & align
+                      ⚡ Authentic Vedic sciences • Swiss-grade precision
                     </p>
                   </CardContent>
                 </Card>
