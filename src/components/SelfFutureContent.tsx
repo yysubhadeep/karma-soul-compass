@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Mirror, Compass, Heart, Eye } from "lucide-react";
+import { Search, Compass, Heart, Eye } from "lucide-react";
 import { getArchetypeData } from '@/data/archetypeData';
 
 interface SelfFutureContentProps {
@@ -18,7 +18,7 @@ const SelfFutureContent = ({ archetype }: SelfFutureContentProps) => {
         <TabsList className="grid w-full grid-cols-2 h-auto p-1 bg-white/70 rounded-lg">
           <TabsTrigger value="soul-mirror" className="text-xs py-2 px-2 rounded-md touch-manipulation">
             <div className="flex flex-col items-center space-y-1">
-              <Mirror className="h-3 w-3 sm:h-4 sm:w-4" />
+              <Search className="h-3 w-3 sm:h-4 sm:w-4" />
               <span className="text-xs">Soul Mirror</span>
             </div>
           </TabsTrigger>
@@ -35,7 +35,7 @@ const SelfFutureContent = ({ archetype }: SelfFutureContentProps) => {
           <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-indigo-50">
             <CardHeader className="pb-3 px-4 pt-4">
               <CardTitle className="flex items-center space-x-2 text-base sm:text-lg">
-                <Mirror className="h-4 w-4 sm:h-5 sm:w-5 text-purple-600" />
+                <Search className="h-4 w-4 sm:h-5 sm:w-5 text-purple-600" />
                 <span>Soul Mirror - Deep Self-Discovery</span>
               </CardTitle>
             </CardHeader>
