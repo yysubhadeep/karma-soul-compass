@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -8,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { ArrowRight } from "lucide-react";
 import PlaceAutosuggest from './PlaceAutosuggest';
+import { trackABTestConversion } from '../utils/abTesting';
 
 interface FormData {
   name: string;
@@ -44,6 +44,9 @@ const EasternKarmaForm = () => {
       return;
     }
     
+    // Track form started conversion
+    trackABTestConversion('form_started');
+    
     setLoading(true);
     // Simulate OTP sending
     setTimeout(() => {
@@ -59,6 +62,9 @@ const EasternKarmaForm = () => {
       return;
     }
     
+    // Track email verification conversion
+    trackABTestConversion('email_verified');
+    
     setStep(3);
     toast.success("Email verified successfully!");
   };
@@ -70,6 +76,9 @@ const EasternKarmaForm = () => {
     }
 
     setLoading(true);
+    
+    // Track form completion conversion
+    trackABTestConversion('form_completed');
     
     // Simulate Eastern KarmaMap generation with Vedic sciences
     setTimeout(() => {
