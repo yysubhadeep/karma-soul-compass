@@ -1,4 +1,3 @@
-
 import { astronomia } from 'astronomia';
 
 interface BirthData {
@@ -35,70 +34,91 @@ const NAKSHATRAS = [
   'Purva Bhadrapada', 'Uttara Bhadrapada', 'Revati'
 ];
 
-// Eastern Archetypes with scoring rules
+// Eastern Archetypes - Your Original List
 const EASTERN_ARCHETYPES = {
-  'Bhakti Yogi': {
-    keywords: ['devotion', 'emotion', 'heart', 'love', 'compassion'],
-    moonSigns: ['Cancer', 'Pisces', 'Scorpio'],
-    nakshatras: ['Rohini', 'Pushya', 'Revati', 'Hasta'],
-    planets: ['Moon', 'Venus'],
-    message: 'Your emotional intensity is a portal. Love heals your karmic ties.'
+  'The Cosmic Detective': {
+    keywords: ['mystery', 'investigation', 'hidden', 'research', 'truth'],
+    moonSigns: ['Scorpio', 'Virgo', 'Gemini'],
+    nakshatras: ['Jyeshtha', 'Ardra', 'Swati', 'Chitra'],
+    planets: ['Mercury', 'Mars', 'Saturn'],
+    message: 'You uncover hidden truths and solve the mysteries of existence.'
   },
-  'Karma Yogi': {
-    keywords: ['action', 'service', 'duty', 'work', 'dedication'],
-    moonSigns: ['Virgo', 'Capricorn', 'Taurus'],
-    nakshatras: ['Uttara Phalguni', 'Uttara Ashadha', 'Shravana'],
-    planets: ['Saturn', 'Mars'],
-    message: 'Through selfless action, you transform karma into wisdom.'
+  'The Sacred Rebel': {
+    keywords: ['rebellion', 'change', 'revolution', 'unconventional', 'freedom'],
+    moonSigns: ['Aquarius', 'Aries', 'Sagittarius'],
+    nakshatras: ['Shatabhisha', 'Ashwini', 'Purva Bhadrapada'],
+    planets: ['Uranus', 'Mars', 'Rahu'],
+    message: 'Your rebellion against conformity opens new paths for humanity.'
   },
-  'Jnana Yogi': {
-    keywords: ['wisdom', 'knowledge', 'intellect', 'analysis', 'truth'],
-    moonSigns: ['Gemini', 'Virgo', 'Aquarius'],
-    nakshatras: ['Ardra', 'Swati', 'Shatabhisha', 'Chitra'],
-    planets: ['Mercury', 'Jupiter'],
-    message: 'Knowledge is your path to liberation from illusion.'
+  'The Intuitive Mystic': {
+    keywords: ['intuition', 'mysticism', 'psychic', 'spiritual', 'vision'],
+    moonSigns: ['Pisces', 'Cancer', 'Scorpio'],
+    nakshatras: ['Revati', 'Pushya', 'Mula'],
+    planets: ['Neptune', 'Moon', 'Ketu'],
+    message: 'Through intuition and mystical experience, you access divine wisdom.'
   },
-  'Raja Yogi': {
-    keywords: ['meditation', 'control', 'discipline', 'royal', 'leadership'],
-    moonSigns: ['Leo', 'Aries', 'Sagittarius'],
-    nakshatras: ['Magha', 'Purva Phalguni', 'Purva Ashadha'],
-    planets: ['Sun', 'Jupiter'],
-    message: 'Through self-mastery, you become the ruler of your destiny.'
+  'The Passionate Creator': {
+    keywords: ['passion', 'creation', 'art', 'inspiration', 'expression'],
+    moonSigns: ['Leo', 'Libra', 'Taurus'],
+    nakshatras: ['Purva Phalguni', 'Chitra', 'Rohini'],
+    planets: ['Venus', 'Sun', 'Mars'],
+    message: 'Your creative fire transforms raw passion into beautiful manifestations.'
   },
-  'Tantra Mystic': {
-    keywords: ['energy', 'transformation', 'power', 'occult', 'intensity'],
-    moonSigns: ['Scorpio', 'Capricorn', 'Aquarius'],
-    nakshatras: ['Jyeshtha', 'Mula', 'Dhanishta', 'Purva Bhadrapada'],
-    planets: ['Mars', 'Saturn', 'Rahu'],
-    message: 'You channel cosmic energy to transform consciousness.'
+  'The Wisdom Keeper': {
+    keywords: ['wisdom', 'knowledge', 'teaching', 'ancient', 'preservation'],
+    moonSigns: ['Sagittarius', 'Virgo', 'Capricorn'],
+    nakshatras: ['Purva Ashadha', 'Hasta', 'Shravana'],
+    planets: ['Jupiter', 'Mercury', 'Saturn'],
+    message: 'You are the guardian of ancient wisdom and sacred knowledge.'
   },
-  'Kundalini Awakener': {
-    keywords: ['awakening', 'serpent', 'spine', 'chakras', 'rising'],
-    moonSigns: ['Scorpio', 'Pisces', 'Sagittarius'],
-    nakshatras: ['Mula', 'Ashlesha', 'Uttara Bhadrapada'],
-    planets: ['Mars', 'Ketu'],
-    message: 'Your inner fire awakens the dormant spiritual power within.'
+  'The Emotional Alchemist': {
+    keywords: ['emotion', 'transformation', 'healing', 'empathy', 'depth'],
+    moonSigns: ['Cancer', 'Scorpio', 'Pisces'],
+    nakshatras: ['Pushya', 'Ashlesha', 'Uttara Bhadrapada'],
+    planets: ['Moon', 'Pluto', 'Neptune'],
+    message: 'You transform emotional pain into healing wisdom for yourself and others.'
   },
-  'Dharma Guardian': {
-    keywords: ['dharma', 'justice', 'protection', 'righteousness', 'law'],
-    moonSigns: ['Libra', 'Sagittarius', 'Leo'],
-    nakshatras: ['Vishakha', 'Uttara Ashadha', 'Magha'],
-    planets: ['Jupiter', 'Sun'],
-    message: 'You are called to uphold cosmic order and divine justice.'
+  'The Spiritual Warrior': {
+    keywords: ['battle', 'courage', 'protection', 'strength', 'justice'],
+    moonSigns: ['Aries', 'Leo', 'Scorpio'],
+    nakshatras: ['Bharani', 'Magha', 'Anuradha'],
+    planets: ['Mars', 'Sun', 'Jupiter'],
+    message: 'You fight for truth and justice with unwavering spiritual courage.'
   },
-  'Moksha Seeker': {
-    keywords: ['liberation', 'detachment', 'renunciation', 'ultimate', 'freedom'],
-    moonSigns: ['Pisces', 'Aquarius', 'Sagittarius'],
-    nakshatras: ['Revati', 'Shatabhisha', 'Purva Bhadrapada'],
-    planets: ['Ketu', 'Saturn'],
-    message: 'Your soul yearns for ultimate liberation from the cycle of birth.'
+  'The Conscious Communicator': {
+    keywords: ['communication', 'bridge', 'connection', 'understanding', 'translation'],
+    moonSigns: ['Gemini', 'Libra', 'Aquarius'],
+    nakshatras: ['Ardra', 'Swati', 'Dhanishta'],
+    planets: ['Mercury', 'Venus', 'Uranus'],
+    message: 'You bridge worlds through conscious communication and understanding.'
   },
-  'Divine Feminine': {
-    keywords: ['goddess', 'creation', 'nurturing', 'intuition', 'cycles'],
+  'The Divine Nurturer': {
+    keywords: ['nurturing', 'care', 'protection', 'growth', 'support'],
     moonSigns: ['Cancer', 'Taurus', 'Virgo'],
-    nakshatras: ['Rohini', 'Pushya', 'Hasta', 'Bharani'],
-    planets: ['Moon', 'Venus'],
-    message: 'You embody the creative power of the Divine Mother.'
+    nakshatras: ['Rohini', 'Pushya', 'Hasta'],
+    planets: ['Moon', 'Venus', 'Ceres'],
+    message: 'Through divine nurturing, you help souls grow and flourish.'
+  },
+  'The Transformational Catalyst': {
+    keywords: ['transformation', 'catalyst', 'change', 'evolution', 'breakthrough'],
+    moonSigns: ['Scorpio', 'Pluto', 'Aquarius'],
+    nakshatras: ['Jyeshtha', 'Mula', 'Shatabhisha'],
+    planets: ['Pluto', 'Mars', 'Uranus'],
+    message: 'You catalyze profound transformation wherever you go.'
+  },
+  'The Cosmic Harmonizer': {
+    keywords: ['harmony', 'balance', 'peace', 'integration', 'unity'],
+    moonSigns: ['Libra', 'Taurus', 'Pisces'],
+    nakshatras: ['Chitra', 'Rohini', 'Revati'],
+    planets: ['Venus', 'Jupiter', 'Neptune'],
+    message: 'You bring cosmic harmony and balance to all aspects of life.'
+  },
+  'The Sacred Healer': {
+    keywords: ['healing', 'medicine', 'restoration', 'wholeness', 'recovery'],
+    moonSigns: ['Virgo', 'Scorpio', 'Pisces'],
+    nakshatras: ['Hasta', 'Anuradha', 'Uttara Bhadrapada'],
+    planets: ['Mercury', 'Pluto', 'Chiron'],
+    message: 'Through sacred healing arts, you restore wholeness to body and soul.'
   }
 };
 
