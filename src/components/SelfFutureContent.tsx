@@ -1,491 +1,715 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface SelfFutureContentProps {
   archetype: string;
 }
 
 const SelfFutureContent = ({ archetype }: SelfFutureContentProps) => {
-  const getArchetypeContent = (archetypeName: string) => {
-    switch (archetypeName) {
-      case "The Builder":
-        return {
-          emoji: "🧱",
-          subtitle: "Stable • Loyal • Practical • Silent Architect of Foundations",
-          soulMirror: [
-            { q: "Who am I at my core?", a: "A steady force. You're someone who builds stability — in homes, systems, and people." },
-            { q: "What drives me even when things are tough?", a: "The need to create something real that lasts. You value results, not noise." },
-            { q: "What is my biggest internal strength?", a: "Patience. While others rush, you endure and grow steadily." },
-            { q: "What tends to hold me back the most?", a: "Fear of change. You resist shifts that feel unpredictable." },
-            { q: "How do I usually respond to change?", a: "Slowly. You analyze, plan, and adapt cautiously. But once you commit, you build better." },
-            { q: "What kind of decisions feel most natural to me?", a: "Ones rooted in logic, security, and long-term value." },
-            { q: "What emotions do I need to accept and not run from?", a: "Frustration and resentment — when others don't value your steadiness." },
-            { q: "What are my natural talents or gifts?", a: "Organizing, simplifying, structuring systems, and following through." },
-            { q: "What patterns keep repeating in my life?", a: "Being the reliable one — often taken for granted but quietly holding it all together." },
-            { q: "What kind of people do I attract?", a: "Dreamers, rebels, or chaotic types who subconsciously crave your grounding." },
-            { q: "Where do I feel most at peace?", a: "In quiet, structured environments — homes, nature, routines, clean workspaces." },
-            { q: "How do I handle conflict?", a: "You avoid explosive drama. You prefer clarity, practical solutions, or silence." },
-            { q: "What scares me, even if I don't say it aloud?", a: "That all your effort might go unnoticed or unappreciated." },
-            { q: "What gives me real joy?", a: "Completing something tangible. Helping others feel safe." },
-            { q: "How do I recharge when I'm drained?", a: "Solitude, order, routine. Doing something hands-on like cooking or fixing things." },
-            { q: "How do I block my own success?", a: "By staying too long in comfort zones or undervaluing your worth." },
-            { q: "What kind of work feels most fulfilling?", a: "Building — whether it's a project, a team, or a family legacy." },
-            { q: "What must I stop seeking outside of me?", a: "Approval. Your work speaks louder than praise ever can." },
-            { q: "What's one powerful truth I often forget?", a: "Slow isn't weak — it's sustainable." },
-            { q: "Why was I really born?", a: "To lay the foundation for others to thrive — through structure, strength, and silent wisdom." }
-          ],
-          dharmaCompass: [
-            { q: "What kind of work should I be doing in the next 3–5 years?", a: "Roles in operations, finance, planning, systems building, real estate, infrastructure, or sustainability." },
-            { q: "What kind of people should I surround myself with now?", a: "People who respect consistency and don't mistake calm for weakness." },
-            { q: "What's the biggest trap I must avoid?", a: "Settling for 'safe' instead of meaningful." },
-            { q: "What single mindset shift will change everything for me?", a: "'I deserve to lead, not just support.'" },
-            { q: "Where will my success most likely come from?", a: "From systems you design, businesses you build, or long-term investments you nurture." },
-            { q: "What one project should I commit to this year?", a: "Something that solves a practical problem for others — like a tool, process, or sustainable solution." },
-            { q: "What do I need to stop apologizing for?", a: "Not being flashy. Your magic is quiet — and real." },
-            { q: "What should my financial plan look like?", a: "Diversify into real assets. Use your discipline to build slow wealth." },
-            { q: "What relationships will shape my future?", a: "Grounded partners who help you step into leadership without losing your center." },
-            { q: "Where should I live or base myself in future?", a: "In stable, growing environments — semi-urban towns, family-first cities, eco-forward communities." },
-            { q: "What's my 10-year dharma if I walk my best path?", a: "You become a trusted builder of frameworks — a CEO, urban planner, architect, family leader, or impact-driven founder." },
-            { q: "What's the most important thing I should learn next?", a: "How to delegate. You don't have to carry everything." },
-            { q: "What will delay my growth?", a: "Fear of leaving stability. Being undervalued but staying anyway." },
-            { q: "What's one behavior I must master?", a: "Taking initiative — not waiting to be asked." },
-            { q: "What kind of partner or collaborator brings out my best?", a: "Visionaries or dreamers who need grounding — and give you inspiration in return." },
-            { q: "How will I know I'm on the right path?", a: "You'll feel both productive and peaceful. Like your work has rhythm." },
-            { q: "What role should technology play in my path?", a: "Use tech to automate, structure, and simplify — but don't let it remove your hands-on essence." },
-            { q: "Should I work alone or with a team?", a: "Small, focused teams. You're great at keeping the engine running." },
-            { q: "What's the biggest opportunity I'm not seeing?", a: "That you're a quiet leader — and people want to follow you." },
-            { q: "What is my role in this lifetime?", a: "To build enduring foundations — in work, community, and spirit." }
-          ]
-        };
+  const getArchetypeContent = (archetype: string) => {
+    const content: Record<string, any> = {
+      "The Builder": {
+        emoji: "🛠️",
+        subtitle: "Grounded • Responsible • Dependable • Legacy-Builder",
+        soulMirror: [
+          "A foundation layer. You're here to build — not just structures, but lasting legacies.",
+          "The need to create stability — to see your work stand the test of time.",
+          "Discipline. You show up, do the work, and keep your promises.",
+          "Resistance to change. You sometimes hold on too tightly to what’s familiar.",
+          "With steady persistence. You plan carefully and move deliberately.",
+          "Practical, reliable ones — you value tradition and proven methods.",
+          "Fear of failure or loss of control.",
+          "Building, organizing, managing, planning, and creating systems.",
+          "Taking responsibility — often carrying more than your share.",
+          "Others who value security and tradition.",
+          "In stable environments where your efforts are appreciated.",
+          "With patience and consistency.",
+          "That you’re not flexible enough or too rigid.",
+          "Seeing your work come to fruition and create impact.",
+          "Rest, routine, and time with trusted people.",
+          "By overworking and neglecting self-care.",
+          "Construction, management, finance, law, education, or public service.",
+          "Approval from authority figures.",
+          "Your worth is in your integrity and reliability.",
+          "To build a foundation others can stand on."
+        ],
+        dharmaCompass: [
+          "Roles in leadership, management, or legacy-building.",
+          "Mentors and steady collaborators.",
+          "Over-controlling or micromanaging.",
+          "\"Patience and persistence build lasting success.\"",
+          "From creating systems and structures that serve many.",
+          "A long-term project or institution to nurture.",
+          "Being \"too rigid\" or \"too serious.\"",
+          "Stable income streams and asset-building.",
+          "Trusted partners and loyal teams.",
+          "Communities valuing tradition and stability.",
+          "You become a pillar of your community or field.",
+          "Flexibility and openness to new ideas.",
+          "Burnout from overwork and perfectionism.",
+          "Delegating and trusting others.",
+          "Supportive, grounded collaborators.",
+          "Your work flows and your impact grows.",
+          "Tools for organization and communication.",
+          "Leading teams and mentoring others.",
+          "That your steady work is a rare gift.",
+          "To create lasting value through discipline and care."
+        ]
+      },
+      "The Dreamer": {
+        emoji: "🌙",
+        subtitle: "Creative • Intuitive • Emotionally Deep • Soulful",
+        soulMirror: [
+          "A visionary. You're here to dream — not just imagine, but inspire through feeling.",
+          "The need to express and connect deeply with others.",
+          "Imagination. You see possibilities beyond the obvious.",
+          "Escapism. You sometimes avoid reality through fantasy.",
+          "With emotional openness. You trust your feelings to guide you.",
+          "Sensitive, artistic ones — you value beauty and meaning.",
+          "Fear of rejection or being misunderstood.",
+          "Art, music, writing, healing, and spiritual connection.",
+          "Living in your inner world — sometimes disconnected from the practical.",
+          "Other creatives and sensitive souls.",
+          "In quiet, inspiring places where you can reflect.",
+          "Through emotional expression and creativity.",
+          "That your dreams are unrealistic or too fragile.",
+          "Moments of creative flow and deep connection.",
+          "Solitude, nature, and artistic practice.",
+          "By avoiding practical responsibilities.",
+          "Creative arts, healing, counseling, or spiritual work.",
+          "Validation from others’ appreciation.",
+          "Your value is in your unique vision and heart.",
+          "To bring beauty and healing through your gifts."
+        ],
+        dharmaCompass: [
+          "Creative and healing professions.",
+          "Supportive, emotionally present friends.",
+          "Getting lost in fantasy or avoidance.",
+          "\"My feelings are my compass and my strength.\"",
+          "From sharing your art and healing presence.",
+          "A creative project or healing practice.",
+          "Being \"too sensitive\" or \"too dreamy.\"",
+          "Income from creative or spiritual work.",
+          "Collaborators who honor your vision.",
+          "Places that nurture creativity and peace.",
+          "You become a beacon of inspiration and healing.",
+          "Balancing dreams with grounded action.",
+          "Avoiding responsibility or practical matters.",
+          "Taking steps to manifest your vision.",
+          "Partners who support your emotional depth.",
+          "You feel aligned and inspired daily.",
+          "Tools for creative expression and connection.",
+          "Working with others who complement your gifts.",
+          "That your dreams have power and purpose.",
+          "To heal and inspire through your soulful presence."
+        ]
+      },
+      "The Leader": {
+        emoji: "🔥",
+        subtitle: "Confident • Inspiring • Natural Born Commander • Magnetic Presence",
+        soulMirror: [
+          "A natural leader. You're here to inspire action — not just speak, but move people toward possibility.",
+          "The need to create impact — to see results and know your vision changed something real.",
+          "Confidence. You enter a room and people feel the shift — your presence commands attention.",
+          "Self-doubt disguised as perfectionism. You sometimes wait for the \"perfect moment\" instead of leading now.",
+          "With determination. You rally people, make plans, and charge forward — sometimes faster than others can follow.",
+          "Bold, instinct-driven ones — you trust your gut and move when others hesitate.",
+          "Failure, rejection, and the fear of not being good enough to lead others.",
+          "Vision, motivation, public speaking, team building, and turning ideas into movements.",
+          "Taking charge — often before others ask. You naturally step into leadership, sometimes carrying more than your share.",
+          "Ambitious climbers, loyal supporters, and people who need direction or inspiration.",
+          "In the spotlight — speaking, leading, or creating something that feels bigger than yourself.",
+          "Head-on. You address it directly, sometimes with more force than needed.",
+          "That you'll fail publicly — or that your confidence is just a mask for insecurity.",
+          "Leading a team to victory. Seeing your vision come to life. Knowing people believed in you and succeeded because of it.",
+          "Active recovery — sports, celebration, or time with people who see your worth beyond what you achieve.",
+          "By dimming your light to make others comfortable. You shrink when you should shine.",
+          "Entrepreneurship, management, sales, politics, media, coaching, or anything where you can build and lead teams.",
+          "Approval from the crowd. You don't need permission to lead.",
+          "Your worth isn't measured by how many follow — but by how authentically you lead.",
+          "To light the way for others — to show them what's possible when someone believes in their vision and acts on it."
+        ],
+        dharmaCompass: [
+          "Leadership roles — team management, entrepreneurship, public speaking, executive positions, or building mission-driven companies.",
+          "Other natural leaders and loyal supporters — people who amplify your vision and challenge you to grow.",
+          "Ego-driven leadership. Leading for power instead of purpose makes you empty and alone.",
+          "\"True leadership is service, not dominance.\"",
+          "From teams and communities you build, inspire, and guide toward shared success.",
+          "A leadership initiative — start something, take charge of a project, or launch a mission that needs your unique vision.",
+          "Being \"too much\" or \"too ambitious.\" Your fire is exactly what the world needs.",
+          "Multiple income streams from leadership: speaking, coaching, equity, consulting, and mission-driven ventures.",
+          "Visionary collaborators and grounded operators — those who dream big and execute well.",
+          "Dynamic cities or communities where leadership is valued — think Mumbai, Delhi, Bangalore, or international business hubs.",
+          "You become a recognized leader — someone whose vision shapes industries, communities, or movements that matter.",
+          "Emotional intelligence. The best leaders connect hearts, not just minds.",
+          "Imposter syndrome, burnout from over-giving, and leading without boundaries.",
+          "Delegation. Great leaders multiply themselves through others.",
+          "Someone confident but humble — who supports your vision while keeping you grounded in service.",
+          "Your decisions feel clear, your team trusts you, and your impact grows naturally without force.",
+          "Your megaphone. Use digital platforms to reach more people and spread your message globally.",
+          "Leading a team where you can delegate and multiply your impact through others.",
+          "That your story — your journey to leadership — is the teaching others need most.",
+          "To show others their own power — and to build a legacy of leaders who lead with both strength and heart."
+        ]
+      },
+      "The Healer": {
+        emoji: "🌿",
+        subtitle: "Nurturing • Intuitive • Service-Oriented • Natural Caretaker",
+        soulMirror: [
+          "A natural healer. You're here to restore balance — not just fix, but bring wholeness to what's broken.",
+          "The need to serve — to see others healthy, peaceful, and free from unnecessary suffering.",
+          "Compassion. You feel others' pain and instinctively know how to soothe it.",
+          "Absorbing too much. You take on others' emotions and forget to protect your own energy.",
+          "With care and consideration. You research, prepare, and move slowly to avoid harm.",
+          "Heart-centered ones — you choose what feels right and serves the highest good.",
+          "Others' suffering, your own exhaustion, and the fear that you're not doing enough.",
+          "Listening, empathy, energy work, nutrition, herbalism, counseling, and creating safe spaces.",
+          "Being the go-to person for emotional support — often giving more than you receive.",
+          "Wounded souls, empaths, and people in crisis — drawn to your natural healing presence.",
+          "In nature, quiet spaces, or anywhere you can help others feel safe and understood.",
+          "With patience and understanding — you try to heal the root, not just the symptoms.",
+          "That you'll burn out from giving too much, or that others will drain you completely.",
+          "A breakthrough moment — when someone heals, finds peace, or feels whole again because of your care.",
+          "Solitude in nature, gentle movement, nourishing food, and time away from others' needs.",
+          "By saying yes when you mean no. You give until you're empty, then feel resentful.",
+          "Healthcare, therapy, wellness coaching, social work, nutrition, teaching, or any service-based healing profession.",
+          "External validation for your worth. Your value isn't measured by how much you give.",
+          "You can't heal everyone — and that's not your job. Healing happens when people are ready.",
+          "To be a safe harbor for others — and to show them that healing is possible when someone truly cares."
+        ],
+        dharmaCompass: [
+          "Healing professions — therapy, wellness coaching, healthcare, social work, or alternative healing modalities.",
+          "Other healers and emotionally healthy people — those who support you as much as you support them.",
+          "Martyr complex. Burning out from over-giving serves no one.",
+          "\"I heal best when I'm healthy first.\"",
+          "From healing work, wellness services, courses, or products that genuinely help others feel better.",
+          "A healing practice — start a wellness program, therapy practice, support group, or healing service.",
+          "Being \"too sensitive\" or \"too caring.\" The world needs your healing heart.",
+          "Service-based income: healing sessions, wellness programs, courses, products, or consulting.",
+          "Balanced healers and supportive partners — people who give you energy instead of taking it.",
+          "Peaceful, nature-rich environments — think hill stations, coastal towns, or quiet suburbs with access to healing communities.",
+          "You become a master healer — someone whose presence and work creates lasting transformation in others' lives.",
+          "Boundaries. You can care deeply while protecting your own energy.",
+          "Codependency, burnout, and taking responsibility for others' healing journeys.",
+          "Saying no with love. Boundaries are an act of service to yourself and others.",
+          "Someone emotionally stable and supportive — who reminds you to receive care, not just give it.",
+          "You feel energized by your work, others heal sustainably, and you're not carrying their pain.",
+          "Your healing toolkit. Use apps, online platforms, and digital tools to reach more people effectively.",
+          "In a small, supportive team where you can focus on healing rather than managing people.",
+          "That your own healing journey is your greatest credential — and others need to see that transformation is possible.",
+          "To show others that healing is possible — and to create spaces where people feel safe to become whole again."
+        ]
+      },
+      "The Seeker": {
+        emoji: "🧭",
+        subtitle: "Curious • Philosophical • Truth-Hungry • Eternal Student",
+        soulMirror: [
+          "A truth seeker. You're here to explore the deeper questions — not just learn, but understand life's mysteries.",
+          "The need to understand — to find meaning, truth, and wisdom beyond surface appearances.",
+          "Curiosity. You see connections others miss and ask questions that matter.",
+          "Restlessness. You sometimes search so much that you miss the wisdom right in front of you.",
+          "With exploration and reflection. You need to understand before you accept.",
+          "Wisdom-based ones — you choose paths that offer growth, learning, or deeper understanding.",
+          "Meaninglessness, feeling lost, and the fear that there are no real answers.",
+          "Research, teaching, writing, connecting ideas, seeing patterns, and making meaning from chaos.",
+          "Always learning something new — sometimes at the expense of applying what you already know.",
+          "Other seekers, teachers, and people on spiritual or intellectual journeys.",
+          "In libraries, nature, spiritual spaces, or deep conversations about life's big questions.",
+          "By seeking to understand all sides — sometimes overthinking instead of taking action.",
+          "That life is random and meaningless — or that you'll never find what you're truly seeking.",
+          "A moment of clarity — when pieces click together and you see a deeper truth about life.",
+          "Solo reflection, reading, meditation, travel, or time in nature to process and integrate.",
+          "By getting stuck in the search. You research forever but never commit to a path.",
+          "Teaching, writing, research, counseling, spiritual guidance, philosophy, or any field that explores human meaning.",
+          "The \"perfect\" answer. Wisdom comes through experience, not just information.",
+          "The journey IS the destination. Seeking is not a problem to solve — it's a way of living.",
+          "To bridge the practical and spiritual — and help others find meaning in their own life journey."
+        ],
+        dharmaCompass: [
+          "Wisdom-sharing roles — teaching, writing, research, spiritual guidance, or philosophy-based work.",
+          "Other seekers and wise mentors — people who love big questions and don't need quick answers.",
+          "Analysis paralysis. Endlessly seeking without ever choosing a path to commit to.",
+          "\"Understanding comes through living, not just thinking.\"",
+          "From sharing your wisdom — teaching, writing, courses, spiritual guidance, or research-based work.",
+          "A wisdom project — write a book, start a course, create content, or teach what you've learned.",
+          "Being \"too philosophical\" or \"impractical.\" Your depth is exactly what shallow times need.",
+          "Knowledge-based income: courses, books, teaching, consulting, or wisdom-sharing services.",
+          "Fellow truth-seekers and practical dreamers — those who think deeply but also take action.",
+          "Culturally rich, spiritually open places — think Rishikesh, Dharamshala, or cities with universities and spiritual communities.",
+          "You become a wisdom teacher — someone whose seeking helps others find their own path to truth and meaning.",
+          "Practical application. Wisdom without action is just philosophy.",
+          "Overthinking, spiritual bypassing, and avoiding commitment because no path feels \"perfect.\"",
+          "Choosing a path and walking it — even when you don't have all the answers.",
+          "Someone grounded but open-minded — who supports your seeking while encouraging action.",
+          "Your understanding deepens, you feel purposeful, and others seek your guidance naturally.",
+          "Your research and teaching tool. Use online platforms to share wisdom and connect with other seekers.",
+          "Independently or in small collaborations with other wisdom-focused people.",
+          "That your questions are as valuable as your answers — and others need permission to seek too.",
+          "To help others find meaning — and show them that seeking truth is not just okay, but essential to a life well-lived."
+        ]
+      },
+      "The Rebel": {
+        emoji: "⚡",
+        subtitle: "Revolutionary • Independent • Status-Quo Challenger • Change Agent",
+        soulMirror: [
+          "A change catalyst. You're here to challenge what's broken — not just complain, but actively disrupt for better.",
+          "The need for justice and freedom — to see systems work fairly and people live authentically.",
+          "Courage. You speak up when others stay silent and act when others accept the unacceptable.",
+          "Anger without direction. Your passion can become destructive if not channeled toward clear purpose.",
+          "With rebellion and resistance — you question everything before you accept anything.",
+          "Principle-driven ones — you choose what's right over what's easy or popular.",
+          "Injustice, conformity, and the fear that you'll become part of the system you hate.",
+          "Activism, innovation, critical thinking, inspiring change, and fearlessly challenging authority.",
+          "Being the voice of dissent — questioning rules, systems, and anything that feels wrong or unfair.",
+          "Other rebels, free spirits, and people who feel trapped by conventional expectations.",
+          "In movements, protests, alternative communities, or anywhere you can fight for what matters.",
+          "Intensely and directly — you name the problem and demand change, sometimes burning bridges.",
+          "That you'll give up your values for comfort — or that your rebellion will lead to isolation.",
+          "A successful revolution — when your challenge creates real positive change in the world.",
+          "Creative expression, physical movement, time in counterculture spaces, or planning your next move.",
+          "By fighting everything instead of choosing your battles. Not every hill is worth dying on.",
+          "Social change, activism, innovative startups, alternative media, or anything that disrupts broken systems.",
+          "Others' approval. True rebels create change, not popularity contests.",
+          "Revolution starts with evolution — changing yourself is often the most radical act.",
+          "To wake people up — and show them that another way is possible if someone is brave enough to build it."
+        ],
+        dharmaCompass: [
+          "Change-making roles — activism, social innovation, disruptive startups, alternative media, or system-changing work.",
+          "Other conscious rebels and supportive allies — people who share your values and support your mission.",
+          "Rage without purpose. Anger is fuel, not a destination.",
+          "\"I channel my rebellion into conscious revolution.\"",
+          "From creating alternative solutions — innovative businesses, movements, or systems that work better than what exists.",
+          "A change initiative — start a movement, launch a disruptive business, or create an alternative to something broken.",
+          "Being \"too radical\" or \"too intense.\" The world needs your fire and vision.",
+          "Mission-driven income: social enterprises, consulting, speaking, or businesses that align with your values.",
+          "Fellow change-makers and grounded visionaries — people who rebel with purpose, not just anger.",
+          "Progressive cities or alternative communities — places where change is welcomed and innovation thrives.",
+          "You become a successful revolutionary — someone whose rebellion created lasting positive change in the world.",
+          "Strategic thinking. Effective rebellion requires both passion and planning.",
+          "Burnout from fighting too many battles, isolation from being too radical, and cynicism from slow progress.",
+          "Picking your battles wisely and building coalitions instead of going it alone.",
+          "Someone who shares your values but balances your intensity with patience and strategy.",
+          "Your changes stick, people join your cause, and the world becomes a little more just because of you.",
+          "Your weapon for change. Use social media, apps, and digital tools to organize and spread your message.",
+          "Leading a small, focused team of committed change-makers who share your vision.",
+          "That your rebellion is needed — but it works best when combined with love, strategy, and sustainable action.",
+          "To show others that change is possible — and give them permission to rebel against whatever isn't working in their own lives."
+        ]
+      },
+      "The Mystic": {
+        emoji: "🔮",
+        subtitle: "Intuitive • Spiritual • Depth-Seeking • Soul Whisperer",
+        soulMirror: [
+          "A bridge between worlds. You're here to access deeper truths — not just believe, but know through direct experience.",
+          "The need to connect with something greater — to touch the sacred and help others remember their spiritual nature.",
+          "Intuition. You sense what others can't see and know things without knowing how you know.",
+          "Escapism and overwhelm. You sometimes retreat into spiritual realms to avoid earthly responsibilities.",
+          "With deep reflection and inner guidance. You trust your intuition over external advice.",
+          "Soul-guided ones — you choose what feels spiritually aligned, even if it seems impractical.",
+          "Emptiness, spiritual crisis, and the fear that you're too different to belong in this world.",
+          "Psychic abilities, energy healing, meditation, dream work, and helping others connect with their inner wisdom.",
+          "Being the spiritual advisor — people come to you for guidance, healing, and deeper understanding.",
+          "Old souls, spiritual seekers, and people going through awakening or crisis.",
+          "In sacred spaces — temples, nature, meditation rooms, or anywhere the veil between worlds feels thin.",
+          "With compassion and deeper understanding — you see the soul issue behind the surface problem.",
+          "That you're losing your mind, or that your spiritual gifts make you too weird for normal life.",
+          "A spiritual breakthrough — yours or someone else's — when the invisible becomes visible and healing happens.",
+          "Meditation, prayer, nature immersion, energy work, or time alone to process spiritual downloads.",
+          "By hiding your gifts or staying too disconnected from practical reality.",
+          "Spiritual guidance, energy healing, meditation teaching, psychic services, or any work that helps others awaken.",
+          "Proof of your abilities. Your gifts work through faith and practice, not validation.",
+          "You're not here to escape the world — you're here to bring heaven to earth.",
+          "To help others remember who they really are — and show them that the spiritual world is not separate from everyday life."
+        ],
+        dharmaCompass: [
+          "Spiritual work — energy healing, meditation teaching, psychic services, spiritual counseling, or consciousness-based practices.",
+          "Other spiritually aware people and grounded mystics — those who honor your gifts while keeping you connected to reality.",
+          "Spiritual bypassing. Using spirituality to avoid real-world responsibilities or emotional work.",
+          "\"I bring my gifts into the world with grounded presence.\"",
+          "From spiritual services — healing sessions, readings, courses, retreats, or products that serve people's spiritual growth.",
+          "A spiritual offering — start a practice, create a course, write about your experiences, or begin serving others with your gifts.",
+          "Being \"too woo\" or \"unrealistic.\" Your spiritual perspective is exactly what a materialistic world needs.",
+          "Service-based spiritual income: sessions, courses, retreats, products, or consulting.",
+          "Conscious spiritual community and practical supporters — people who honor your gifts while helping you stay grounded.",
+          "Spiritually resonant places — near ashrams, retreat centers, sacred sites, or communities that value consciousness.",
+          "You become a spiritual teacher — someone whose gifts and wisdom help others awaken to their own spiritual nature.",
+          "Practical grounding. Your spiritual gifts need real-world application to serve others effectively.",
+          "Isolation, spiritual ego, and getting lost in other realms instead of serving this one.",
+          "Daily grounding practices and serving others with your gifts in practical, helpful ways.",
+          "Someone spiritually open but practically grounded — who supports your gifts while helping you stay present.",
+          "Your guidance helps others, your spiritual practice stays strong, and you feel purposeful rather than spacey.",
+          "Your spiritual toolkit. Use apps, online platforms, and digital tools to reach people who need your guidance.",
+          "Mostly independently or in small spiritual partnerships with like-minded practitioners.",
+          "That your spiritual sensitivity is a superpower — the world needs people who can access deeper wisdom.",
+          "To be a spiritual bridge — helping others access their own inner wisdom and remember that life is sacred."
+        ]
+      },
+      "The Visionary": {
+        emoji: "🌈",
+        subtitle: "Future-Focused • Innovative • Big-Picture Thinker • Possibility Creator",
+        soulMirror: [
+          "A future creator. You're here to see what's possible — not just dream, but design tomorrow.",
+          "The need to innovate and improve — to see a better world and help create it.",
+          "Vision. You see possibilities others miss and can imagine solutions that don't yet exist.",
+          "Impatience with present reality. You sometimes get so focused on the future that you miss the now.",
+          "With excitement and strategic thinking. You see the potential and want to move toward it quickly.",
+          "Future-focused ones — you choose what could be over what is, even if it requires patience.",
+          "Stagnation, small thinking, and the fear that your vision will never become reality.",
+          "Innovation, strategic planning, trend spotting, inspiring others with possibility, and systems thinking.",
+          "Being the \"what if\" person — always seeing potential improvements and future possibilities.",
+          "Other innovators, early adopters, and people who believe in building a better future.",
+          "In forward-thinking environments — tech hubs, innovation labs, creative spaces, or anywhere new ideas are born.",
+          "By reframing it as opportunity — you see conflict as a chance to create better solutions.",
+          "That your vision is too big, or that you'll be too ahead of your time to succeed.",
+          "Seeing your vision come to life — when something you imagined becomes real and helps others.",
+          "Creative planning, future visualization, inspiration gathering, or time in innovative environments.",
+          "By getting lost in possibility without taking practical steps toward your vision.",
+          "Innovation, technology, design, consulting, or any field where you can create solutions for tomorrow's problems.",
+          "Others to catch up to your vision. You don't need permission to start building the future.",
+          "The future is created by those who act on their vision today — even if others don't understand yet.",
+          "To show others what's possible — and give them hope that tomorrow can be better than today."
+        ],
+        dharmaCompass: [
+          "Innovation-focused roles — product development, technology, design thinking, consulting, or future-planning positions.",
+          "Fellow visionaries and practical builders — people who share your excitement for the future and can help make it real.",
+          "Living too much in the future. Your vision needs present-moment action to become reality.",
+          "\"I build the future one practical step at a time.\"",
+          "From innovation and forward-thinking solutions — products, services, or ideas that solve tomorrow's problems today.",
+          "A future-focused project — develop an innovative solution, start a forward-thinking business, or create something ahead of its time.",
+          "Being \"unrealistic\" or \"too ambitious.\" The world needs people who can see beyond current limitations.",
+          "Innovation-based income: new products, consulting, technology ventures, or licensing your forward-thinking ideas.",
+          "Other innovators and execution-focused partners — people who share your vision and have skills to make it happen.",
+          "Innovation hubs and forward-thinking cities — places where new ideas are valued and future-building is supported.",
+          "You become a recognized innovator — someone whose visions consistently become reality and shape the future.",
+          "Present-moment execution. Visions need daily action to become real.",
+          "Perfectionism, waiting for the \"right time,\" and getting overwhelmed by the gap between vision and reality.",
+          "Breaking big visions into small, actionable steps and celebrating progress along the way.",
+          "Someone who believes in your vision but keeps you grounded in practical next steps.",
+          "Your ideas gain traction, others get excited about your vision, and you see measurable progress toward your goals.",
+          "Your innovation platform. Use technology to prototype, test, and share your forward-thinking ideas.",
+          "Leading a small innovation team where you can focus on vision while others handle detailed execution.",
+          "That the world needs your vision — and that starting imperfectly is better than waiting for perfect conditions.",
+          "To help others believe in a better future — and show them that innovation starts with someone willing to see what others can't."
+        ]
+      },
+      "The Connector": {
+        emoji: "🤝",
+        subtitle: "Empathic • Expressive • Relationship-Oriented • Voice of Belonging",
+        soulMirror: [
+          "A bridge between people. You're here to create connection — not just talk, but true understanding.",
+          "The need to feel close — to be seen, heard, and help others feel the same.",
+          "Emotional intelligence. You sense the room — and speak to the heart.",
+          "The fear of being misunderstood or disliked. You sometimes bend too much to fit in.",
+          "You talk it through. Expression helps you process and accept.",
+          "Ones that honor relationships and emotional resonance — you follow warmth and vibe.",
+          "Rejection, loneliness, and the fear of not belonging.",
+          "Conversation, mediation, networking, writing, facilitating, active listening.",
+          "Playing the emotional glue — sometimes at the cost of your own boundaries.",
+          "Emotional dependents, social butterflies, and quiet people who need your light.",
+          "In meaningful conversations, warm spaces, or communities where realness matters.",
+          "You try to keep peace — but may avoid tough truths unless invited safely.",
+          "That you'll lose your voice or place in the tribe.",
+          "Seeing others connect, heal, and feel free to be themselves — often through your presence.",
+          "Gentle interactions, heartful sharing, or time with someone who really listens to you.",
+          "By constantly adapting. You dilute your power trying to keep everyone happy.",
+          "Teaching, coaching, content creation, HR, storytelling, podcasting, or community building.",
+          "External validation. You belong — even when no one claps.",
+          "Your voice matters most when it's honest — not just pleasing.",
+          "To reconnect people — to each other, to themselves, and to the truth that we're never truly alone."
+        ],
+        dharmaCompass: [
+          "Communication-led roles — podcasting, public speaking, brand storytelling, HR, facilitation, or relationship-based businesses.",
+          "Safe, emotionally present allies who encourage your truth — not just your performance.",
+          "Shape-shifting. The more you fit in, the more you disappear.",
+          "\"The more real I am, the more I attract real connection.\"",
+          "From communities you nurture, messages you share, and spaces where you make people feel seen.",
+          "A connection-based initiative — podcast, storytelling series, community meetups, or support circles.",
+          "Being \"too sensitive\" or \"too talkative.\" That's your core superpower.",
+          "Monetize community — courses, events, partnerships, mentoring, communication-based services.",
+          "Collaborators who amplify your message, and partners who let you speak without judgment.",
+          "Cities or towns with open-minded, inclusive, dialogue-driven energy — think Bangalore, Pune, Goa, or conscious digital hubs.",
+          "You become a well-known connector — voice of a community, builder of bridges, or conscious communicator with impact.",
+          "Boundary-setting. Connection doesn't mean over-access.",
+          "Overcommitment, approval addiction, and fear of being alone with your truth.",
+          "Speaking your truth even when it risks tension. Authenticity over harmony.",
+          "Someone emotionally grounded, calm, and affirming — who listens as deeply as you do.",
+          "You'll feel open, expressive, and connected — not performative or drained.",
+          "Your microphone. Social media, community apps, video podcasts — your voice travels far.",
+          "In a collaborative network where you can lead conversation and hold space.",
+          "That your story — your own — is enough. You don't always need a crowd to matter.",
+          "To restore the human connection — through voice, presence, and a deep understanding of heart and soul."
+        ]
+      },
+      "The Strategist": {
+        emoji: "🧠",
+        subtitle: "Analytical • Precise • Systems-Oriented • Master of Long-Term Vision",
+        soulMirror: [
+          "A systems thinker. You're here to bring order to chaos — not just plan, but elevate through logic.",
+          "The need to solve, improve, and move toward efficiency or mastery.",
+          "Clarity. You see structures and patterns where others only see noise.",
+          "Over-analysis. You sometimes live more in the mind than in the moment.",
+          "Cautiously. You want to understand the variables before you commit.",
+          "Well-researched, calculated ones — rooted in facts, data, and foresight.",
+          "Uncertainty, messiness, and vulnerability — you can't spreadsheet your soul.",
+          "Planning, analysis, logic, long-term thinking, and solving complex problems.",
+          "Being the \"planner,\" \"fixer,\" or silent architect behind others' success.",
+          "Dreamers, emotional types, or leaders who need your clarity and quiet strength.",
+          "In spaces where you can think deeply — libraries, spreadsheets, strategy rooms, or silent mornings.",
+          "Calmly, logically — sometimes too coldly for emotional types.",
+          "Losing control. Having to improvise without a plan.",
+          "Solving a tough problem. Designing a flawless system. Knowing things are working because of you.",
+          "Structured solitude. Planning in peace. Or time in efficient, quiet spaces.",
+          "Waiting too long to act. Getting stuck in \"what if\" and avoiding bold leaps.",
+          "Strategy, operations, research, architecture, consulting, data science, policy, or product design.",
+          "Certainty. Some of your best moves will come with risk.",
+          "Precision without connection can feel cold. Lead with both brain and heart.",
+          "To design better systems — in business, society, or life — and bring stability to the future."
+        ],
+        dharmaCompass: [
+          "Strategic roles — product strategy, consulting, finance, tech systems, research, operations, analytics.",
+          "Visionaries and empathic doers — who help you act on your brilliance, not just plan it.",
+          "Analysis paralysis. You don't need more data — you need momentum.",
+          "\"Execution is clarity in motion.\"",
+          "From building frameworks that solve real-world problems at scale.",
+          "A blueprint: a strategy deck, system design, optimized tool, or scalable plan others can use.",
+          "Being \"too logical\" or \"too detail-oriented.\" Precision is your language.",
+          "Long-term wealth building: compounding investments, systems-driven income, strategic diversification.",
+          "Grounded mentors and passionate builders — those who act while you optimize.",
+          "Well-planned cities or structured spaces with access to thinkers, resources, and order — think Singapore, Tokyo, Bangalore, Berlin.",
+          "You become a master strategist — a quiet empire builder who influences through systems, not show.",
+          "Emotional fluency. Knowing how others feel about your solutions is as important as how well they work.",
+          "Perfectionism, rigidity, and intellectual overprotection.",
+          "Taking imperfect action. Done is often better than delayed brilliance.",
+          "Someone emotionally intelligent, expressive, and organized — who keeps your logic human.",
+          "Your system works. Your time flows. And people trust your plans with their futures.",
+          "Your lab. Use tech for automation, modeling, optimization, and intellectual expansion.",
+          "In a structured team where you can lead the roadmap and steer decisions.",
+          "That your brain can be monetized — as a system, product, or strategic service.",
+          "To design the blueprint others build from — and bring structure to a world that often feels unstructured."
+        ]
+      },
+      "The Performer": {
+        emoji: "🎭",
+        subtitle: "Charismatic • Expressive • Entertaining • Natural Spotlight",
+        soulMirror: [
+          "An entertainer and inspirer. You're here to bring joy and emotion — not just perform, but move hearts.",
+          "The need to express and connect — to share your inner world and see it reflected in others' reactions.",
+          "Presence. You naturally draw attention and can shift the energy of a room with your expression.",
+          "Insecurity masked by performance. You sometimes perform to be loved rather than expressing to connect.",
+          "With dramatic flair. You process emotions big and need expression to understand yourself.",
+          "Emotionally resonant ones — you choose what feels authentic and allows for creative expression.",
+          "Rejection, being ignored, and the fear that without performance, you're not enough.",
+          "Acting, storytelling, public speaking, entertainment, inspiring others, and emotional expression.",
+          "Being the center of attention — often performing before you even realize you're doing it.",
+          "Appreciative audiences, fellow creatives, and people who enjoy emotional expression and entertainment.",
+          "On stage, in creative spaces, at parties, or anywhere you can express yourself fully and be appreciated.",
+          "Dramatically and expressively — you feel everything deeply and aren't afraid to show it.",
+          "That you're just an act, or that people only love your performance, not your real self.",
+          "A standing ovation — when your authentic expression moves others and creates real connection.",
+          "Creative expression, appreciation from others, applause, or time to process emotions through art.",
+          "By performing to please rather than expressing to connect. You lose yourself trying to be what others want.",
+          "Entertainment, media, teaching, motivational speaking, content creation, or any platform-based work.",
+          "Others' applause to feel worthy. Your value exists whether or not anyone is watching.",
+          "Your most powerful performances come from your most authentic moments — vulnerability is your strength.",
+          "To help others feel alive — and show them that it's safe to be big, expressive, and emotionally honest."
+        ],
+        dharmaCompass: [
+          "Performance-based roles — acting, content creation, public speaking, entertainment, motivational work, or media presence.",
+          "Supportive creatives and genuine fans — people who appreciate your authentic expression, not just your performance.",
+          "Performance addiction. Needing constant attention and approval to feel worthy.",
+          "\"I express my truth, not what others want to see.\"",
+          "From your authentic expression — content, performances, speaking, teaching, or entertainment that genuinely moves people.",
+          "An authentic creative project — show, content series, performance, or platform where you can express your real self.",
+          "Being \"too much\" or \"attention-seeking.\" Your expression is a gift to others.",
+          "Expression-based income: performances, content, speaking, teaching, or entertainment services.",
+          "Fellow creatives and supportive partners — people who encourage your authentic expression and growth.",
+          "Creative cities or artistic communities — places where expression is valued and creativity thrives.",
+          "You become a recognized performer — someone whose authentic expression inspires and moves others consistently.",
+          "Authentic vulnerability. Your most powerful moments come from real emotion, not perfect performance.",
+          "Burnout from over-performing, losing yourself in others' expectations, and addiction to external validation.",
+          "Expressing your truth even when it's not what the audience expects or wants.",
+          "Someone who loves you off-stage — who reminds you that you're enough without the performance.",
+          "Your expression feels natural, audiences connect with your authenticity, and you feel fulfilled rather than empty after performing.",
+          "Your stage. Use digital platforms, social media, and online tools to reach audiences who appreciate your expression.",
+          "In creative collaborations where you can be the expressive leader while others handle logistics.",
+          "That your authentic self is your best performance — people connect with truth, not perfection.",
+          "To give others permission to be expressive — and show them that it's safe to be big, emotional, and authentically themselves."
+        ]
+      },
+      "The Alchemist": {
+        emoji: "🦂",
+        subtitle: "Transformative • Deep • Shadow-Aware • Turns Pain Into Power",
+        soulMirror: [
+          "A transformer. You walk through fire not to escape it — but to turn it into gold.",
+          "The inner pull to evolve — to make meaning of suffering and rise renewed.",
+          "Resilience. You don't just survive — you rebuild, better.",
+          "Emotional heaviness. You carry too much alone, afraid no one else will understand.",
+          "Intense reflection. You resist it first, then undergo deep internal metamorphosis.",
+          "Ones that promise depth and transformation — even if they're hard.",
+          "Shame, grief, betrayal — they are the ashes from which your truth rises.",
+          "Shadow work, healing through truth, deep emotional insight, trauma transmutation, and mentoring through darkness.",
+          "Breakdown → reflection → rebirth. You live through cycles few can handle.",
+          "Wounded souls, seekers, or crisis-walkers — drawn to your silent strength.",
+          "In emotionally honest spaces — solitude, therapy rooms, rituals, or quiet midnights with music and tea.",
+          "Intensely but inwardly first — you'll cut deep, but aim to purify.",
+          "That the pain will never end — or that healing will cost your identity.",
+          "A breakthrough. A rebirth. A moment where something buried comes to light and heals.",
+          "Shadow release, silence, water, rituals, soulful conversations, or artistic self-expression.",
+          "By holding on to your wounds as identity. Healing must include letting go.",
+          "Deep healing, transformative coaching, crisis leadership, writing about shadow, or helping others through their darkest hour.",
+          "Redemption. You don't need to earn your worth by pain.",
+          "You are already whole — even when you're in pieces.",
+          "To help others rise from their ruins — and to alchemize suffering into soul strength."
+        ],
+        dharmaCompass: [
+          "Shadow healing, trauma coaching, energy work, soulful writing, psycho-spiritual mentoring, or transformation-led brands.",
+          "Emotionally honest, deeply aware people — who don't fear your intensity and don't fake light.",
+          "Staying wounded for identity. You are not your trauma.",
+          "\"My pain is part of me — not all of me.\"",
+          "From helping others walk their healing journeys — authentically, from a place of earned wisdom.",
+          "A memoir, healing program, transformation podcast, or trauma-to-truth workshop.",
+          "Being \"too intense.\" You're here to feel deeply, not to dilute.",
+          "Soul-led offers: healing containers, writing, courses, therapeutic coaching — emotionally rich services priced with worth.",
+          "Deep, karmic, purpose-aligned bonds — with people who hold space without fixing or fearing you.",
+          "Sacred, raw, emotionally resonant spaces — think old cities, near rivers, in studios, or near sacred ruins.",
+          "You become a soul alchemist — a wise healer whose life work helps others reclaim power and peace.",
+          "How to live beyond healing. Integration is where your next life begins.",
+          "Holding on to darkness when the light is knocking. You can be whole and deep.",
+          "Allowing joy without guilt. You don't need a crisis to feel worthy.",
+          "A grounded, soulful person who holds complexity and reminds you to feel safe.",
+          "You'll feel clean. Heavy, but honest. Light, but deep. Like your soul exhaled.",
+          "A sacred portal: healing platforms, writing tools, shadow-course delivery, or digital intimacy spaces.",
+          "Mostly solo — with occasional sacred partnerships that feel karmically aligned.",
+          "That your pain has prepared you to lead. Quietly, powerfully, and truly.",
+          "To guide others from pain to power — not through perfection, but through truth."
+        ]
+      }
+    };
 
-      case "The Dreamer":
-        return {
-          emoji: "🌙",
-          subtitle: "Imaginative • Sensitive • Vision-Led • Feeds on Possibility",
-          soulMirror: [
-            { q: "Who am I at my core?", a: "A visionary soul. You see what others miss — not just what is, but what could be." },
-            { q: "What drives me even when things are tough?", a: "The belief that something beautiful is possible. Your hope is your anchor." },
-            { q: "What is my biggest internal strength?", a: "Imagination. You connect dots others don't even see." },
-            { q: "What tends to hold me back the most?", a: "Escapism. You may drift into fantasy instead of acting on your visions." },
-            { q: "How do I usually respond to change?", a: "With emotional waves. You feel it first, process slowly, then adjust gently." },
-            { q: "What kind of decisions feel most natural to me?", a: "Ones based on intuition, emotion, and ideals — not always logic." },
-            { q: "What emotions do I need to accept and not run from?", a: "Sadness, disappointment, longing. They hold your deepest creative truth." },
-            { q: "What are my natural talents or gifts?", a: "Storytelling, empathy, music, visual arts, dream interpretation, emotional healing." },
-            { q: "What patterns keep repeating in my life?", a: "Getting excited by a dream, losing momentum midway, feeling misunderstood." },
-            { q: "What kind of people do I attract?", a: "Lost souls, artists, seekers — they see your magic and feel safe in your softness." },
-            { q: "Where do I feel most at peace?", a: "Near water, in music, in solitude, or when creating without limits." },
-            { q: "How do I handle conflict?", a: "You avoid it. You'd rather withdraw than confront — even when your needs matter." },
-            { q: "What scares me, even if I don't say it aloud?", a: "That your dreams will remain only dreams." },
-            { q: "What gives me real joy?", a: "Expressing emotion through art, poetry, or pure presence." },
-            { q: "How do I recharge when I'm drained?", a: "Escaping into nature, music, silence, or spiritual spaces." },
-            { q: "How do I block my own success?", a: "By doubting your practical ability to manifest what's in your mind." },
-            { q: "What kind of work feels most fulfilling?", a: "Creating. Healing. Inspiring. Anything that lets you share meaning and feeling." },
-            { q: "What must I stop seeking outside of me?", a: "Someone to believe in you first. That's your job." },
-            { q: "What's one powerful truth I often forget?", a: "Your sensitivity is not weakness — it's your soul's compass." },
-            { q: "Why was I really born?", a: "To dream, to feel, and to awaken hearts through your vision." }
-          ],
-          dharmaCompass: [
-            { q: "What kind of work should I be doing in the next 3–5 years?", a: "Creative arts, therapy, spirituality, writing, film, music, children's media, or conscious design." },
-            { q: "What kind of people should I surround myself with now?", a: "Safe, nurturing, soulful beings who respect your rhythm and believe in your talent." },
-            { q: "What's the biggest trap I must avoid?", a: "Waiting for perfect inspiration instead of building small, daily momentum." },
-            { q: "What single mindset shift will change everything for me?", a: "'My dreams are real, and I can make them practical.'" },
-            { q: "Where will my success most likely come from?", a: "From emotional authenticity — when you stop performing and just share what you feel." },
-            { q: "What one project should I commit to this year?", a: "A heartfelt expression — a book, album, course, visual story, or healing service." },
-            { q: "What do I need to stop apologizing for?", a: "Being emotional, gentle, or 'too soft.' That's your superpower." },
-            { q: "What should my financial plan look like?", a: "Build multiple small, soulful income streams. Trust aligned flow over force." },
-            { q: "What relationships will shape my future?", a: "Ones that don't exploit your care. You need partners who ground you without caging you." },
-            { q: "Where should I live or base myself in future?", a: "By the sea, near art, in poetic cities. Think: Goa, Pondicherry, Rishikesh, or spiritual suburbs." },
-            { q: "What's my 10-year dharma if I walk my best path?", a: "You become a soul artist — someone who heals and awakens others through emotion and vision." },
-            { q: "What's the most important thing I should learn next?", a: "Discipline. Even 20 minutes of daily structure will unlock your vast world." },
-            { q: "What will delay my growth?", a: "Staying stuck in your head. Isolation. Waiting for 'perfect mood.'" },
-            { q: "What's one behavior I must master?", a: "Completing what you start — even if it doesn't feel magical the whole time." },
-            { q: "What kind of partner or collaborator brings out my best?", a: "A grounded, calm, emotionally steady person who holds space without fixing you." },
-            { q: "How will I know I'm on the right path?", a: "You'll feel emotionally full, your work will move people, and your nights will feel lighter." },
-            { q: "What role should technology play in my path?", a: "A channel for your imagination — podcasts, digital art, calming content, soulful storytelling." },
-            { q: "Should I work alone or with a team?", a: "Alone to create, but with a small team to finish and share." },
-            { q: "What's the biggest opportunity I'm not seeing?", a: "That your softness is marketable — your inner world can be your career." },
-            { q: "What is my role in this lifetime?", a: "To bring tenderness to a tough world — through beauty, dreams, and feeling." }
-          ]
-        };
-
-      case "The Leader":
-        return {
-          emoji: "🔥",
-          subtitle: "Bold • Purpose-Driven • Commanding Presence • Builds with Vision",
-          soulMirror: [
-            { q: "Who am I at my core?", a: "A force of direction. You were born to lead, not follow — even when it's uncomfortable." },
-            { q: "What drives me even when things are tough?", a: "The need to move forward. You can't sit still when something better is possible." },
-            { q: "What is my biggest internal strength?", a: "Courage. You act when others hesitate." },
-            { q: "What tends to hold me back the most?", a: "The need to control everything. True leadership often means letting go." },
-            { q: "How do I usually respond to change?", a: "Head-on. You embrace challenge, but can struggle if you're not the one initiating it." },
-            { q: "What kind of decisions feel most natural to me?", a: "Fast, clear, and bold decisions that move things forward." },
-            { q: "What emotions do I need to accept and not run from?", a: "Vulnerability and self-doubt. They don't make you weak — they make you human." },
-            { q: "What are my natural talents or gifts?", a: "Inspiring others, taking initiative, building things from scratch, commanding attention." },
-            { q: "What patterns keep repeating in my life?", a: "Rising quickly, then burning out. You push hard — sometimes too hard." },
-            { q: "What kind of people do I attract?", a: "Followers, loyal supporters, and sometimes challengers who test your ego." },
-            { q: "Where do I feel most at peace?", a: "In places where your vision is respected, and your actions create real impact." },
-            { q: "How do I handle conflict?", a: "Directly. You address it fast — but must learn to pause and listen too." },
-            { q: "What scares me, even if I don't say it aloud?", a: "That you'll lose your edge or fail publicly. But your strength lies beyond success metrics." },
-            { q: "What gives me real joy?", a: "Seeing your vision take shape — and watching others rise because of it." },
-            { q: "How do I recharge when I'm drained?", a: "Strategic solitude, power workouts, or moments of silence where you reconnect with purpose." },
-            { q: "How do I block my own success?", a: "By trying to do it all alone or ignoring emotional support." },
-            { q: "What kind of work feels most fulfilling?", a: "Leadership, entrepreneurship, movement-building, or causes that align with your fire." },
-            { q: "What must I stop seeking outside of me?", a: "Validation. Leadership doesn't always come with applause." },
-            { q: "What's one powerful truth I often forget?", a: "Your presence is powerful even when you're not performing." },
-            { q: "Why was I really born?", a: "To light paths for others, take bold risks, and build something that outlives you." }
-          ],
-          dharmaCompass: [
-            { q: "What kind of work should I be doing in the next 3–5 years?", a: "Entrepreneurship, leadership in organizations, movement building, or high-ownership roles in innovation." },
-            { q: "What kind of people should I surround myself with now?", a: "Grounded, values-driven allies who both challenge and support your mission." },
-            { q: "What's the biggest trap I must avoid?", a: "Ego-driven choices. Doing it to be seen, not because it's true to your path." },
-            { q: "What single mindset shift will change everything for me?", a: "'Power flows when I empower others.'" },
-            { q: "Where will my success most likely come from?", a: "From building platforms or teams that multiply your energy and clarity." },
-            { q: "What one project should I commit to this year?", a: "A leadership venture — a podcast, community, or product that aligns your voice with service." },
-            { q: "What do I need to stop apologizing for?", a: "Taking up space. You were born to be visible — do it with integrity." },
-            { q: "What should my financial plan look like?", a: "High-growth investments, ownership stakes, and ethical scaling. Avoid debt from over-expansion." },
-            { q: "What relationships will shape my future?", a: "Collaborators who see your blind spots and aren't afraid to be honest with you." },
-            { q: "Where should I live or base myself in future?", a: "In power hubs where leadership energy is strong — think Delhi, Mumbai, Bangalore, Dubai, or global cities." },
-            { q: "What's my 10-year dharma if I walk my best path?", a: "You lead a movement, brand, or venture that shifts lives — and inspires leadership in others." },
-            { q: "What's the most important thing I should learn next?", a: "Emotional literacy. Knowing how to lead the heart, not just the task." },
-            { q: "What will delay my growth?", a: "Over-control, burnout, refusal to delegate, and lack of inner stillness." },
-            { q: "What's one behavior I must master?", a: "Listening — deeply, without trying to fix or dominate." },
-            { q: "What kind of partner or collaborator brings out my best?", a: "Someone emotionally intelligent, stable, and unafraid of your light." },
-            { q: "How will I know I'm on the right path?", a: "You'll feel challenged, respected, and lit up — not just busy." },
-            { q: "What role should technology play in my path?", a: "A megaphone for your vision — from social platforms to leadership systems." },
-            { q: "Should I work alone or with a team?", a: "Lead a team, but make space for reflection and wise counsel." },
-            { q: "What's the biggest opportunity I'm not seeing?", a: "That slowing down will actually make you stronger and more magnetic." },
-            { q: "What is my role in this lifetime?", a: "To lead with purpose, build with fire, and leave behind something worth following." }
-          ]
-        };
-
-      case "The Healer":
-        return {
-          emoji: "🌿",
-          subtitle: "Compassionate • Intuitive • Emotionally Deep • Holds Space for Others",
-          soulMirror: [
-            { q: "Who am I at my core?", a: "A soul-soother. You're here to heal — not just others, but yourself too." },
-            { q: "What drives me even when things are tough?", a: "The desire to ease pain, to make others feel safe, seen, and whole." },
-            { q: "What is my biggest internal strength?", a: "Empathy. You can feel what others feel, often before they speak." },
-            { q: "What tends to hold me back the most?", a: "Absorbing others' pain without boundaries — you forget you have your own needs." },
-            { q: "How do I usually respond to change?", a: "Gently, emotionally. You feel it all first, then adapt at your own pace." },
-            { q: "What kind of decisions feel most natural to me?", a: "Ones made with the heart, tuned into emotional truth and collective well-being." },
-            { q: "What emotions do I need to accept and not run from?", a: "Grief, guilt, and anger — you have a right to feel and heal too." },
-            { q: "What are my natural talents or gifts?", a: "Holding space, deep listening, sensing unspoken pain, guiding with kindness." },
-            { q: "What patterns keep repeating in my life?", a: "Being the helper — but sometimes at the cost of your own energy or worth." },
-            { q: "What kind of people do I attract?", a: "Those in need — the broken, the burdened, the seekers of light. You're a refuge." },
-            { q: "Where do I feel most at peace?", a: "In calm, emotionally safe environments — nature, sacred spaces, or quiet rooms with gentle music." },
-            { q: "How do I handle conflict?", a: "You try to avoid it. But when engaged, you seek healing — not winning." },
-            { q: "What scares me, even if I don't say it aloud?", a: "That your love won't be enough. Or worse — that you'll lose yourself in someone else's healing." },
-            { q: "What gives me real joy?", a: "Watching someone bloom after you've helped them heal." },
-            { q: "How do I recharge when I'm drained?", a: "Emotional solitude, nurturing rituals, nature, art, and warm silence." },
-            { q: "How do I block my own success?", a: "By putting others first always — and leaving your own dreams for 'someday.'" },
-            { q: "What kind of work feels most fulfilling?", a: "Therapy, coaching, caregiving, wellness, teaching, holding circles, or simply being a soul companion." },
-            { q: "What must I stop seeking outside of me?", a: "Permission to rest. You deserve peace without proving anything." },
-            { q: "What's one powerful truth I often forget?", a: "Healing is not saving. You are not responsible for everyone's journey." },
-            { q: "Why was I really born?", a: "To be a sacred mirror — showing others how to feel, heal, and become whole." }
-          ],
-          dharmaCompass: [
-            { q: "What kind of work should I be doing in the next 3–5 years?", a: "Mental health, wellness, emotional education, intuitive arts, bodywork, or trauma-informed service." },
-            { q: "What kind of people should I surround myself with now?", a: "Emotionally aware, gentle souls who pour back into you — not just receive." },
-            { q: "What's the biggest trap I must avoid?", a: "Becoming the 'rescuer.' You can love without losing yourself." },
-            { q: "What single mindset shift will change everything for me?", a: "'I am worthy even when I'm not helping.'" },
-            { q: "Where will my success most likely come from?", a: "Through your emotional wisdom — when you make it into a method, offering, or business." },
-            { q: "What one project should I commit to this year?", a: "A safe-space container: a course, retreat, support group, or healing toolkit." },
-            { q: "What do I need to stop apologizing for?", a: "Feeling deeply. Being tender. You are not 'too much.'" },
-            { q: "What should my financial plan look like?", a: "Build slow, sustainable income from your care-based gifts. Anchor healing in value." },
-            { q: "What relationships will shape my future?", a: "Gentle equals. Partners who see your light but don't demand your energy to stay afloat." },
-            { q: "Where should I live or base myself in future?", a: "Calm, nurturing places — nature hubs, spiritual towns, or soft-energy suburbs." },
-            { q: "What's my 10-year dharma if I walk my best path?", a: "You become a wise healer who changes how people feel, love, and live." },
-            { q: "What's the most important thing I should learn next?", a: "Boundaries. Without them, your gifts get drained." },
-            { q: "What will delay my growth?", a: "Overgiving, martyr patterns, saying 'yes' when your body says 'no.'" },
-            { q: "What's one behavior I must master?", a: "Saying 'I need' without guilt. Receiving is part of healing too." },
-            { q: "What kind of partner or collaborator brings out my best?", a: "Someone grounded, emotionally honest, and unafraid of your sensitivity." },
-            { q: "How will I know I'm on the right path?", a: "You'll feel soft, not heavy. Your work will heal you too." },
-            { q: "What role should technology play in my path?", a: "Use tech to reach hearts — therapy platforms, soft branding, soulful podcasts, or conscious content." },
-            { q: "Should I work alone or with a team?", a: "In small, emotionally safe collectives — healing doesn't thrive in chaos." },
-            { q: "What's the biggest opportunity I'm not seeing?", a: "That your pain story — once shared with intention — can be your purpose." },
-            { q: "What is my role in this lifetime?", a: "To restore softness, hold space for healing, and remind the world that feeling is power." }
-          ]
-        };
-
-      case "The Seeker":
-        return {
-          emoji: "🔎",
-          subtitle: "Curious • Reflective • Spiritually Drawn • Forever Evolving",
-          soulMirror: [
-            { q: "Who am I at my core?", a: "A lifelong learner. You're not here to settle — you're here to grow and understand." },
-            { q: "What drives me even when things are tough?", a: "A deep need to make meaning. Even your pain must teach you something." },
-            { q: "What is my biggest internal strength?", a: "Self-inquiry. You're not afraid to question what others accept blindly." },
-            { q: "What tends to hold me back the most?", a: "Overthinking. You often wait for perfect clarity instead of trusting your inner knowing." },
-            { q: "How do I usually respond to change?", a: "With introspection. You need time to make sense of what's shifting." },
-            { q: "What kind of decisions feel most natural to me?", a: "Ones that feel aligned with your values, soul, and truth — not trends." },
-            { q: "What emotions do I need to accept and not run from?", a: "Doubt, loneliness, and longing — these are signs of a deeper call." },
-            { q: "What are my natural talents or gifts?", a: "Philosophical insight, writing, pattern recognition, spiritual reflection, life guidance." },
-            { q: "What patterns keep repeating in my life?", a: "Seeking clarity, diving deep, and pausing just before breakthrough out of fear." },
-            { q: "What kind of people do I attract?", a: "Fellow seekers, lost wanderers, or curious minds — all drawn to your depth." },
-            { q: "Where do I feel most at peace?", a: "In quiet corners — libraries, forests, temples, or long solitary walks." },
-            { q: "How do I handle conflict?", a: "You withdraw to think, not fight. Later, you return with understanding and questions." },
-            { q: "What scares me, even if I don't say it aloud?", a: "That you'll spend life searching and never 'arrive.'" },
-            { q: "What gives me real joy?", a: "A deep conversation. A realization that shifts your soul. Moments of divine clarity." },
-            { q: "How do I recharge when I'm drained?", a: "Alone time. Journaling. Reading something that lights up your soul." },
-            { q: "How do I block my own success?", a: "By stalling at the threshold of action. Reflection becomes a trap when not followed by choice." },
-            { q: "What kind of work feels most fulfilling?", a: "Teaching, research, coaching, writing, counseling, or spiritual mentoring." },
-            { q: "What must I stop seeking outside of me?", a: "Answers. You are the question — and the source of the answer too." },
-            { q: "What's one powerful truth I often forget?", a: "You're not behind — your depth makes your path unique." },
-            { q: "Why was I really born?", a: "To uncover truth — in self, others, and life — and to help light the way for others on their path." }
-          ],
-          dharmaCompass: [
-            { q: "What kind of work should I be doing in the next 3–5 years?", a: "Counseling, education, coaching, spiritual content, writing, research, life design or wisdom-sharing ventures." },
-            { q: "What kind of people should I surround myself with now?", a: "Honest, deep, curious souls who respect your pace and don't force certainty." },
-            { q: "What's the biggest trap I must avoid?", a: "Waiting forever to 'be ready.' Growth happens when you act too." },
-            { q: "What single mindset shift will change everything for me?", a: "'I don't need to have it all figured out to move forward.'" },
-            { q: "Where will my success most likely come from?", a: "From sharing your journey — your questions become tools for others." },
-            { q: "What one project should I commit to this year?", a: "A personal blog, book, course, or podcast that maps what you've learned so far." },
-            { q: "What do I need to stop apologizing for?", a: "Changing your mind. Your truth evolves — that's not indecision, it's growth." },
-            { q: "What should my financial plan look like?", a: "Income from coaching, writing, courses, retreats, or scalable wisdom offerings." },
-            { q: "What relationships will shape my future?", a: "Mentors who challenge you, partners who mirror your growth, and seekers who walk with you." },
-            { q: "Where should I live or base myself in future?", a: "Places that feed your soul — heritage towns, spiritual hills, cultural hubs with space for solitude." },
-            { q: "What's my 10-year dharma if I walk my best path?", a: "You become a respected guide — a thought leader, teacher, or philosopher who lights up minds." },
-            { q: "What's the most important thing I should learn next?", a: "To trust your path even without a map. Let uncertainty be your teacher." },
-            { q: "What will delay my growth?", a: "Analysis paralysis. Constant comparing. Fear of 'doing it wrong.'" },
-            { q: "What's one behavior I must master?", a: "Following through — even when doubt whispers." },
-            { q: "What kind of partner or collaborator brings out my best?", a: "Someone who believes in your potential, brings clarity, and supports your emotional and spiritual quests." },
-            { q: "How will I know I'm on the right path?", a: "You'll feel aligned — even in uncertainty. Life will whisper back in synchronicities." },
-            { q: "What role should technology play in my path?", a: "A bridge — for your ideas, teachings, and community. Think blog, YouTube, podcast, or wisdom-based app." },
-            { q: "Should I work alone or with a team?", a: "Alone for reflection, but with a soulful team to bring your vision to life." },
-            { q: "What's the biggest opportunity I'm not seeing?", a: "That your questions themselves are a gift — people need your reflections." },
-            { q: "What is my role in this lifetime?", a: "To keep asking, keep growing, and to light the deeper path for others — not with certainty, but with soul." }
-          ]
-        };
-
-      case "The Rebel":
-        return {
-          emoji: "⚡",
-          subtitle: "Bold • Nonconformist • Disruptive Truth-Teller • Breaker of Norms",
-          soulMirror: [
-            { q: "Who am I at my core?", a: "A disruptor. You're here to challenge systems, question norms, and carve new paths." },
-            { q: "What drives me even when things are tough?", a: "The fire of justice, truth, and freedom — you can't stand what's fake or forced." },
-            { q: "What is my biggest internal strength?", a: "Fearlessness. You speak up even when your voice shakes." },
-            { q: "What tends to hold me back the most?", a: "Self-sabotage. Sometimes, your defiance turns inward." },
-            { q: "How do I usually respond to change?", a: "You initiate it. You'd rather shake things up than stay stagnant." },
-            { q: "What kind of decisions feel most natural to me?", a: "Ones that feel bold, authentic, and cut through noise or tradition." },
-            { q: "What emotions do I need to accept and not run from?", a: "Anger and restlessness — they're not wrong, but must be channeled." },
-            { q: "What are my natural talents or gifts?", a: "Challenging authority, igniting movements, defending the unheard, radical creativity." },
-            { q: "What patterns keep repeating in my life?", a: "Entering spaces, shaking them up, and either transforming or leaving." },
-            { q: "What kind of people do I attract?", a: "Followers who admire your courage — or enemies who fear your truth." },
-            { q: "Where do I feel most at peace?", a: "In open skies, free schedules, and places where expression isn't censored." },
-            { q: "How do I handle conflict?", a: "You confront it head-on. You often are the one starting the conversation no one else will." },
-            { q: "What scares me, even if I don't say it aloud?", a: "That you'll burn every bridge and end up alone." },
-            { q: "What gives me real joy?", a: "Breaking a pattern. Saying the thing no one else dares. Liberating others." },
-            { q: "How do I recharge when I'm drained?", a: "Through creative bursts, long drives, solo adventures, or ranting to someone who gets you." },
-            { q: "How do I block my own success?", a: "By resisting structure and sabotaging stability out of boredom or fear of control." },
-            { q: "What kind of work feels most fulfilling?", a: "Advocacy, journalism, activism, creative leadership, disruptive startups, or radical art." },
-            { q: "What must I stop seeking outside of me?", a: "Permission to break the rules. You are the rewrite." },
-            { q: "What's one powerful truth I often forget?", a: "Rebellion can also be soft — not every battle requires a roar." },
-            { q: "Why was I really born?", a: "To awaken, provoke, and initiate necessary change — even when it's uncomfortable." }
-          ],
-          dharmaCompass: [
-            { q: "What kind of work should I be doing in the next 3–5 years?", a: "Changemaking roles — social entrepreneurship, ethical disruption, whistleblowing media, activism, or alternative education." },
-            { q: "What kind of people should I surround myself with now?", a: "Brave souls with clear ethics — allies, not enablers." },
-            { q: "What's the biggest trap I must avoid?", a: "Being rebellious just to rebel. Without purpose, it's self-destructive." },
-            { q: "What single mindset shift will change everything for me?", a: "\"Disruption is a sacred responsibility.\"" },
-            { q: "Where will my success most likely come from?", a: "From building or exposing truth-based systems that empower others." },
-            { q: "What one project should I commit to this year?", a: "A documentary, podcast, social startup, or expose-style platform that gives voice to injustice or untold truths." },
-            { q: "What do I need to stop apologizing for?", a: "Being intense. The world needs intensity — when it's heart-led." },
-            { q: "What should my financial plan look like?", a: "Income from independent ventures, ethical disruption, or cause-based brands — not conformity." },
-            { q: "What relationships will shape my future?", a: "Collaborations with clear boundaries, mutual respect, and shared purpose." },
-            { q: "Where should I live or base myself in future?", a: "Urban jungles, creative hubs, or off-grid communities — wherever you feel mentally and ideologically free." },
-            { q: "What's my 10-year dharma if I walk my best path?", a: "You become a social reformer, truth-speaker, or cultural innovator who sparks mass shifts." },
-            { q: "What's the most important thing I should learn next?", a: "How to build after the breakdown. Destruction is just phase one." },
-            { q: "What will delay my growth?", a: "Cynicism, anger loops, isolation, or burning bridges that needed mending." },
-            { q: "What's one behavior I must master?", a: "Focus. Channeling your energy instead of scattering it in constant reaction." },
-            { q: "What kind of partner or collaborator brings out my best?", a: "A grounded, non-judgmental anchor — someone who lets you lead, but gently checks your storm." },
-            { q: "How will I know I'm on the right path?", a: "You'll feel free, seen, and purposeful — not just provocative." },
-            { q: "What role should technology play in my path?", a: "Amplifier of truth — use platforms for social voice, independent media, ethical hacking, or protest tools." },
-            { q: "Should I work alone or with a team?", a: "You thrive leading small, loyal teams with shared values." },
-            { q: "What's the biggest opportunity I'm not seeing?", a: "That you can build better systems — not just tear old ones down." },
-            { q: "What is my role in this lifetime?", a: "To question, challenge, and liberate — so that something more honest can rise." }
-          ]
-        };
-
-      case "The Mystic":
-        return {
-          emoji: "🌙",
-          subtitle: "Spiritual • Introspective • Energetically Aware • Seeker of the Sacred",
-          soulMirror: [
-            { q: "Who am I at my core?", a: "A vessel of presence. You're tuned to energies others can't name, here to walk between worlds." },
-            { q: "What drives me even when things are tough?", a: "The longing to understand the unseen — the soul, the divine, the why beneath it all." },
-            { q: "What is my biggest internal strength?", a: "Intuition. You know things without proof — and you're usually right." },
-            { q: "What tends to hold me back the most?", a: "Disconnection. You float so high sometimes, you forget to root down." },
-            { q: "How do I usually respond to change?", a: "Inwardly. You withdraw, reflect, sense the shift before acting." },
-            { q: "What kind of decisions feel most natural to me?", a: "Ones based on energy, dreams, and inner guidance — not logic or trends." },
-            { q: "What emotions do I need to accept and not run from?", a: "Isolation, melancholy, spiritual fatigue — they're part of your path." },
-            { q: "What are my natural talents or gifts?", a: "Energy sensing, spiritual insight, healing touch, dream decoding, intuitive clarity." },
-            { q: "What patterns keep repeating in my life?", a: "Being misunderstood, pulled toward the esoteric, or burning out from absorbing too much." },
-            { q: "What kind of people do I attract?", a: "Seekers, broken healers, or lost wanderers — drawn to your silent wisdom." },
-            { q: "Where do I feel most at peace?", a: "In stillness — temples, forests, under moonlight, or in sacred solitude." },
-            { q: "How do I handle conflict?", a: "You often avoid it — unless your inner compass demands truth." },
-            { q: "What scares me, even if I don't say it aloud?", a: "That you'll lose yourself completely — or that your gifts aren't of this world." },
-            { q: "What gives me real joy?", a: "Moments of transcendence — sacred music, rituals, or pure energetic connection." },
-            { q: "How do I recharge when I'm drained?", a: "Deep rest. Silence. Ceremony. Spiritual journaling. Nature immersion." },
-            { q: "How do I block my own success?", a: "By hiding your gifts out of fear of being judged or \"too much.\"" },
-            { q: "What kind of work feels most fulfilling?", a: "Healing, intuitive guidance, spiritual mentoring, energy work, soul artistry." },
-            { q: "What must I stop seeking outside of me?", a: "Proof. You don't need permission to trust the unseen." },
-            { q: "What's one powerful truth I often forget?", a: "You're not here to be understood by everyone — just to embody your frequency." },
-            { q: "Why was I really born?", a: "To bridge the spiritual and human — to remind others what's sacred and eternal." }
-          ],
-          dharmaCompass: [
-            { q: "What kind of work should I be doing in the next 3–5 years?", a: "Spiritual coaching, energy healing, dreamwork, intuitive art, or mystic teaching — online or in quiet spaces." },
-            { q: "What kind of people should I surround myself with now?", a: "Sensitive, soul-aware beings who nourish your energy instead of draining it." },
-            { q: "What's the biggest trap I must avoid?", a: "Escapism. You're spiritual — but you still have a human life to live." },
-            { q: "What single mindset shift will change everything for me?", a: "\"My energy is sacred, and I must protect it with boundaries.\"" },
-            { q: "Where will my success most likely come from?", a: "From embodying your frequency — not pushing, but attracting through depth." },
-            { q: "What one project should I commit to this year?", a: "A mystic offering: a journal, oracle deck, ritual kit, sacred space, or healing circle." },
-            { q: "What do I need to stop apologizing for?", a: "Being \"too sensitive,\" \"too quiet,\" or \"too strange.\" Your frequency is your gift." },
-            { q: "What should my financial plan look like?", a: "Heart-led income: soul sessions, digital retreats, slow scaling, and sacred pricing." },
-            { q: "What relationships will shape my future?", a: "Spiritually mature partners, wise elders, and nonjudgmental mirrors of your light." },
-            { q: "Where should I live or base myself in future?", a: "Coastal towns, spiritual hubs, mountains, or quiet sacred homes — think Rishikesh, Bali, Dharamshala, Ubud." },
-            { q: "What's my 10-year dharma if I walk my best path?", a: "You become a soul guide — someone others turn to when life loses meaning." },
-            { q: "What's the most important thing I should learn next?", a: "How to ground your gifts into structure — so your offerings don't dissolve." },
-            { q: "What will delay my growth?", a: "Hiding. Over-isolating. Letting fear or cynicism shrink your light." },
-            { q: "What's one behavior I must master?", a: "Consistency — showing up even when you're \"not in the flow.\"" },
-            { q: "What kind of partner or collaborator brings out my best?", a: "A stable, patient, deeply spiritual soul who honors silence and energy." },
-            { q: "How will I know I'm on the right path?", a: "Life will feel like prayer. Others will find peace in your presence." },
-            { q: "What role should technology play in my path?", a: "A soft gateway: meditative platforms, spiritual YouTube, healing audio, or digital mystic spaces." },
-            { q: "Should I work alone or with a team?", a: "Alone for vision. With soul-aligned collaborators for expansion." },
-            { q: "What's the biggest opportunity I'm not seeing?", a: "That people are ready for your magic — you just need to shine it quietly." },
-            { q: "What is my role in this lifetime?", a: "To anchor spirit in matter — and awaken sacred remembrance in others." }
-          ]
-        };
-
-      case "The Visionary":
-        return {
-          emoji: "🌠",
-          subtitle: "Futuristic • Big Thinker • Possibility-Oriented • Builder of New Realities",
-          soulMirror: [
-            { q: "Who am I at my core?", a: "A bridge to tomorrow. You see what's possible — often long before others do." },
-            { q: "What drives me even when things are tough?", a: "The hope that something better can be built. You live to design a new way forward." },
-            { q: "What is my biggest internal strength?", a: "Vision. You think beyond limits — connecting ideas, people, and dreams." },
-            { q: "What tends to hold me back the most?", a: "Overextension. So many ideas, too little grounding." },
-            { q: "How do I usually respond to change?", a: "Excitedly. Change is your playground — but only when you're the one steering." },
-            { q: "What kind of decisions feel most natural to me?", a: "Bold, expansive choices that point toward growth and innovation." },
-            { q: "What emotions do I need to accept and not run from?", a: "Frustration and restlessness — they're signs your vision needs movement." },
-            { q: "What are my natural talents or gifts?", a: "Strategy, ideation, communication, system design, storytelling, future-building." },
-            { q: "What patterns keep repeating in my life?", a: "Starting bold initiatives, getting bored midway, needing fresh excitement." },
-            { q: "What kind of people do I attract?", a: "Those seeking inspiration, mentorship, or direction. Or those who want to \"ride your wave.\"" },
-            { q: "Where do I feel most at peace?", a: "In idea-rich, stimulating environments — think innovation hubs, think tanks, or spirited debates." },
-            { q: "How do I handle conflict?", a: "You rise above it — you'd rather reframe or reimagine than argue." },
-            { q: "What scares me, even if I don't say it aloud?", a: "That your dreams won't materialize. That your mind is too \"out there.\"" },
-            { q: "What gives me real joy?", a: "Seeing your ideas take root in real life. Watching others light up from your vision." },
-            { q: "How do I recharge when I'm drained?", a: "By being around expansive thinkers — or immersing in inspiring, future-forward content." },
-            { q: "How do I block my own success?", a: "By refusing to focus. You often abandon what's working for \"what's next.\"" },
-            { q: "What kind of work feels most fulfilling?", a: "Innovation, leadership, storytelling, strategic consulting, social design, or anything that reshapes systems." },
-            { q: "What must I stop seeking outside of me?", a: "Constant novelty. Innovation is good — but structure sustains it." },
-            { q: "What's one powerful truth I often forget?", a: "You don't have to do it all at once. Your dream has seasons." },
-            { q: "Why was I really born?", a: "To imagine what's possible — and inspire others to believe it's achievable too." }
-          ],
-          dharmaCompass: [
-            { q: "What kind of work should I be doing in the next 3–5 years?", a: "Social entrepreneurship, tech innovation, policy influence, conscious leadership, or purpose-led branding." },
-            { q: "What kind of people should I surround myself with now?", a: "Doers who help ground your ideas, and thinkers who expand them without ego." },
-            { q: "What's the biggest trap I must avoid?", a: "Idea hopping. Innovation without implementation leads to burnout." },
-            { q: "What single mindset shift will change everything for me?", a: "\"A clear focus is not limitation — it's power.\"" },
-            { q: "Where will my success most likely come from?", a: "From building systems, communities, or movements that solve real problems with visionary design." },
-            { q: "What one project should I commit to this year?", a: "A bold initiative: platform, podcast, incubator, education model, or conscious product line." },
-            { q: "What do I need to stop apologizing for?", a: "Being ahead of your time. That's a gift — not a flaw." },
-            { q: "What should my financial plan look like?", a: "Scalable, diverse revenue — through content, tech tools, intellectual property, or ecosystem design." },
-            { q: "What relationships will shape my future?", a: "Collaborators who see your vision and bring in accountability, grounding, and amplification." },
-            { q: "Where should I live or base myself in future?", a: "Global innovation hubs or visionary eco-communities. Think: Auroville, Bangalore, Berlin, Dubai, Silicon Valley, or your own designed space." },
-            { q: "What's my 10-year dharma if I walk my best path?", a: "You become a transformational leader — shifting culture, policy, or industry norms with soul." },
-            { q: "What's the most important thing I should learn next?", a: "Patience with process. Visionaries also need long-game stamina." },
-            { q: "What will delay my growth?", a: "Refusing help. Overdoing. Fearing boredom." },
-            { q: "What's one behavior I must master?", a: "Finishing — closing loops to build trust with yourself and your tribe." },
-            { q: "What kind of partner or collaborator brings out my best?", a: "Someone structured, supportive, and emotionally intelligent — who believes in you without fanfare." },
-            { q: "How will I know I'm on the right path?", a: "You'll feel simultaneously stretched and clear. Momentum will feel aligned, not frantic." },
-            { q: "What role should technology play in my path?", a: "Your amplifier. From platforms to tools to content — it's your bridge to global scale." },
-            { q: "Should I work alone or with a team?", a: "You need a high-autonomy team that can work independently while scaling your vision." },
-            { q: "What's the biggest opportunity I'm not seeing?", a: "That people are waiting for your idea — if you can just simplify and share it now." },
-            { q: "What is my role in this lifetime?", a: "To see further, dream bigger, and build new worlds from the light of your mind." }
-          ]
-        };
-
-      default:
-        return {
-          emoji: "🌟",
-          subtitle: "Unique • Powerful • Transformative • Your Own Path",
-          soulMirror: [
-            { q: "Who am I at my core?", a: "A unique soul with your own special gifts waiting to be discovered." },
-            { q: "What drives me even when things are tough?", a: "Your inner knowing that you have something important to contribute." }
-          ],
-          dharmaCompass: [
-            { q: "What kind of work should I be doing in the next 3–5 years?", a: "Work that aligns with your authentic self and natural talents." },
-            { q: "What's the biggest opportunity I'm not seeing?", a: "The power of embracing your unique archetype fully." }
-          ]
-        };
-    }
+    return content[archetype] || null;
   };
 
   const content = getArchetypeContent(archetype);
 
+  if (!content) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-gray-600">Content for {archetype} is not yet available.</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="space-y-4">
-      {/* Header */}
-      <Card className="border-indigo-200 bg-gradient-to-r from-indigo-50 to-purple-50">
-        <CardHeader className="text-center pb-3">
-          <div className="text-4xl mb-2">{content.emoji}</div>
-          <CardTitle className="text-xl font-bold text-indigo-900">{archetype}</CardTitle>
-          <p className="text-sm text-indigo-700 font-medium">{content.subtitle}</p>
-        </CardHeader>
-      </Card>
+    <div className="space-y-8">
+      {/* Header Section */}
+      <div className="text-center space-y-4">
+        <div className="text-6xl">{content.emoji}</div>
+        <h1 className="text-3xl font-bold text-gray-900">{archetype}</h1>
+        <p className="text-lg text-gray-600 font-medium">{content.subtitle}</p>
+      </div>
 
       {/* Soul Mirror Section */}
-      <Card className="border-blue-200 bg-gradient-to-r from-blue-50 to-cyan-50">
-        <CardHeader className="pb-3">
-          <CardTitle className="text-lg flex items-center space-x-2">
-            <span className="text-xl">🌌</span>
-            <span>Soul Mirror – Deep Self-Discovery</span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          {content.soulMirror.slice(0, 10).map((item, index) => (
-            <div key={index} className="bg-white/60 rounded-lg p-3">
-              <h4 className="font-medium text-blue-900 text-sm mb-1">{item.q}</h4>
-              <p className="text-xs text-gray-700 leading-relaxed">{item.a}</p>
-            </div>
-          ))}
-          {content.soulMirror.length > 10 && (
-            <div className="bg-blue-100 rounded-lg p-3 text-center">
-              <p className="text-xs text-blue-700">
-                📖 Get your complete 20-question Soul Mirror in your personal reading
-              </p>
-            </div>
-          )}
-        </CardContent>
-      </Card>
+      <div className="bg-gradient-to-br from-purple-50 to-indigo-100 rounded-2xl p-6 border border-purple-200">
+        <h2 className="text-2xl font-bold text-purple-900 mb-6 flex items-center">
+          <span className="text-3xl mr-3">🌌</span>
+          Soul Mirror – 20 Deep Self-Discovery Answers
+        </h2>
+        <div className="grid gap-4">
+          {content.soulMirror.map((answer: string, index: number) => {
+            const questions = [
+              "Who am I at my core?",
+              "What drives me even when things are tough?",
+              "What is my biggest internal strength?",
+              "What tends to hold me back the most?",
+              "How do I usually respond to change?",
+              "What kind of decisions feel most natural to me?",
+              "What emotions do I need to accept and not run from?",
+              "What are my natural talents or gifts?",
+              "What patterns keep repeating in my life?",
+              "What kind of people do I attract?",
+              "Where do I feel most at peace?",
+              "How do I handle conflict?",
+              "What scares me, even if I don't say it aloud?",
+              "What gives me real joy?",
+              "How do I recharge when I'm drained?",
+              "How do I block my own success?",
+              "What kind of work feels most fulfilling?",
+              "What must I stop seeking outside of me?",
+              "What's one powerful truth I often forget?",
+              "Why was I really born?"
+            ];
+
+            return (
+              <div key={index} className="bg-white/70 rounded-lg p-4 border border-purple-100">
+                <h3 className="font-semibold text-purple-800 mb-2 text-sm">
+                  {questions[index]}
+                </h3>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  💫 {answer}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
 
       {/* Dharma Compass Section */}
-      <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50">
-        <CardHeader className="pb-3">
-          <CardTitle className="text-lg flex items-center space-x-2">
-            <span className="text-xl">🌠</span>
-            <span>Dharma Compass – Future Guidance</span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          {content.dharmaCompass.slice(0, 10).map((item, index) => (
-            <div key={index} className="bg-white/60 rounded-lg p-3">
-              <h4 className="font-medium text-purple-900 text-sm mb-1">{item.q}</h4>
-              <p className="text-xs text-gray-700 leading-relaxed">{item.a}</p>
-            </div>
-          ))}
-          {content.dharmaCompass.length > 10 && (
-            <div className="bg-purple-100 rounded-lg p-3 text-center">
-              <p className="text-xs text-purple-700">
-                🧭 Get your complete 20-question Dharma Compass in your personal reading
-              </p>
-            </div>
-          )}
-        </CardContent>
-      </Card>
+      <div className="bg-gradient-to-br from-amber-50 to-orange-100 rounded-2xl p-6 border border-amber-200">
+        <h2 className="text-2xl font-bold text-amber-900 mb-6 flex items-center">
+          <span className="text-3xl mr-3">🌠</span>
+          Dharma Compass – 20 Future-Facing Karmic Answers
+        </h2>
+        <div className="grid gap-4">
+          {content.dharmaCompass.map((answer: string, index: number) => {
+            const questions = [
+              "What kind of work should I be doing in the next 3–5 years?",
+              "What kind of people should I surround myself with now?",
+              "What's the biggest trap I must avoid?",
+              "What single mindset shift will change everything for me?",
+              "Where will my success most likely come from?",
+              "What one project should I commit to this year?",
+              "What do I need to stop apologizing for?",
+              "What should my financial plan look like?",
+              "What relationships will shape my future?",
+              "Where should I live or base myself in future?",
+              "What's my 10-year dharma if I walk my best path?",
+              "What's the most important thing I should learn next?",
+              "What will delay my growth?",
+              "What's one behavior I must master?",
+              "What kind of partner or collaborator brings out my best?",
+              "How will I know I'm on the right path?",
+              "What role should technology play in my path?",
+              "Should I work alone or with a team?",
+              "What's the biggest opportunity I'm not seeing?",
+              "What is my role in this lifetime?"
+            ];
+
+            return (
+              <div key={index} className="bg-white/70 rounded-lg p-4 border border-amber-100">
+                <h3 className="font-semibold text-amber-800 mb-2 text-sm">
+                  {questions[index]}
+                </h3>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  🎯 {answer}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Call to Action */}
+      <div className="bg-gradient-to-br from-rose-50 to-pink-100 rounded-2xl p-6 border border-rose-200 text-center">
+        <div className="text-4xl mb-4">✨</div>
+        <h3 className="text-xl font-bold text-rose-900 mb-3">
+          Ready to Dive Deeper Into Your {archetype} Journey?
+        </h3>
+        <p className="text-gray-700 mb-4">
+          This is just the beginning. Get personalized guidance for your unique path and specific life questions.
+        </p>
+        <button className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105">
+          Get Your Personal Reading
+        </button>
+      </div>
     </div>
   );
 };
