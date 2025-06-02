@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, Star, Brain, Target, Heart, Zap, Shield, Lightbulb, Briefcase, MessageCircle, Compass } from "lucide-react";
+import { ArrowLeft, Star, Brain, Target, Heart, Zap, Shield, Lightbulb, Briefcase, MessageCircle, Compass, Mirror } from "lucide-react";
 import { getArchetypeData } from '@/data/archetypeData';
 import { generatePsychologicalProfile } from '@/utils/psychologicalProfile';
 import { testArchetypeGeneration } from '@/utils/archetypeTestRunner';
@@ -28,6 +27,7 @@ interface MobileAstrologyReportProps {
 
 const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps) => {
   const [activeTab, setActiveTab] = useState("profile");
+  const [activeSelfFutureTab, setActiveSelfFutureTab] = useState("soulmirror");
 
   // Run archetype test when component mounts
   useEffect(() => {
@@ -209,9 +209,86 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
             <CallToActionCard />
           </TabsContent>
 
-          {/* SELF + FUTURE Tab with comprehensive content */}
+          {/* SELF + FUTURE Tab with nested tabs for Soul Mirror and Dharma Compass */}
           <TabsContent value="selffuture" className="space-y-4 mt-4">
-            <SelfFutureContent archetype={profile.archetype} />
+            <Card className="border-indigo-200 bg-gradient-to-r from-indigo-50 to-purple-50">
+              <CardContent className="p-0">
+                <Tabs value={activeSelfFutureTab} onValueChange={setActiveSelfFutureTab} className="w-full">
+                  <TabsList className="grid w-full grid-cols-2 h-auto bg-transparent rounded-t-lg">
+                    <TabsTrigger value="soulmirror" className="data-[state=active]:bg-indigo-100 rounded-tl-lg rounded-tr-none rounded-bl-none rounded-br-none py-3 touch-manipulation">
+                      <div className="flex items-center space-x-1">
+                        <Mirror className="h-4 w-4 text-indigo-600" />
+                        <span className="text-sm font-semibold">Soul Mirror</span>
+                      </div>
+                    </TabsTrigger>
+                    <TabsTrigger value="dharma" className="data-[state=active]:bg-purple-100 rounded-tr-lg rounded-tl-none rounded-bl-none rounded-br-none py-3 touch-manipulation">
+                      <div className="flex items-center space-x-1">
+                        <Compass className="h-4 w-4 text-purple-600" />
+                        <span className="text-sm font-semibold">Dharma Compass</span>
+                      </div>
+                    </TabsTrigger>
+                  </TabsList>
+
+                  {/* Soul Mirror Tab Content */}
+                  <TabsContent value="soulmirror" className="p-4 bg-indigo-50 rounded-b-lg rounded-tr-lg">
+                    <div className="space-y-4">
+                      <div className="bg-white/60 rounded-lg p-3 mb-4">
+                        <p className="text-indigo-900 text-sm">
+                          These questions are designed to help you understand your true self and core essence. Reflect on them deeply.
+                        </p>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        {archetypeData.selfDiscoveryQuestions.slice(0, 20).map((question, index) => (
+                          <Card key={index} className="border-indigo-200 bg-white/80">
+                            <CardContent className="p-3">
+                              <div className="flex">
+                                <div className="mr-3 bg-indigo-100 rounded-full h-6 w-6 flex items-center justify-center text-xs font-bold text-indigo-800">
+                                  {index + 1}
+                                </div>
+                                <p className="text-gray-800 text-sm">{question}</p>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="mt-6">
+                      <CallToActionCard />
+                    </div>
+                  </TabsContent>
+
+                  {/* Dharma Compass Tab Content */}
+                  <TabsContent value="dharma" className="p-4 bg-purple-50 rounded-b-lg rounded-tl-lg">
+                    <div className="space-y-4">
+                      <div className="bg-white/60 rounded-lg p-3 mb-4">
+                        <p className="text-purple-900 text-sm">
+                          These questions help illuminate your life purpose and future path. Take time to consider each one carefully.
+                        </p>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        {archetypeData.futurePathQuestions.slice(0, 20).map((question, index) => (
+                          <Card key={index} className="border-purple-200 bg-white/80">
+                            <CardContent className="p-3">
+                              <div className="flex">
+                                <div className="mr-3 bg-purple-100 rounded-full h-6 w-6 flex items-center justify-center text-xs font-bold text-purple-800">
+                                  {index + 1}
+                                </div>
+                                <p className="text-gray-800 text-sm">{question}</p>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="mt-6">
+                      <CallToActionCard />
+                    </div>
+                  </TabsContent>
+                </Tabs>
+              </CardContent>
+            </Card>
           </TabsContent>
 
           {/* Vedic Insights Tab */}
