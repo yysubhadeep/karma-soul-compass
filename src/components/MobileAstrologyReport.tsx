@@ -1,11 +1,11 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, Star, Brain, Target, Heart, Zap, Shield, Lightbulb, Briefcase, MessageCircle } from "lucide-react";
 import { getArchetypeData } from '@/data/archetypeData';
 import { generatePsychologicalProfile } from '@/utils/psychologicalProfile';
+import { testArchetypeGeneration } from '@/utils/archetypeTestRunner';
 import PersonalInfoCard from './PersonalInfoCard';
 import ArchetypeCard from './ArchetypeCard';
 import CallToActionCard from './CallToActionCard';
@@ -25,6 +25,12 @@ interface MobileAstrologyReportProps {
 
 const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps) => {
   const [activeTab, setActiveTab] = useState("profile");
+
+  // Run archetype test when component mounts
+  useEffect(() => {
+    console.log("Running archetype generation test...");
+    testArchetypeGeneration();
+  }, []);
 
   const profile = generatePsychologicalProfile(formData);
   const archetypeData = getArchetypeData(profile.archetype);
