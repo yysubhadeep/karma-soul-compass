@@ -43,7 +43,7 @@ const EASTERN_ARCHETYPES = {
     nakshatras: ['Hasta', 'Uttara Phalguni', 'Uttara Ashadha', 'Shravana'],
     planets: ['Saturn', 'Mars', 'Mercury'],
     houses: [6, 10, 12], // Service, career, sacrifice
-    message: 'Your path is through selfless action and dedicated service. Ancient Vedic wisdom guides you to find fulfillment in duty and righteous work that serves the collective good.'
+    message: 'Your healing path is through selfless action and dedicated service. Ancient Vedic sciences guide you to find fulfillment in duty and righteous work that serves collective healing.'
   },
   'Jnana Yogi': {
     keywords: ['wisdom', 'knowledge', 'philosophy', 'truth', 'study', 'understanding'],
@@ -51,7 +51,7 @@ const EASTERN_ARCHETYPES = {
     nakshatras: ['Purva Ashadha', 'Ardra', 'Mula', 'Shatabhisha'],
     planets: ['Jupiter', 'Mercury', 'Ketu'],
     houses: [9, 3, 5], // Higher learning, communication, wisdom
-    message: 'Your liberation comes through knowledge and philosophical understanding. Vedic sciences reveal that you seek truth through study, contemplation, and inner wisdom for future-readiness.'
+    message: 'Your transformation comes through knowledge and philosophical understanding. Vedic sciences reveal that you heal through study, contemplation, and inner wisdom for future-readiness.'
   },
   'Bhakti Yogi': {
     keywords: ['devotion', 'love', 'surrender', 'emotion', 'heart', 'faith'],
@@ -59,7 +59,7 @@ const EASTERN_ARCHETYPES = {
     nakshatras: ['Pushya', 'Revati', 'Purva Phalguni', 'Rohini'],
     planets: ['Moon', 'Venus', 'Jupiter'],
     houses: [4, 5, 12], // Heart, devotion, surrender
-    message: 'Your path is through pure devotion and surrender of the heart. Ancient wisdom shows that love, faith, and emotional intelligence guide your spiritual journey toward psychological alignment.'
+    message: 'Your healing path is through pure devotion and surrender of the heart. Ancient wisdom shows that love, faith, and emotional intelligence guide your journey toward psychological alignment.'
   },
   'Tantra Mystic': {
     keywords: ['occult', 'mystery', 'energy', 'transformation', 'esoteric', 'power'],
@@ -67,7 +67,7 @@ const EASTERN_ARCHETYPES = {
     nakshatras: ['Jyeshtha', 'Mula', 'Ardra', 'Shatabhisha', 'Ashlesha'],
     planets: ['Mars', 'Rahu', 'Ketu', 'Pluto'],
     houses: [8, 12, 4], // Occult, hidden knowledge, inner depths
-    message: 'You work with hidden energies and esoteric knowledge. Vedic tradition reveals your power comes from understanding the deeper mysteries of existence and transformational healing.'
+    message: 'You heal through working with hidden energies and esoteric knowledge. Vedic tradition reveals your power comes from understanding deeper mysteries and transformational healing arts.'
   },
   'Raj Rishi': {
     keywords: ['leadership', 'wisdom', 'royal', 'authority', 'guidance', 'noble'],
@@ -75,7 +75,7 @@ const EASTERN_ARCHETYPES = {
     nakshatras: ['Magha', 'Purva Phalguni', 'Purva Ashadha', 'Bharani'],
     planets: ['Sun', 'Jupiter', 'Mars'],
     houses: [1, 5, 9, 10], // Self, authority, wisdom, status
-    message: 'You are born to lead with wisdom and righteousness. Vedic sciences show your authority comes from inner nobility, spiritual understanding, and divine connection for collective guidance.'
+    message: 'You heal by leading with wisdom and righteousness. Vedic sciences show your healing comes from inner nobility, spiritual understanding, and divine connection for collective guidance.'
   },
   'Artha Seeker': {
     keywords: ['wealth', 'material', 'resources', 'building', 'security', 'practical'],
@@ -83,7 +83,7 @@ const EASTERN_ARCHETYPES = {
     nakshatras: ['Rohini', 'Krittika', 'Uttara Phalguni', 'Hasta', 'Dhanishta'],
     planets: ['Venus', 'Mercury', 'Saturn'],
     houses: [2, 6, 10, 11], // Wealth, work, career, gains
-    message: 'Your dharma involves creating material prosperity and security. Vedic wisdom teaches that you build resources that serve higher purposes, balancing material success with spiritual growth.'
+    message: 'Your healing involves creating material prosperity and security. Vedic wisdom teaches that you heal by building resources that serve higher purposes, balancing material success with spiritual growth.'
   },
   'Vairagi Wanderer': {
     keywords: ['detachment', 'renunciation', 'solitude', 'freedom', 'wandering', 'ascetic'],
@@ -91,7 +91,7 @@ const EASTERN_ARCHETYPES = {
     nakshatras: ['Shatabhisha', 'Purva Bhadrapada', 'Uttara Bhadrapada', 'Swati'],
     planets: ['Saturn', 'Ketu', 'Rahu'],
     houses: [12, 9, 3], // Liberation, wandering, detachment
-    message: 'Your path is through detachment and spiritual wandering. Ancient teachings show you find freedom by releasing worldly attachments and seeking higher truth for ultimate liberation.'
+    message: 'Your healing path is through detachment and spiritual wandering. Ancient teachings show you find healing by releasing worldly attachments and seeking higher truth for ultimate liberation.'
   },
   'Dharma Warrior': {
     keywords: ['justice', 'protection', 'fight', 'righteousness', 'courage', 'defender'],
@@ -99,7 +99,7 @@ const EASTERN_ARCHETYPES = {
     nakshatras: ['Bharani', 'Magha', 'Anuradha', 'Mrigashira'],
     planets: ['Mars', 'Sun', 'Ketu'],
     houses: [1, 6, 8, 11], // Self, enemies, transformation, groups
-    message: 'You are called to fight for righteousness and protect the innocent. Vedic tradition reveals your strength and courage serve divine principles and moral causes for collective justice.'
+    message: 'You heal by fighting for righteousness and protecting the innocent. Vedic tradition reveals your strength and courage serve divine principles and moral healing for collective justice.'
   },
   'Lila Player': {
     keywords: ['joy', 'creativity', 'play', 'art', 'beauty', 'expression', 'celebration'],
@@ -107,7 +107,7 @@ const EASTERN_ARCHETYPES = {
     nakshatras: ['Chitra', 'Rohini', 'Punarvasu', 'Purva Phalguni', 'Swati'],
     planets: ['Venus', 'Moon', 'Mercury'],
     houses: [5, 3, 2], // Creativity, expression, beauty
-    message: 'Life is divine play for you. Through joy, creativity, and artistic expression, you touch the sacred in everyday life and bring beauty to the world through Vedic understanding of cosmic dance.'
+    message: 'Life is divine play for your healing. Through joy, creativity, and artistic expression, you touch the sacred in everyday life and bring healing beauty to the world through Vedic understanding.'
   }
 };
 
@@ -280,7 +280,7 @@ function calculateArchetypeScores(
 
 export function calculateEasternArchetype(formData: BirthData): EasternArchetypeResult {
   try {
-    console.log('Calculating Vedic archetype for:', formData);
+    console.log('Calculating Vedic healing archetype for:', formData);
     
     // Convert IST to UTC
     const utcDate = convertISTtoUTC(formData.dateOfBirth, formData.timeOfBirth);
@@ -320,7 +320,7 @@ export function calculateEasternArchetype(formData: BirthData): EasternArchetype
     const secondaryArchetype = sortedArchetypes[1][0];
     
     const vedicMessage = EASTERN_ARCHETYPES[primaryArchetype as keyof typeof EASTERN_ARCHETYPES]?.message || 
-                        'Your path reveals itself through ancient Vedic wisdom for future-readiness and psychological alignment.';
+                        'Your healing path reveals itself through ancient Vedic sciences for future-readiness and psychological alignment.';
     
     const result = {
       primaryArchetype,
@@ -333,11 +333,11 @@ export function calculateEasternArchetype(formData: BirthData): EasternArchetype
       scores
     };
     
-    console.log('Final Vedic result:', result);
+    console.log('Final Vedic healing result:', result);
     return result;
     
   } catch (error) {
-    console.error('Error calculating Vedic archetype:', error);
+    console.error('Error calculating Vedic healing archetype:', error);
     // Fallback with your original archetypes
     const fallbackArchetypes = Object.keys(EASTERN_ARCHETYPES);
     const randomIndex = Math.floor(Math.random() * fallbackArchetypes.length);
@@ -349,7 +349,7 @@ export function calculateEasternArchetype(formData: BirthData): EasternArchetype
       nakshatra: 'Revati',
       lagna: 'Cancer',
       atmakaraka: 'Moon',
-      vedicMessage: 'Your path reveals itself through ancient Vedic wisdom for future-readiness and psychological alignment.',
+      vedicMessage: 'Your healing path reveals itself through ancient Vedic sciences for future-readiness and psychological alignment.',
       scores: {}
     };
   }

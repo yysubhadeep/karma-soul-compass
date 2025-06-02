@@ -71,10 +71,10 @@ const EasternKarmaForm = () => {
 
     setLoading(true);
     
-    // Simulate Eastern KarmaMap generation with sidereal calculations
+    // Simulate Eastern KarmaMap generation with Vedic sciences
     setTimeout(() => {
       setLoading(false);
-      toast.success("🕉️ Your Sacred Eastern KarmaArchetype has been calculated!");
+      toast.success("🕉️ Your Sacred Healing Archetype has been calculated!");
       // Navigate to eastern report page with form data
       navigate('/eastern-report', { state: { formData, isEastern: true } });
     }, 3000);
@@ -85,7 +85,7 @@ const EasternKarmaForm = () => {
       <Card className="bg-white/95 backdrop-blur-sm border-orange-200 shadow-lg">
         <CardHeader className="text-center pb-4 px-4 pt-6">
           <CardTitle className="text-lg sm:text-xl font-bold text-gray-900 leading-tight">
-            {step === 1 && "🕉️ Get Your Sacred KarmaArchetype"}
+            {step === 1 && "🕉️ Begin Your Sacred Journey"}
             {step === 2 && "📧 Verify Your Email"}
             {step === 3 && "🗓️ Your Birth Details"}
           </CardTitle>
@@ -194,7 +194,7 @@ const EasternKarmaForm = () => {
                     className="h-12 text-base border-2 border-gray-200 focus:border-orange-400 rounded-lg pr-10"
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    🌍 Exact location needed for precise sidereal calculations
+                    🌍 Location needed for authentic Vedic calculations
                   </p>
                 </div>
               </div>
@@ -204,11 +204,11 @@ const EasternKarmaForm = () => {
                 disabled={loading}
                 className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-bold h-14 text-base mt-6 rounded-lg touch-manipulation"
               >
-                {loading ? "Calculating with Swiss Ephemeris..." : "🕉️ Calculate My Sacred Archetype"}
+                {loading ? "Analyzing with Vedic Sciences..." : "🕉️ Discover My Healing Archetype"}
               </Button>
               
               <div className="text-xs text-gray-500 text-center mt-4 px-2 leading-relaxed">
-                Your data is secure and will only be used for precise sidereal calculations and sacred archetype mapping.
+                Your data is secure and will only be used for authentic Vedic sciences calculations and healing insights.
               </div>
             </>
           )}

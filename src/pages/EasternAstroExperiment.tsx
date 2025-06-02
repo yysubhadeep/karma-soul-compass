@@ -28,13 +28,13 @@ const EasternAstroExperiment = () => {
         <div className="text-center space-y-6 max-w-4xl mx-auto">
           <div>
             <span className="inline-block bg-gradient-to-r from-orange-100 to-red-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-orange-200">
-              🕉️ Ancient Vedic Wisdom Meets Modern Precision
+              🕉️ Ancient Vedic Sciences for Modern Healing
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Discover Your Sacred <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Vedic Archetype</span>
+              Heal & Transform with <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Sacred Vedic Sciences</span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-700 leading-relaxed mb-8 max-w-3xl mx-auto">
-              Experience the most authentic archetype mapping using 5,000-year-old Vedic astrology, sidereal calculations, and time-tested Eastern wisdom traditions.
+              Unlock your healing potential using 5,000-year-old Vedic sciences. Achieve psychological alignment and future-readiness through personalized archetype mapping and ancient wisdom practices.
             </p>
           </div>
 
@@ -42,15 +42,15 @@ const EasternAstroExperiment = () => {
           <div className="flex flex-wrap justify-center items-center gap-6 mb-8 text-sm text-gray-600">
             <div className="flex items-center space-x-2">
               <Shield className="h-4 w-4 text-orange-600" />
-              <span>Swiss Ephemeris Precision</span>
+              <span>Authentic Vedic Methods</span>
             </div>
             <div className="flex items-center space-x-2">
               <Eye className="h-4 w-4 text-orange-600" />
-              <span>Sidereal Calculations</span>
+              <span>Psychology-Aligned Insights</span>
             </div>
             <div className="flex items-center space-x-2">
               <Heart className="h-4 w-4 text-orange-600" />
-              <span>Ancient Vedic Methods</span>
+              <span>Future-Ready Transformation</span>
             </div>
           </div>
         </div>
@@ -63,41 +63,41 @@ const EasternAstroExperiment = () => {
           <div className="space-y-6 order-2 lg:order-1">
             <div>
               <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-                Why Choose <span className="text-orange-600">Vedic</span> Over Western Astrology?
+                Why <span className="text-orange-600">Vedic Sciences</span> for Healing?
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                While Western astrology uses the tropical zodiac, Vedic astrology uses the actual star positions (sidereal zodiac), providing more accurate insights into your true cosmic blueprint.
+                Vedic sciences offer profound healing through understanding your cosmic blueprint. This ancient wisdom provides psychological alignment and practical tools for future-readiness and personal transformation.
               </p>
             </div>
 
-            {/* Comparison Points */}
+            {/* Healing Benefits */}
             <div className="grid grid-cols-1 gap-4 mb-8">
               <div className="flex items-start space-x-3 bg-white/70 rounded-lg p-4 border border-orange-200">
-                <span className="text-2xl">🕉️</span>
+                <span className="text-2xl">🧘</span>
                 <div>
-                  <h3 className="font-semibold text-gray-800 mb-1">Ancient Accuracy</h3>
-                  <p className="text-sm text-gray-600">5,000-year-old system using actual star positions, not seasons</p>
+                  <h3 className="font-semibold text-gray-800 mb-1">Deep Psychological Healing</h3>
+                  <p className="text-sm text-gray-600">Understand your mind patterns and emotional blocks for profound healing</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3 bg-white/70 rounded-lg p-4 border border-orange-200">
                 <span className="text-2xl">🌟</span>
                 <div>
-                  <h3 className="font-semibold text-gray-800 mb-1">Nakshatra Precision</h3>
-                  <p className="text-sm text-gray-600">27 lunar mansions reveal deeper personality layers</p>
+                  <h3 className="font-semibold text-gray-800 mb-1">Future-Ready Insights</h3>
+                  <p className="text-sm text-gray-600">Align with your cosmic purpose for sustained success and growth</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3 bg-white/70 rounded-lg p-4 border border-orange-200">
-                <span className="text-2xl">🧘</span>
+                <span className="text-2xl">🕉️</span>
                 <div>
-                  <h3 className="font-semibold text-gray-800 mb-1">Spiritual Depth</h3>
-                  <p className="text-sm text-gray-600">Karma, dharma, and soul purpose integrated into analysis</p>
+                  <h3 className="font-semibold text-gray-800 mb-1">Karmic Pattern Recognition</h3>
+                  <p className="text-sm text-gray-600">Identify and transform limiting patterns for spiritual evolution</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3 bg-white/70 rounded-lg p-4 border border-orange-200">
                 <span className="text-2xl">⚡</span>
                 <div>
-                  <h3 className="font-semibold text-gray-800 mb-1">Remedial Wisdom</h3>
-                  <p className="text-sm text-gray-600">Practical solutions and spiritual practices for growth</p>
+                  <h3 className="font-semibold text-gray-800 mb-1">Practical Transformation Tools</h3>
+                  <p className="text-sm text-gray-600">Ancient remedies and practices for modern healing challenges</p>
                 </div>
               </div>
             </div>
@@ -110,10 +110,10 @@ const EasternAstroExperiment = () => {
                     <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <span className="text-sm font-semibold text-gray-700">Most Authentic Vedic Reading</span>
+                <span className="text-sm font-semibold text-gray-700">Transformative Healing Experience</span>
               </div>
               <p className="text-sm text-gray-600 italic">
-                "Finally, a truly accurate reading based on real star positions, not outdated Western methods" - Beta User
+                "The insights helped me understand my patterns and provided practical tools for healing" - Healing Journey Client
               </p>
             </div>
           </div>
@@ -125,24 +125,24 @@ const EasternAstroExperiment = () => {
                 <CardContent className="p-6 sm:p-8 text-center space-y-6">
                   <div className="text-4xl sm:text-5xl mb-4">🕉️</div>
                   <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">
-                    Get Your Sacred Vedic KarmaArchetype
+                    Begin Your Sacred Healing Journey
                   </h2>
                   <p className="text-sm sm:text-lg opacity-90 mb-6">
-                    Experience authentic archetype calculation using ancient Vedic wisdom and precise sidereal calculations.
+                    Discover your healing archetype using authentic Vedic sciences for psychological alignment and future-readiness.
                   </p>
                   
                   <div className="space-y-3 mb-6 text-sm">
                     <div className="flex items-center justify-center space-x-2">
                       <span>✨</span>
-                      <span>Swiss Ephemeris precision</span>
+                      <span>Ancient Vedic wisdom</span>
                     </div>
                     <div className="flex items-center justify-center space-x-2">
-                      <span>🕉️</span>
-                      <span>Ancient Vedic calculations</span>
+                      <span>🧘</span>
+                      <span>Psychology-aligned insights</span>
                     </div>
                     <div className="flex items-center justify-center space-x-2">
                       <span>🌙</span>
-                      <span>Nakshatra mapping included</span>
+                      <span>Cosmic pattern recognition</span>
                     </div>
                     <div className="flex items-center justify-center space-x-2">
                       <span>🔒</span>
@@ -155,12 +155,12 @@ const EasternAstroExperiment = () => {
                     size="lg" 
                     className="w-full bg-white text-orange-600 hover:bg-gray-100 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full touch-manipulation"
                   >
-                    Start Your Sacred Reading
+                    Start Your Healing Journey
                     <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                   </Button>
                   
                   <p className="text-xs opacity-80 mt-4">
-                    ⚡ True sidereal calculations • Ancient accuracy
+                    ⚡ Authentic Vedic sciences • Transform & heal
                   </p>
                 </CardContent>
               </Card>
@@ -177,33 +177,33 @@ const EasternAstroExperiment = () => {
       <section id="features" className="px-4 py-12 sm:py-16 max-w-6xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-            🕉️ Vedic Precision Features
+            🕉️ Vedic Sciences Healing Features
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Experience the depth and accuracy that only authentic Vedic astrology can provide
+            Experience profound transformation through authentic Vedic sciences designed for modern healing and future-readiness
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {[
             {
-              title: "Sidereal Accuracy",
-              description: "Real star positions, not seasonal approximations like Western astrology",
+              title: "Cosmic Healing Insights",
+              description: "Understand your energetic patterns for deep psychological healing",
               icon: "🌟"
             },
             {
-              title: "Nakshatra Wisdom",
-              description: "27 lunar mansions reveal your deepest personality layers",
+              title: "Sacred Archetype Mapping",
+              description: "Discover your soul's blueprint through ancient Vedic wisdom",
               icon: "🌙"
             },
             {
-              title: "Karma Mapping",
-              description: "Understand your soul's purpose and karmic patterns",
+              title: "Karmic Transformation",
+              description: "Transform limiting patterns and align with your highest purpose",
               icon: "🎯"
             },
             {
-              title: "Vedic Remedies",
-              description: "Ancient practices and solutions for spiritual growth",
+              title: "Future-Ready Practices",
+              description: "Ancient remedies adapted for modern life challenges",
               icon: "🌿"
             }
           ].map((feature, index) => (
@@ -222,15 +222,15 @@ const EasternAstroExperiment = () => {
         </div>
       </section>
 
-      {/* Vedic vs Western Comparison */}
+      {/* Healing Benefits Section */}
       <section className="px-4 py-12 sm:py-16 bg-white/50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Vedic vs Western: The Truth About Accuracy
+              How Vedic Sciences Transform Your Life
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Due to Earth's precession, Western astrology is now 24° off from actual star positions. Vedic astrology accounts for this.
+              Experience deep healing and psychological alignment through time-tested Vedic practices designed for future-readiness.
             </p>
           </div>
 
@@ -238,61 +238,61 @@ const EasternAstroExperiment = () => {
             <Card className="border-2 border-orange-300 bg-gradient-to-br from-orange-50 to-red-50">
               <CardHeader>
                 <CardTitle className="text-xl text-orange-700 flex items-center space-x-2">
-                  <span>🕉️</span>
-                  <span>Vedic (Sidereal) Astrology</span>
+                  <span>🧘</span>
+                  <span>Psychological Healing Benefits</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center space-x-2 text-green-700">
                   <span>✅</span>
-                  <span className="text-sm">Uses actual star positions</span>
+                  <span className="text-sm">Release deep emotional blocks</span>
                 </div>
                 <div className="flex items-center space-x-2 text-green-700">
                   <span>✅</span>
-                  <span className="text-sm">Accounts for Earth's precession</span>
+                  <span className="text-sm">Understand karmic patterns</span>
                 </div>
                 <div className="flex items-center space-x-2 text-green-700">
                   <span>✅</span>
-                  <span className="text-sm">5,000+ years of refinement</span>
+                  <span className="text-sm">Develop emotional intelligence</span>
                 </div>
                 <div className="flex items-center space-x-2 text-green-700">
                   <span>✅</span>
-                  <span className="text-sm">Includes 27 Nakshatras</span>
+                  <span className="text-sm">Transform limiting beliefs</span>
                 </div>
                 <div className="flex items-center space-x-2 text-green-700">
                   <span>✅</span>
-                  <span className="text-sm">Spiritual & karmic insights</span>
+                  <span className="text-sm">Align with authentic purpose</span>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-gray-300 bg-gray-50">
+            <Card className="border-2 border-orange-300 bg-gradient-to-br from-orange-50 to-red-50">
               <CardHeader>
-                <CardTitle className="text-xl text-gray-700 flex items-center space-x-2">
-                  <span>♈</span>
-                  <span>Western (Tropical) Astrology</span>
+                <CardTitle className="text-xl text-orange-700 flex items-center space-x-2">
+                  <span>🌟</span>
+                  <span>Future-Readiness & Growth</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="flex items-center space-x-2 text-red-600">
-                  <span>❌</span>
-                  <span className="text-sm">Uses seasonal calendar, not stars</span>
+                <div className="flex items-center space-x-2 text-green-700">
+                  <span>✅</span>
+                  <span className="text-sm">Navigate life transitions gracefully</span>
                 </div>
-                <div className="flex items-center space-x-2 text-red-600">
-                  <span>❌</span>
-                  <span className="text-sm">24° off from actual positions</span>
+                <div className="flex items-center space-x-2 text-green-700">
+                  <span>✅</span>
+                  <span className="text-sm">Develop intuitive decision-making</span>
                 </div>
-                <div className="flex items-center space-x-2 text-yellow-600">
-                  <span>⚠️</span>
-                  <span className="text-sm">2,000 years old system</span>
+                <div className="flex items-center space-x-2 text-green-700">
+                  <span>✅</span>
+                  <span className="text-sm">Build resilience and adaptability</span>
                 </div>
-                <div className="flex items-center space-x-2 text-red-600">
-                  <span>❌</span>
-                  <span className="text-sm">No Nakshatra system</span>
+                <div className="flex items-center space-x-2 text-green-700">
+                  <span>✅</span>
+                  <span className="text-sm">Enhance creative potential</span>
                 </div>
-                <div className="flex items-center space-x-2 text-yellow-600">
-                  <span>⚠️</span>
-                  <span className="text-sm">Limited spiritual context</span>
+                <div className="flex items-center space-x-2 text-green-700">
+                  <span>✅</span>
+                  <span className="text-sm">Cultivate spiritual wisdom</span>
                 </div>
               </CardContent>
             </Card>
@@ -308,10 +308,10 @@ const EasternAstroExperiment = () => {
             <span className="text-xl sm:text-2xl font-bold">Vedic KarmaMap™</span>
           </div>
           <p className="text-gray-400 mb-4 text-sm sm:text-base">
-            Ancient Vedic wisdom meets Swiss precision
+            Ancient Vedic sciences for modern healing and transformation
           </p>
           <p className="text-xs sm:text-sm text-gray-500">
-            © 2025 Vedic KarmaMap™. Authentic sidereal calculations since time immemorial
+            © 2025 Vedic KarmaMap™. Authentic healing through sacred wisdom
           </p>
         </div>
       </footer>
