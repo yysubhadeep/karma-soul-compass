@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, Star, Brain, Target, Heart, Zap, Shield, Lightbulb, Briefcase, MessageCircle } from "lucide-react";
+import { ArrowLeft, Star, Brain, Target, Heart, Zap, Shield, Lightbulb, Briefcase, MessageCircle, Compass } from "lucide-react";
 import { getArchetypeData } from '@/data/archetypeData';
 import { generatePsychologicalProfile } from '@/utils/psychologicalProfile';
 import { testArchetypeGeneration } from '@/utils/archetypeTestRunner';
 import PersonalInfoCard from './PersonalInfoCard';
 import ArchetypeCard from './ArchetypeCard';
 import CallToActionCard from './CallToActionCard';
+import SelfFutureContent from './SelfFutureContent';
 
 interface FormData {
   name: string;
@@ -57,25 +58,31 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
         {/* Personal Info Card */}
         <PersonalInfoCard formData={formData} />
 
-        {/* Simplified Tabs for Mobile Navigation */}
+        {/* Enhanced Tabs for Mobile Navigation */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 h-auto p-1">
+          <TabsList className="grid w-full grid-cols-4 h-auto p-1">
             <TabsTrigger value="profile" className="text-xs py-2 px-1">
               <div className="flex flex-col items-center space-y-1">
                 <Star className="h-4 w-4" />
-                <span>Your Profile</span>
+                <span>Profile</span>
+              </div>
+            </TabsTrigger>
+            <TabsTrigger value="selffuture" className="text-xs py-2 px-1">
+              <div className="flex flex-col items-center space-y-1">
+                <Compass className="h-4 w-4" />
+                <span>Self + Future</span>
               </div>
             </TabsTrigger>
             <TabsTrigger value="vedic" className="text-xs py-2 px-1">
               <div className="flex flex-col items-center space-y-1">
                 <Brain className="h-4 w-4" />
-                <span>Vedic Insights</span>
+                <span>Vedic</span>
               </div>
             </TabsTrigger>
             <TabsTrigger value="reading" className="text-xs py-2 px-1">
               <div className="flex flex-col items-center space-y-1">
                 <MessageCircle className="h-4 w-4" />
-                <span>Get Reading</span>
+                <span>Reading</span>
               </div>
             </TabsTrigger>
           </TabsList>
@@ -188,6 +195,14 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
             </Card>
 
             {/* Call to Action after Profile */}
+            <CallToActionCard />
+          </TabsContent>
+
+          {/* SELF + FUTURE Tab */}
+          <TabsContent value="selffuture" className="space-y-4 mt-4">
+            <SelfFutureContent archetype={profile.archetype} />
+            
+            {/* Call to Action after Self + Future */}
             <CallToActionCard />
           </TabsContent>
 
