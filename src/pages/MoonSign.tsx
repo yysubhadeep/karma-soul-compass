@@ -8,12 +8,15 @@ import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { calculateEasternArchetype } from '@/utils/easternAstrologyCalculations';
 import SEO from '@/components/SEO';
+import LocationSelector from '@/components/LocationSelector';
 
 const MoonSign = () => {
   const [formData, setFormData] = useState({
     dateOfBirth: '',
     timeOfBirth: '',
-    placeOfBirth: ''
+    country: '',
+    state: '',
+    city: ''
   });
   const [moonSign, setMoonSign] = useState<string | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
@@ -26,20 +29,23 @@ const MoonSign = () => {
   };
 
   const calculateMoonSign = () => {
-    if (!formData.dateOfBirth || !formData.timeOfBirth || !formData.placeOfBirth) {
-      alert('Please fill in all fields');
+    if (!formData.dateOfBirth || !formData.timeOfBirth || !formData.country || !formData.state || !formData.city) {
+      alert('Please fill in all fields including location details');
       return;
     }
 
     setIsCalculating(true);
     
     try {
+      // Create place of birth string for backwards compatibility with calculation function
+      const placeOfBirth = `${formData.city}, ${formData.state}, ${formData.country}`;
+      
       const calculationData = {
         name: "Moon Sign Calculator",
         email: "user@example.com",
         dateOfBirth: formData.dateOfBirth,
         timeOfBirth: formData.timeOfBirth,
-        placeOfBirth: formData.placeOfBirth
+        placeOfBirth: placeOfBirth
       };
 
       console.log('Calculating moon sign for:', calculationData);
@@ -132,14 +138,14 @@ const MoonSign = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="placeOfBirth">Place of Birth</Label>
-                <Input
-                  id="placeOfBirth"
-                  type="text"
-                  placeholder="e.g., Kolkata, India"
-                  value={formData.placeOfBirth}
-                  onChange={(e) => handleInputChange('placeOfBirth', e.target.value)}
-                  className="w-full"
+                <Label className="text-sm font-medium text-gray-700">Place of Birth</Label>
+                <LocationSelector
+                  country={formData.country}
+                  state={formData.state}
+                  city={formData.city}
+                  onCountryChange={(value) => handleInputChange('country', value)}
+                  onStateChange={(value) => handleInputChange('state', value)}
+                  onCityChange={(value) => handleInputChange('city', value)}
                 />
               </div>
 
