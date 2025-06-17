@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Report from "./pages/Report";
 import EasternAstroExperiment from "./pages/EasternAstroExperiment";
 import EasternReport from "./pages/EasternReport";
+import MoonSign from "./pages/MoonSign";
 import NotFound from "./pages/NotFound";
 import ABTestStats from "./components/ABTestStats";
 
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/report" element={<Report />} />
             <Route path="/vedicscience" element={<EasternAstroExperiment />} />
             <Route path="/vedicreport" element={<EasternReport />} />
+            <Route path="/moonsign" element={<MoonSign />} />
             <Route path="/ab-stats" element={<ABTestStats />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
