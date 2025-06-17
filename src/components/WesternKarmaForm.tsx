@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { ArrowRight } from "lucide-react";
-import PlaceAutosuggest from './PlaceAutosuggest';
+import LocationSelector from './LocationSelector';
 
 interface FormData {
   name: string;
@@ -15,7 +15,9 @@ interface FormData {
   otp: string;
   dateOfBirth: string;
   timeOfBirth: string;
-  placeOfBirth: string;
+  country: string;
+  state: string;
+  city: string;
 }
 
 const WesternKarmaForm = () => {
@@ -26,7 +28,9 @@ const WesternKarmaForm = () => {
     otp: '',
     dateOfBirth: '',
     timeOfBirth: '',
-    placeOfBirth: ''
+    country: '',
+    state: '',
+    city: ''
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -64,19 +68,27 @@ const WesternKarmaForm = () => {
   };
 
   const generateWesternKarmaMap = async () => {
-    if (!formData.dateOfBirth || !formData.timeOfBirth || !formData.placeOfBirth) {
-      toast.error("Please fill in all birth details");
+    if (!formData.dateOfBirth || !formData.timeOfBirth || !formData.country || !formData.state || !formData.city) {
+      toast.error("Please fill in all birth details including location");
       return;
     }
 
     setLoading(true);
+    
+    // Create place of birth string for backwards compatibility
+    const placeOfBirth = `${formData.city}, ${formData.state}, ${formData.country}`;
     
     // Simulate Western KarmaMap generation with astronomia calculations
     setTimeout(() => {
       setLoading(false);
       toast.success("🔮 Your Western KarmaArchetype has been calculated!");
       // Navigate to western report page with form data
-      navigate('/western-report', { state: { formData, isWestern: true } });
+      navigate('/western-report', { 
+        state: { 
+          formData: { ...formData, placeOfBirth }, 
+          isWestern: true 
+        } 
+      });
     }, 3000);
   };
 
@@ -185,17 +197,15 @@ const WesternKarmaForm = () => {
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="place" className="text-sm font-medium text-gray-700">Place of Birth</Label>
-                  <PlaceAutosuggest
-                    id="place"
-                    placeholder="Start typing your city name..."
-                    value={formData.placeOfBirth}
-                    onChange={(value) => handleInputChange('placeOfBirth', value)}
-                    className="h-12 text-base border-2 border-gray-200 focus:border-purple-400 rounded-lg pr-10"
+                  <Label className="text-sm font-medium text-gray-700">Place of Birth</Label>
+                  <LocationSelector
+                    country={formData.country}
+                    state={formData.state}
+                    city={formData.city}
+                    onCountryChange={(value) => handleInputChange('country', value)}
+                    onStateChange={(value) => handleInputChange('state', value)}
+                    onCityChange={(value) => handleInputChange('city', value)}
                   />
-                  <p className="text-xs text-gray-500 mt-1">
-                    🌍 Exact location needed for precise astronomical calculations
-                  </p>
                 </div>
               </div>
               
