@@ -15,7 +15,7 @@ const MoonSign = () => {
     timeOfBirth: '',
     placeOfBirth: ''
   });
-  const [result, setResult] = useState<any>(null);
+  const [moonSign, setMoonSign] = useState<string | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
@@ -44,7 +44,7 @@ const MoonSign = () => {
 
       console.log('Calculating moon sign for:', calculationData);
       const calculation = calculateEasternArchetype(calculationData);
-      setResult(calculation);
+      setMoonSign(calculation.moonSign);
     } catch (error) {
       console.error('Error calculating moon sign:', error);
       alert('Error calculating moon sign. Please check your inputs.');
@@ -153,47 +153,17 @@ const MoonSign = () => {
             </CardContent>
           </Card>
 
-          {/* Results */}
-          {result && (
+          {/* Results - Only Moon Sign */}
+          {moonSign && (
             <Card className="border-blue-200 bg-blue-50/50">
               <CardHeader>
-                <CardTitle className="text-center text-blue-800">Your Vedic Astrology Results</CardTitle>
+                <CardTitle className="text-center text-blue-800">Your Moon Sign</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-white p-4 rounded-lg">
-                    <h3 className="font-semibold text-gray-900 mb-2">🌙 Moon Sign</h3>
-                    <p className="text-xl font-bold text-blue-600">{result.moonSign}</p>
-                  </div>
-                  
-                  <div className="bg-white p-4 rounded-lg">
-                    <h3 className="font-semibold text-gray-900 mb-2">⭐ Nakshatra</h3>
-                    <p className="text-xl font-bold text-purple-600">{result.nakshatra}</p>
-                  </div>
-                  
-                  <div className="bg-white p-4 rounded-lg">
-                    <h3 className="font-semibold text-gray-900 mb-2">🔥 Lagna (Ascendant)</h3>
-                    <p className="text-xl font-bold text-orange-600">{result.lagna}</p>
-                  </div>
-                  
-                  <div className="bg-white p-4 rounded-lg">
-                    <h3 className="font-semibold text-gray-900 mb-2">🪐 Atmakaraka</h3>
-                    <p className="text-xl font-bold text-green-600">{result.atmakaraka}</p>
-                  </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg mt-6">
-                  <h3 className="font-semibold text-gray-900 mb-3">📊 Detailed Analysis</h3>
-                  <div className="space-y-2">
-                    <p><span className="font-medium">Primary Archetype:</span> {result.primaryArchetype}</p>
-                    <p><span className="font-medium">Secondary Archetype:</span> {result.secondaryArchetype}</p>
-                  </div>
-                  
-                  {result.vedicMessage && (
-                    <div className="mt-4 p-4 bg-blue-50 rounded-lg">
-                      <p className="text-sm text-gray-700 italic">{result.vedicMessage}</p>
-                    </div>
-                  )}
+              <CardContent className="text-center">
+                <div className="bg-white p-8 rounded-lg">
+                  <span className="text-6xl mb-4 block">🌙</span>
+                  <h2 className="text-4xl font-bold text-blue-600 mb-2">{moonSign}</h2>
+                  <p className="text-gray-600">Your Vedic Moon Sign</p>
                 </div>
               </CardContent>
             </Card>
@@ -202,20 +172,15 @@ const MoonSign = () => {
           {/* Information Section */}
           <Card className="mt-8 bg-gray-50">
             <CardContent className="pt-6">
-              <h3 className="font-semibold text-gray-900 mb-3">About Vedic Moon Sign Calculation</h3>
+              <h3 className="font-semibold text-gray-900 mb-3">About Your Moon Sign</h3>
               <div className="space-y-3 text-sm text-gray-700">
                 <p>
                   Your moon sign in Vedic astrology represents your emotional nature, mind, and subconscious patterns. 
                   It's calculated using the sidereal zodiac system, which accounts for the precession of equinoxes.
                 </p>
                 <p>
-                  <strong>Nakshatra:</strong> The lunar mansion where your moon was placed at birth, providing deeper insights into your personality and destiny.
-                </p>
-                <p>
-                  <strong>Lagna (Ascendant):</strong> The zodiac sign rising on the eastern horizon at your birth time, representing your physical appearance and life approach.
-                </p>
-                <p>
-                  <strong>Atmakaraka:</strong> The planet with the highest degree in your chart, representing your soul's purpose.
+                  The moon sign is often considered more important than the sun sign in Vedic astrology, as it reflects 
+                  your inner self and emotional responses to life experiences.
                 </p>
               </div>
             </CardContent>
