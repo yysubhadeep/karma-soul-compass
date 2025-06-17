@@ -12,6 +12,9 @@ import EasternReport from "./pages/EasternReport";
 import NotFound from "./pages/NotFound";
 import ABTestStats from "./components/ABTestStats";
 
+// Import the moon sign test
+import "./utils/moonSignTest";
+
 const queryClient = new QueryClient();
 
 const App = () => (
