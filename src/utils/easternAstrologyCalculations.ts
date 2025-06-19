@@ -345,26 +345,77 @@ function getNakshatra(moonLongitude: number): string {
   return nakshatra;
 }
 
-// Calculate ascendant (simplified for now)
+// Calculate ascendant using proper astronomical formulas
 function calculateAscendant(julianDay: number, latitude: number = 22.5726, longitude: number = 88.3639): number {
   const T = (julianDay - 2451545.0) / 36525.0;
   
-  // Greenwich Mean Sidereal Time
-  const gmst = (280.46061837 + 360.98564736629 * (julianDay - 2451545.0) + 
-                0.000387933 * T * T - T * T * T / 38710000) % 360;
+  // Greenwich Mean Sidereal Time at 0h UT (more precise formula)
+  let gmst = 280.46061837 + 360.98564736629 * (julianDay - 2451545.0) + 
+             0.000387933 * T * T - T * T * T / 38710000;
+  gmst = gmst % 360;
+  if (gmst < 0) gmst += 360;
   
   // Local Sidereal Time
-  const lst = (gmst + longitude) % 360;
+  let lst = gmst + longitude;
+  lst = lst % 360;
+  if (lst < 0) lst += 360;
   
-  // Simplified ascendant calculation
-  const ascendant = (lst + 90) % 360;
+  console.log(`=== ASCENDANT CALCULATION DEBUG ===`);
+  console.log(`Latitude: ${latitude.toFixed(6)}°, Longitude: ${longitude.toFixed(6)}°`);
+  console.log(`GMST: ${gmst.toFixed(6)}°`);
+  console.log(`LST: ${lst.toFixed(6)}°`);
   
-  console.log(`Ascendant calculation: GMST=${gmst.toFixed(2)}°, LST=${lst.toFixed(2)}°, Asc=${ascendant.toFixed(2)}°`);
+  // Convert latitude to radians
+  const latRad = latitude * Math.PI / 180;
+  
+  // Obliquity of the ecliptic (more precise)
+  const obliquity = 23.4392911 - 0.0130042 * T - 0.00000164 * T * T + 0.000000504 * T * T * T;
+  const oblRad = obliquity * Math.PI / 180;
+  
+  // Calculate ascendant using proper spherical trigonometry
+  // For each degree of Local Sidereal Time, find the corresponding ecliptic longitude
+  let ascendant = 0;
+  let minDiff = 360;
+  
+  // Iterate through possible ascendant values to find the one that matches LST
+  for (let ec = 0; ec < 360; ec += 0.1) {
+    const ecRad = ec * Math.PI / 180;
+    
+    // Convert ecliptic to right ascension
+    const ra = Math.atan2(
+      Math.sin(ecRad) * Math.cos(oblRad),
+      Math.cos(ecRad)
+    ) * 180 / Math.PI;
+    
+    // Convert ecliptic to declination
+    const dec = Math.asin(Math.sin(ecRad) * Math.sin(oblRad)) * 180 / Math.PI;
+    const decRad = dec * Math.PI / 180;
+    
+    // Calculate hour angle when this point rises
+    const cosHA = -Math.tan(latRad) * Math.tan(decRad);
+    
+    if (Math.abs(cosHA) <= 1) {
+      const ha = Math.acos(cosHA) * 180 / Math.PI;
+      const expectedLST = (ra + ha) % 360;
+      
+      const diff = Math.abs(expectedLST - lst);
+      const diffWrapped = Math.min(diff, 360 - diff);
+      
+      if (diffWrapped < minDiff) {
+        minDiff = diffWrapped;
+        ascendant = ec;
+      }
+    }
+  }
+  
+  console.log(`Calculated ascendant: ${ascendant.toFixed(6)}°`);
+  console.log(`Minimum difference: ${minDiff.toFixed(6)}°`);
+  console.log(`=== ASCENDANT CALCULATION COMPLETE ===`);
   
   return ascendant;
 }
 
-// Determine Atmakaraka
+// Determine Atmakaraka - planet with highest absolute degrees
 function calculateAtmakaraka(planetaryPositions: any): string {
   const planets = [
     { name: 'Sun', longitude: planetaryPositions.sun },
@@ -376,18 +427,23 @@ function calculateAtmakaraka(planetaryPositions: any): string {
     { name: 'Saturn', longitude: planetaryPositions.saturn }
   ];
   
-  let maxDegree = 0;
+  console.log(`=== ATMAKARAKA CALCULATION DEBUG ===`);
+  
+  // Find planet with highest absolute longitude (degrees from 0° Aries)
+  let maxLongitude = 0;
   let atmakaraka = 'Moon';
   
   planets.forEach(planet => {
-    const degreeInSign = planet.longitude % 30;
-    if (degreeInSign > maxDegree) {
-      maxDegree = degreeInSign;
+    console.log(`${planet.name}: ${planet.longitude.toFixed(6)}°`);
+    if (planet.longitude > maxLongitude) {
+      maxLongitude = planet.longitude;
       atmakaraka = planet.name;
     }
   });
   
-  console.log(`Atmakaraka: ${atmakaraka} (${maxDegree.toFixed(2)}° in sign)`);
+  console.log(`Atmakaraka: ${atmakaraka} (${maxLongitude.toFixed(6)}° absolute)`);
+  console.log(`=== ATMAKARAKA CALCULATION COMPLETE ===`);
+  
   return atmakaraka;
 }
 
@@ -458,15 +514,21 @@ export function calculateEasternArchetype(formData: BirthData): EasternArchetype
     const moonSign = getZodiacSign(siderealMoon);
     console.log(`Final Moon Sign: ${moonSign}`);
     
-    // Calculate other values
+    // Calculate other values with improved accuracy
     const siderealSun = tropicalToSidereal(tropicalPositions.sun, ayanamsa);
-    const tropicalAscendant = calculateAscendant(julianDay);
+    
+    // Use proper coordinates for calculation (defaulting to a location in India for now)
+    // In a real implementation, you'd parse the placeOfBirth string to get coordinates
+    const latitude = 28.6139; // Delhi latitude as default
+    const longitude = 77.2090; // Delhi longitude as default
+    
+    const tropicalAscendant = calculateAscendant(julianDay, latitude, longitude);
     const siderealAscendant = tropicalToSidereal(tropicalAscendant, ayanamsa);
     
     const lagna = getZodiacSign(siderealAscendant);
     const nakshatra = getNakshatra(siderealMoon);
     
-    // Convert all positions to sidereal for Atmakaraka
+    // Convert all positions to sidereal for Atmakaraka (using absolute degrees)
     const siderealPositions = {
       sun: tropicalToSidereal(tropicalPositions.sun, ayanamsa),
       moon: siderealMoon,
