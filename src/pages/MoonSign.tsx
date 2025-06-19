@@ -18,7 +18,12 @@ const MoonSign = () => {
     state: '',
     city: ''
   });
-  const [moonSign, setMoonSign] = useState<string | null>(null);
+  const [calculations, setCalculations] = useState<{
+    moonSign: string;
+    lagna: string;
+    atmakaraka: string;
+    nakshatra: string;
+  } | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
@@ -28,7 +33,7 @@ const MoonSign = () => {
     }));
   };
 
-  const calculateMoonSign = () => {
+  const calculateAstrologyData = () => {
     if (!formData.dateOfBirth || !formData.timeOfBirth || !formData.country || !formData.state || !formData.city) {
       alert('Please fill in all fields including location details');
       return;
@@ -41,19 +46,25 @@ const MoonSign = () => {
       const placeOfBirth = `${formData.city}, ${formData.state}, ${formData.country}`;
       
       const calculationData = {
-        name: "Moon Sign Calculator",
+        name: "Astrology Calculator",
         email: "user@example.com",
         dateOfBirth: formData.dateOfBirth,
         timeOfBirth: formData.timeOfBirth,
         placeOfBirth: placeOfBirth
       };
 
-      console.log('Calculating moon sign for:', calculationData);
+      console.log('Calculating astrology data for:', calculationData);
       const calculation = calculateEasternArchetype(calculationData);
-      setMoonSign(calculation.moonSign);
+      
+      setCalculations({
+        moonSign: calculation.moonSign,
+        lagna: calculation.lagna,
+        atmakaraka: calculation.atmakaraka,
+        nakshatra: calculation.nakshatra
+      });
     } catch (error) {
-      console.error('Error calculating moon sign:', error);
-      alert('Error calculating moon sign. Please check your inputs.');
+      console.error('Error calculating astrology data:', error);
+      alert('Error calculating astrology data. Please check your inputs.');
     } finally {
       setIsCalculating(false);
     }
@@ -92,7 +103,7 @@ const MoonSign = () => {
             </Link>
             <div className="flex items-center space-x-2">
               <span className="text-xl sm:text-2xl">🌙</span>
-              <span className="text-xl sm:text-2xl font-bold text-gray-900">Moon Sign Calculator</span>
+              <span className="text-xl sm:text-2xl font-bold text-gray-900">Astrology Calculator</span>
             </div>
           </div>
         </header>
@@ -101,10 +112,10 @@ const MoonSign = () => {
         <div className="px-4 py-8 max-w-2xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Calculate Your <span className="text-blue-600">Moon Sign</span>
+              Calculate Your <span className="text-blue-600">Vedic Chart</span>
             </h1>
             <p className="text-lg text-gray-700 mb-6">
-              Discover your moon sign using authentic Vedic astrology calculations based on your exact birth details.
+              Discover your moon sign, lagna, and atmakaraka using authentic Vedic astrology calculations.
             </p>
           </div>
 
@@ -150,44 +161,93 @@ const MoonSign = () => {
               </div>
 
               <Button 
-                onClick={calculateMoonSign}
+                onClick={calculateAstrologyData}
                 disabled={isCalculating}
                 className="w-full bg-blue-600 hover:bg-blue-700"
               >
-                {isCalculating ? 'Calculating...' : 'Calculate Moon Sign'}
+                {isCalculating ? 'Calculating...' : 'Calculate Vedic Chart'}
               </Button>
             </CardContent>
           </Card>
 
-          {/* Results - Only Moon Sign */}
-          {moonSign && (
-            <Card className="border-blue-200 bg-blue-50/50">
-              <CardHeader>
-                <CardTitle className="text-center text-blue-800">Your Moon Sign</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <div className="bg-white p-8 rounded-lg">
-                  <span className="text-6xl mb-4 block">🌙</span>
-                  <h2 className="text-4xl font-bold text-blue-600 mb-2">{moonSign}</h2>
-                  <p className="text-gray-600">Your Vedic Moon Sign</p>
-                </div>
-              </CardContent>
-            </Card>
+          {/* Results - Vedic Calculations */}
+          {calculations && (
+            <div className="space-y-6">
+              {/* Moon Sign */}
+              <Card className="border-blue-200 bg-blue-50/50">
+                <CardHeader>
+                  <CardTitle className="text-center text-blue-800">Moon Sign</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <div className="bg-white p-6 rounded-lg">
+                    <span className="text-4xl mb-2 block">🌙</span>
+                    <h2 className="text-3xl font-bold text-blue-600 mb-1">{calculations.moonSign}</h2>
+                    <p className="text-gray-600 text-sm">Your Vedic Moon Sign</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Lagna (Ascendant) */}
+              <Card className="border-purple-200 bg-purple-50/50">
+                <CardHeader>
+                  <CardTitle className="text-center text-purple-800">Lagna (Ascendant)</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <div className="bg-white p-6 rounded-lg">
+                    <span className="text-4xl mb-2 block">⬆️</span>
+                    <h2 className="text-3xl font-bold text-purple-600 mb-1">{calculations.lagna}</h2>
+                    <p className="text-gray-600 text-sm">Your Rising Sign</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Atmakaraka */}
+              <Card className="border-orange-200 bg-orange-50/50">
+                <CardHeader>
+                  <CardTitle className="text-center text-orange-800">Atmakaraka</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <div className="bg-white p-6 rounded-lg">
+                    <span className="text-4xl mb-2 block">⭐</span>
+                    <h2 className="text-3xl font-bold text-orange-600 mb-1">{calculations.atmakaraka}</h2>
+                    <p className="text-gray-600 text-sm">Your Soul Planet</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Nakshatra */}
+              <Card className="border-green-200 bg-green-50/50">
+                <CardHeader>
+                  <CardTitle className="text-center text-green-800">Nakshatra</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <div className="bg-white p-6 rounded-lg">
+                    <span className="text-4xl mb-2 block">✨</span>
+                    <h2 className="text-3xl font-bold text-green-600 mb-1">{calculations.nakshatra}</h2>
+                    <p className="text-gray-600 text-sm">Your Lunar Mansion</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           )}
 
           {/* Information Section */}
           <Card className="mt-8 bg-gray-50">
             <CardContent className="pt-6">
-              <h3 className="font-semibold text-gray-900 mb-3">About Your Moon Sign</h3>
+              <h3 className="font-semibold text-gray-900 mb-3">About These Calculations</h3>
               <div className="space-y-3 text-sm text-gray-700">
-                <p>
-                  Your moon sign in Vedic astrology represents your emotional nature, mind, and subconscious patterns. 
-                  It's calculated using the sidereal zodiac system, which accounts for the precession of equinoxes.
-                </p>
-                <p>
-                  The moon sign is often considered more important than the sun sign in Vedic astrology, as it reflects 
-                  your inner self and emotional responses to life experiences.
-                </p>
+                <div>
+                  <strong>Moon Sign:</strong> Your emotional nature and subconscious patterns using sidereal zodiac.
+                </div>
+                <div>
+                  <strong>Lagna (Ascendant):</strong> Your personality, physical appearance, and life approach.
+                </div>
+                <div>
+                  <strong>Atmakaraka:</strong> The planet with the highest degrees, representing your soul's purpose.
+                </div>
+                <div>
+                  <strong>Nakshatra:</strong> Your birth star constellation, providing deeper personality insights.
+                </div>
               </div>
             </CardContent>
           </Card>
