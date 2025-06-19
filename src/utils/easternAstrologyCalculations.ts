@@ -1,4 +1,5 @@
 import { astronomia } from 'astronomia';
+import { getCoordinatesFromLocation } from './coordinateUtils';
 
 interface BirthData {
   name: string;
@@ -6,6 +7,10 @@ interface BirthData {
   dateOfBirth: string;
   timeOfBirth: string;
   placeOfBirth: string;
+  // New fields for explicit location data
+  country?: string;
+  state?: string;
+  city?: string;
 }
 
 interface EasternArchetypeResult {
@@ -371,8 +376,8 @@ function getNakshatra(moonLongitude: number): string {
   return nakshatra;
 }
 
-// Calculate ascendant using proper astronomical formulas
-function calculateAscendant(julianDay: number, latitude: number = 22.5726, longitude: number = 88.3639): number {
+// Calculate ascendant using proper astronomical formulas with birth coordinates
+function calculateAscendant(julianDay: number, latitude: number, longitude: number): number {
   const T = (julianDay - 2451545.0) / 36525.0;
   
   // Greenwich Mean Sidereal Time at 0h UT (more precise formula)
@@ -387,7 +392,7 @@ function calculateAscendant(julianDay: number, latitude: number = 22.5726, longi
   if (lst < 0) lst += 360;
   
   console.log(`=== ASCENDANT CALCULATION DEBUG ===`);
-  console.log(`Latitude: ${latitude.toFixed(6)}°, Longitude: ${longitude.toFixed(6)}°`);
+  console.log(`Using birth coordinates - Latitude: ${latitude.toFixed(6)}°, Longitude: ${longitude.toFixed(6)}°`);
   console.log(`GMST: ${gmst.toFixed(6)}°`);
   console.log(`LST: ${lst.toFixed(6)}°`);
   
@@ -527,6 +532,19 @@ export function calculateEasternArchetype(formData: BirthData): EasternArchetype
     console.log('=== STARTING PRECISE VEDIC CALCULATION ===');
     console.log('Input data:', formData);
     
+    // Get actual birth coordinates from the location data
+    let latitude = 28.6139; // Default Delhi latitude
+    let longitude = 77.2090; // Default Delhi longitude
+    
+    if (formData.country && formData.state && formData.city) {
+      const coordinates = getCoordinatesFromLocation(formData.country, formData.state, formData.city);
+      latitude = coordinates.latitude;
+      longitude = coordinates.longitude;
+      console.log(`Using coordinates from form: ${latitude}, ${longitude}`);
+    } else {
+      console.log(`Using default coordinates (Delhi): ${latitude}, ${longitude}`);
+    }
+    
     // Convert IST to UTC with high precision
     const utcDate = convertISTtoUTC(formData.dateOfBirth, formData.timeOfBirth);
     
@@ -551,13 +569,8 @@ export function calculateEasternArchetype(formData: BirthData): EasternArchetype
     const moonSign = getZodiacSign(siderealMoon);
     console.log(`Final Moon Sign: ${moonSign}`);
     
-    // Calculate other values with improved accuracy
+    // Calculate other values with improved accuracy using actual birth coordinates
     const siderealSun = tropicalToSidereal(tropicalPositions.sun, ayanamsa);
-    
-    // Use proper coordinates for calculation (defaulting to a location in India for now)
-    // In a real implementation, you'd parse the placeOfBirth string to get coordinates
-    const latitude = 28.6139; // Delhi latitude as default
-    const longitude = 77.2090; // Delhi longitude as default
     
     const tropicalAscendant = calculateAscendant(julianDay, latitude, longitude);
     const siderealAscendant = tropicalToSidereal(tropicalAscendant, ayanamsa);
@@ -616,7 +629,8 @@ export function calculateEasternArchetype(formData: BirthData): EasternArchetype
       planetaryPositions: siderealPositions,
       zodiacSigns: zodiacSigns,
       ayanamsa: ayanamsa,
-      julianDay: julianDay
+      julianDay: julianDay,
+      birthCoordinates: { latitude, longitude }
     };
     
     console.log('=== FINAL RESULT ===');
