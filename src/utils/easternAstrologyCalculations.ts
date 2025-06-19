@@ -235,6 +235,28 @@ function calculateSunPosition(julianDay: number): number {
   return sunLongitude < 0 ? sunLongitude + 360 : sunLongitude;
 }
 
+// Calculate Rahu and Ketu positions using mean lunar node theory
+function calculateRahuKetu(julianDay: number): { rahu: number; ketu: number } {
+  const T = (julianDay - 2451545.0) / 36525.0;
+  
+  // Mean longitude of ascending node (Rahu) - retrograde motion
+  // Formula based on lunar node theory
+  let rahu = 125.0445479 - 1934.1362891 * T + 0.0020754 * T * T + T * T * T / 467441;
+  
+  // Normalize to 0-360 range
+  rahu = rahu % 360;
+  if (rahu < 0) rahu += 360;
+  
+  // Ketu is always 180° opposite to Rahu
+  const ketu = (rahu + 180) % 360;
+  
+  console.log(`Rahu-Ketu calculation for JD ${julianDay}:`);
+  console.log(`- Rahu: ${rahu.toFixed(6)}°`);
+  console.log(`- Ketu: ${ketu.toFixed(6)}°`);
+  
+  return { rahu, ketu };
+}
+
 // Calculate accurate planetary positions
 function calculatePlanetaryPositions(julianDay: number): {
   sun: number;
@@ -244,9 +266,12 @@ function calculatePlanetaryPositions(julianDay: number): {
   mars: number;
   jupiter: number;
   saturn: number;
+  rahu: number;
+  ketu: number;
 } {
   const sun = calculateSunPosition(julianDay);
   const moon = calculateMoonPosition(julianDay);
+  const rahuKetu = calculateRahuKetu(julianDay);
   
   // For other planets, use simplified but more accurate approximations
   const T = (julianDay - 2451545.0) / 36525.0;
@@ -273,7 +298,9 @@ function calculatePlanetaryPositions(julianDay: number): {
     venus: venus < 0 ? venus + 360 : venus,
     mars: mars < 0 ? mars + 360 : mars,
     jupiter: jupiter < 0 ? jupiter + 360 : jupiter,
-    saturn: saturn < 0 ? saturn + 360 : saturn
+    saturn: saturn < 0 ? saturn + 360 : saturn,
+    rahu: rahuKetu.rahu,
+    ketu: rahuKetu.ketu
   };
 }
 
@@ -415,7 +442,7 @@ function calculateAscendant(julianDay: number, latitude: number = 22.5726, longi
   return ascendant;
 }
 
-// Determine Atmakaraka - planet with highest absolute degrees
+// Determine Atmakaraka - planet with highest degrees WITHIN ITS SIGN
 function calculateAtmakaraka(planetaryPositions: any): string {
   const planets = [
     { name: 'Sun', longitude: planetaryPositions.sun },
@@ -424,24 +451,35 @@ function calculateAtmakaraka(planetaryPositions: any): string {
     { name: 'Venus', longitude: planetaryPositions.venus },
     { name: 'Mars', longitude: planetaryPositions.mars },
     { name: 'Jupiter', longitude: planetaryPositions.jupiter },
-    { name: 'Saturn', longitude: planetaryPositions.saturn }
+    { name: 'Saturn', longitude: planetaryPositions.saturn },
+    { name: 'Rahu', longitude: planetaryPositions.rahu },
+    { name: 'Ketu', longitude: planetaryPositions.ketu }
   ];
   
   console.log(`=== ATMAKARAKA CALCULATION DEBUG ===`);
   
-  // Find planet with highest absolute longitude (degrees from 0° Aries)
-  let maxLongitude = 0;
+  // Calculate degrees within sign for each planet (0-30° range)
+  let maxDegreesInSign = 0;
   let atmakaraka = 'Moon';
   
   planets.forEach(planet => {
-    console.log(`${planet.name}: ${planet.longitude.toFixed(6)}°`);
-    if (planet.longitude > maxLongitude) {
-      maxLongitude = planet.longitude;
+    // Get degrees within the current sign (remainder when divided by 30)
+    const degreesInSign = planet.longitude % 30;
+    
+    console.log(`${planet.name}:`);
+    console.log(`  - Absolute longitude: ${planet.longitude.toFixed(6)}°`);
+    console.log(`  - Degrees in sign: ${degreesInSign.toFixed(6)}°`);
+    console.log(`  - Sign: ${getZodiacSign(planet.longitude)}`);
+    
+    if (degreesInSign > maxDegreesInSign) {
+      maxDegreesInSign = degreesInSign;
       atmakaraka = planet.name;
     }
   });
   
-  console.log(`Atmakaraka: ${atmakaraka} (${maxLongitude.toFixed(6)}° absolute)`);
+  console.log(`\nATMAKARAKA RESULT:`);
+  console.log(`- Planet: ${atmakaraka}`);
+  console.log(`- Highest degrees in sign: ${maxDegreesInSign.toFixed(6)}°`);
   console.log(`=== ATMAKARAKA CALCULATION COMPLETE ===`);
   
   return atmakaraka;
@@ -499,7 +537,7 @@ export function calculateEasternArchetype(formData: BirthData): EasternArchetype
     // Calculate precise Lahiri Ayanamsa
     const ayanamsa = calculateLahiriAyanamsa(julianDay);
     
-    // Calculate high-precision planetary positions (tropical)
+    // Calculate high-precision planetary positions (tropical) including Rahu/Ketu
     const tropicalPositions = calculatePlanetaryPositions(julianDay);
     
     // Convert moon to sidereal using precise ayanamsa
@@ -528,7 +566,7 @@ export function calculateEasternArchetype(formData: BirthData): EasternArchetype
     const lagna = getZodiacSign(siderealAscendant);
     const nakshatra = getNakshatra(siderealMoon);
     
-    // Convert all positions to sidereal for Atmakaraka (using absolute degrees)
+    // Convert all positions to sidereal for Atmakaraka calculation (including Rahu/Ketu)
     const siderealPositions = {
       sun: tropicalToSidereal(tropicalPositions.sun, ayanamsa),
       moon: siderealMoon,
@@ -536,7 +574,9 @@ export function calculateEasternArchetype(formData: BirthData): EasternArchetype
       venus: tropicalToSidereal(tropicalPositions.venus, ayanamsa),
       mars: tropicalToSidereal(tropicalPositions.mars, ayanamsa),
       jupiter: tropicalToSidereal(tropicalPositions.jupiter, ayanamsa),
-      saturn: tropicalToSidereal(tropicalPositions.saturn, ayanamsa)
+      saturn: tropicalToSidereal(tropicalPositions.saturn, ayanamsa),
+      rahu: tropicalToSidereal(tropicalPositions.rahu, ayanamsa),
+      ketu: tropicalToSidereal(tropicalPositions.ketu, ayanamsa)
     };
     
     const atmakaraka = calculateAtmakaraka(siderealPositions);
