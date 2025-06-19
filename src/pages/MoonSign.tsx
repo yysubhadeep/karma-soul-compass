@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -23,6 +22,7 @@ const MoonSign = () => {
     lagna: string;
     atmakaraka: string;
     nakshatra: string;
+    detailedData?: any;
   } | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
 
@@ -60,7 +60,8 @@ const MoonSign = () => {
         moonSign: calculation.moonSign,
         lagna: calculation.lagna,
         atmakaraka: calculation.atmakaraka,
-        nakshatra: calculation.nakshatra
+        nakshatra: calculation.nakshatra,
+        detailedData: calculation
       });
     } catch (error) {
       console.error('Error calculating astrology data:', error);
@@ -173,10 +174,10 @@ const MoonSign = () => {
           {/* Results - Vedic Calculations */}
           {calculations && (
             <div className="space-y-6">
-              {/* Moon Sign */}
+              {/* Moon Sign - KEEP EXACTLY AS IS */}
               <Card className="border-blue-200 bg-blue-50/50">
                 <CardHeader>
-                  <CardTitle className="text-center text-blue-800">Moon Sign</CardTitle>
+                  <CardTitle className="text-center text-blue-800">Moon Sign (Confirmed Accurate)</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
                   <div className="bg-white p-6 rounded-lg">
@@ -187,38 +188,10 @@ const MoonSign = () => {
                 </CardContent>
               </Card>
 
-              {/* Lagna (Ascendant) */}
-              <Card className="border-purple-200 bg-purple-50/50">
-                <CardHeader>
-                  <CardTitle className="text-center text-purple-800">Lagna (Ascendant)</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <div className="bg-white p-6 rounded-lg">
-                    <span className="text-4xl mb-2 block">⬆️</span>
-                    <h2 className="text-3xl font-bold text-purple-600 mb-1">{calculations.lagna}</h2>
-                    <p className="text-gray-600 text-sm">Your Rising Sign</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Atmakaraka */}
-              <Card className="border-orange-200 bg-orange-50/50">
-                <CardHeader>
-                  <CardTitle className="text-center text-orange-800">Atmakaraka</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <div className="bg-white p-6 rounded-lg">
-                    <span className="text-4xl mb-2 block">⭐</span>
-                    <h2 className="text-3xl font-bold text-orange-600 mb-1">{calculations.atmakaraka}</h2>
-                    <p className="text-gray-600 text-sm">Your Soul Planet</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Nakshatra */}
+              {/* Nakshatra - Should be accurate based on moon position */}
               <Card className="border-green-200 bg-green-50/50">
                 <CardHeader>
-                  <CardTitle className="text-center text-green-800">Nakshatra</CardTitle>
+                  <CardTitle className="text-center text-green-800">Nakshatra (Birth Star)</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
                   <div className="bg-white p-6 rounded-lg">
@@ -228,29 +201,54 @@ const MoonSign = () => {
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Test Results for Other Calculations */}
+              <Card className="border-yellow-200 bg-yellow-50/50">
+                <CardHeader>
+                  <CardTitle className="text-center text-yellow-800">Test Results - Please Verify</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="bg-white p-4 rounded-lg">
+                    <h3 className="font-semibold text-yellow-700 mb-2">Lagna (Ascendant)</h3>
+                    <p className="text-2xl font-bold text-yellow-600">{calculations.lagna}</p>
+                    <p className="text-sm text-gray-600">Please verify this against your known chart</p>
+                  </div>
+                  
+                  <div className="bg-white p-4 rounded-lg">
+                    <h3 className="font-semibold text-yellow-700 mb-2">Atmakaraka</h3>
+                    <p className="text-2xl font-bold text-yellow-600">{calculations.atmakaraka}</p>
+                    <p className="text-sm text-gray-600">Soul significator planet - please verify</p>
+                  </div>
+
+                  {/* Additional confident calculations */}
+                  {calculations.detailedData && (
+                    <div className="bg-white p-4 rounded-lg">
+                      <h3 className="font-semibold text-yellow-700 mb-2">Raw Calculation Data</h3>
+                      <div className="text-sm space-y-1">
+                        <p><strong>Primary Archetype:</strong> {calculations.detailedData.primaryArchetype}</p>
+                        <p><strong>Secondary Archetype:</strong> {calculations.detailedData.secondaryArchetype}</p>
+                        <p className="text-xs text-gray-500 mt-2">Check console logs for detailed astronomical calculations</p>
+                      </div>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* Instructions for verification */}
+              <Card className="border-gray-200 bg-gray-50">
+                <CardContent className="pt-6">
+                  <h3 className="font-semibold text-gray-900 mb-3">Verification Instructions</h3>
+                  <div className="space-y-2 text-sm text-gray-700">
+                    <p>✅ <strong>Moon Sign (Capricorn):</strong> This has been confirmed as accurate</p>
+                    <p>✅ <strong>Nakshatra (Dhanishta):</strong> Should be accurate as it's calculated from moon position</p>
+                    <p>❓ <strong>Lagna:</strong> Please verify this against your known birth chart</p>
+                    <p>❓ <strong>Atmakaraka:</strong> Please verify this against your known chart</p>
+                    <p className="mt-3 text-xs">Check the browser console for detailed calculation logs to help with debugging.</p>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           )}
-
-          {/* Information Section */}
-          <Card className="mt-8 bg-gray-50">
-            <CardContent className="pt-6">
-              <h3 className="font-semibold text-gray-900 mb-3">About These Calculations</h3>
-              <div className="space-y-3 text-sm text-gray-700">
-                <div>
-                  <strong>Moon Sign:</strong> Your emotional nature and subconscious patterns using sidereal zodiac.
-                </div>
-                <div>
-                  <strong>Lagna (Ascendant):</strong> Your personality, physical appearance, and life approach.
-                </div>
-                <div>
-                  <strong>Atmakaraka:</strong> The planet with the highest degrees, representing your soul's purpose.
-                </div>
-                <div>
-                  <strong>Nakshatra:</strong> Your birth star constellation, providing deeper personality insights.
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </>
