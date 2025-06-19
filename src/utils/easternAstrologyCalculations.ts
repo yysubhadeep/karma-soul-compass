@@ -1,4 +1,3 @@
-
 import { astronomia } from 'astronomia';
 
 interface BirthData {
@@ -591,6 +590,19 @@ export function calculateEasternArchetype(formData: BirthData): EasternArchetype
     const vedicMessage = EASTERN_ARCHETYPES[primaryArchetype as keyof typeof EASTERN_ARCHETYPES]?.message || 
                         'Your healing path reveals itself through ancient Vedic sciences for future-readiness and psychological alignment.';
     
+    // Create zodiac sign mapping for the UI
+    const zodiacSigns: Record<string, string> = {};
+    Object.entries(siderealPositions).forEach(([planet, longitude]) => {
+      zodiacSigns[planet] = getZodiacSign(longitude);
+    });
+    
+    console.log('=== PLANETARY POSITIONS TABLE ===');
+    Object.entries(siderealPositions).forEach(([planet, longitude]) => {
+      const sign = getZodiacSign(longitude);
+      const degreesInSign = longitude % 30;
+      console.log(`${planet}: ${longitude.toFixed(6)}° in ${sign} (${degreesInSign.toFixed(6)}° within sign)`);
+    });
+    
     const result = {
       primaryArchetype,
       secondaryArchetype,
@@ -599,7 +611,12 @@ export function calculateEasternArchetype(formData: BirthData): EasternArchetype
       lagna,
       atmakaraka,
       vedicMessage,
-      scores
+      scores,
+      // Additional data for detailed view
+      planetaryPositions: siderealPositions,
+      zodiacSigns: zodiacSigns,
+      ayanamsa: ayanamsa,
+      julianDay: julianDay
     };
     
     console.log('=== FINAL RESULT ===');

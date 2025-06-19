@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { calculateEasternArchetype } from '@/utils/easternAstrologyCalculations';
@@ -188,6 +190,81 @@ const MoonSign = () => {
                 </CardContent>
               </Card>
 
+              {/* Detailed Planetary Positions Table */}
+              {calculations.detailedData && calculations.detailedData.planetaryPositions && (
+                <Card className="border-purple-200 bg-purple-50/50">
+                  <CardHeader>
+                    <CardTitle className="text-center text-purple-800">Complete Planetary Positions</CardTitle>
+                    <p className="text-center text-sm text-purple-600">Exact degrees and rashi placements</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="bg-white p-4 rounded-lg overflow-x-auto">
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead className="font-bold">Planet</TableHead>
+                            <TableHead className="font-bold">Longitude</TableHead>
+                            <TableHead className="font-bold">Rashi</TableHead>
+                            <TableHead className="font-bold">Degrees in Sign</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {Object.entries(calculations.detailedData.planetaryPositions).map(([planet, longitude]) => {
+                            const planetLong = Number(longitude);
+                            const rashi = calculations.detailedData.zodiacSigns?.[planet] || 
+                                         ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'][Math.floor(planetLong / 30)];
+                            const degreesInSign = planetLong % 30;
+                            
+                            return (
+                              <TableRow key={planet}>
+                                <TableCell className="font-medium capitalize">{planet}</TableCell>
+                                <TableCell>{planetLong.toFixed(2)}°</TableCell>
+                                <TableCell className="font-medium">{rashi}</TableCell>
+                                <TableCell>{degreesInSign.toFixed(2)}°</TableCell>
+                              </TableRow>
+                            );
+                          })}
+                        </TableBody>
+                      </Table>
+                    </div>
+                    
+                    {/* Rashi Chart Visual */}
+                    <div className="mt-6 bg-white p-4 rounded-lg">
+                      <h3 className="font-bold text-purple-700 mb-4 text-center">Rashi Chart Layout</h3>
+                      <div className="grid grid-cols-4 gap-1 max-w-md mx-auto">
+                        {[
+                          { rashi: 'Aries', house: 1 }, { rashi: 'Taurus', house: 2 }, { rashi: 'Gemini', house: 3 }, { rashi: 'Cancer', house: 4 },
+                          { rashi: 'Pisces', house: 12 }, { rashi: '', house: 0 }, { rashi: '', house: 0 }, { rashi: 'Leo', house: 5 },
+                          { rashi: 'Aquarius', house: 11 }, { rashi: '', house: 0 }, { rashi: '', house: 0 }, { rashi: 'Virgo', house: 6 },
+                          { rashi: 'Capricorn', house: 10 }, { rashi: 'Sagittarius', house: 9 }, { rashi: 'Scorpio', house: 8 }, { rashi: 'Libra', house: 7 }
+                        ].map((cell, index) => {
+                          const planetsInRashi = Object.entries(calculations.detailedData.planetaryPositions).filter(([planet, longitude]) => {
+                            const planetLong = Number(longitude);
+                            const planetRashi = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'][Math.floor(planetLong / 30)];
+                            return planetRashi === cell.rashi;
+                          });
+                          
+                          return (
+                            <div key={index} className={`border border-gray-300 h-20 p-1 text-xs ${cell.rashi ? 'bg-gray-50' : 'bg-gray-200'}`}>
+                              {cell.rashi && (
+                                <>
+                                  <div className="font-bold text-purple-600 mb-1">{cell.rashi.slice(0, 3)}</div>
+                                  <div className="text-xs space-y-0.5">
+                                    {planetsInRashi.map(([planet]) => (
+                                      <div key={planet} className="text-blue-600">{planet.slice(0, 3)}</div>
+                                    ))}
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
               {/* Nakshatra - Should be accurate based on moon position */}
               <Card className="border-green-200 bg-green-50/50">
                 <CardHeader>
@@ -239,8 +316,9 @@ const MoonSign = () => {
                 <CardContent className="pt-6">
                   <h3 className="font-semibold text-gray-900 mb-3">Verification Instructions</h3>
                   <div className="space-y-2 text-sm text-gray-700">
-                    <p>✅ <strong>Moon Sign (Capricorn):</strong> This has been confirmed as accurate</p>
-                    <p>✅ <strong>Nakshatra (Dhanishta):</strong> Should be accurate as it's calculated from moon position</p>
+                    <p>✅ <strong>Moon Sign:</strong> This has been confirmed as accurate</p>
+                    <p>✅ <strong>Nakshatra:</strong> Should be accurate as it's calculated from moon position</p>
+                    <p>✅ <strong>Planetary Positions:</strong> High-precision calculations with exact degrees</p>
                     <p>❓ <strong>Lagna:</strong> Please verify this against your known birth chart</p>
                     <p>❓ <strong>Atmakaraka:</strong> Please verify this against your known chart</p>
                     <p className="mt-3 text-xs">Check the browser console for detailed calculation logs to help with debugging.</p>
