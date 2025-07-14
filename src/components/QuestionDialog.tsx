@@ -1,12 +1,17 @@
-
-import React, { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import React, { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { MessageCircle, Send } from "lucide-react";
+import axios from "axios";
 
 interface QuestionDialogProps {
   open: boolean;
@@ -14,32 +19,39 @@ interface QuestionDialogProps {
 }
 
 const QuestionDialog = ({ open, onOpenChange }: QuestionDialogProps) => {
-  const [question, setQuestion] = useState('');
-  const [whatsappNumber, setWhatsappNumber] = useState('');
+  const [question, setQuestion] = useState("");
+  const [whatsappNumber, setWhatsappNumber] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!question.trim()) {
       toast.error("Please enter your question");
       return;
     }
-    
+
     if (!whatsappNumber.trim()) {
       toast.error("Please enter your WhatsApp number");
       return;
     }
 
     setIsSubmitting(true);
-    
+
     try {
-      // Simulate submission - replace with actual API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      toast.success("Question submitted! We'll send your personalized answer to WhatsApp within 24 hours.");
-      setQuestion('');
-      setWhatsappNumber('');
+      await axios.post(
+        "https://botapiclass8.mygreenhorn.in/champ//karma-soul-free-question-form",
+        {
+          question,
+          whatsappNumber,
+        }
+      );
+
+      toast.success(
+        "Question submitted! We'll send your personalized answer to WhatsApp within 24 hours."
+      );
+      setQuestion("");
+      setWhatsappNumber("");
       onOpenChange(false);
     } catch (error) {
       toast.error("Failed to submit question. Please try again.");
@@ -57,10 +69,13 @@ const QuestionDialog = ({ open, onOpenChange }: QuestionDialogProps) => {
             Ask Your First Question FREE
           </DialogTitle>
         </DialogHeader>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="question" className="text-sm font-medium text-gray-700">
+            <Label
+              htmlFor="question"
+              className="text-sm font-medium text-gray-700"
+            >
               Your Question
             </Label>
             <Textarea
@@ -75,9 +90,12 @@ const QuestionDialog = ({ open, onOpenChange }: QuestionDialogProps) => {
               {question.length}/500 characters
             </div>
           </div>
-          
+
           <div className="space-y-2">
-            <Label htmlFor="whatsapp" className="text-sm font-medium text-gray-700">
+            <Label
+              htmlFor="whatsapp"
+              className="text-sm font-medium text-gray-700"
+            >
               WhatsApp Number
             </Label>
             <Input
@@ -92,7 +110,7 @@ const QuestionDialog = ({ open, onOpenChange }: QuestionDialogProps) => {
               Include country code (e.g., +91 for India)
             </div>
           </div>
-          
+
           <div className="bg-purple-50 p-3 rounded-lg border border-purple-200">
             <div className="flex items-start space-x-2 text-xs text-purple-700">
               <span>💜</span>
@@ -106,9 +124,9 @@ const QuestionDialog = ({ open, onOpenChange }: QuestionDialogProps) => {
               </div>
             </div>
           </div>
-          
-          <Button 
-            type="submit" 
+
+          <Button
+            type="submit"
             disabled={isSubmitting}
             className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 text-base"
           >
