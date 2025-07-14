@@ -50,74 +50,97 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-yellow-50">
       {/* Mobile Header - Enhanced */}
-      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-orange-200 px-3 sm:px-4 py-3">
-        <div className="flex items-center justify-between">
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-orange-200 px-3 sm:px-4 lg:px-6 py-3 shadow-sm">
+        <div className="flex items-center justify-between max-w-4xl mx-auto">
           <Button 
             onClick={onBack}
             size="sm"
-            className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-3 py-2 rounded-lg touch-manipulation"
+            className="bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white font-semibold px-3 py-2.5 rounded-lg touch-manipulation transition-all duration-200 min-h-[44px] min-w-[44px] flex items-center justify-center"
+            aria-label="Go back to form"
           >
-            <ArrowLeft className="h-4 w-4 mr-1" />
-            Back
+            <ArrowLeft className="h-4 w-4 mr-1" aria-hidden="true" />
+            <span className="hidden xs:inline">Back</span>
           </Button>
-          <h1 className="text-sm sm:text-lg font-bold text-gray-900 truncate px-2">KarmaArchetype Report</h1>
-          <div className="w-16"></div>
+          <h1 className="text-sm sm:text-lg lg:text-xl font-bold text-gray-900 truncate px-2 text-center">
+            KarmaArchetype Report
+          </h1>
+          <div className="w-16 sm:w-20"></div>
         </div>
-      </div>
+      </header>
 
-      <div className="p-3 sm:p-4 space-y-4">
+      <main className="p-3 sm:p-4 lg:p-6 space-y-4 sm:space-y-6 max-w-4xl mx-auto">
         {/* Personal Info Card */}
         <PersonalInfoCard formData={formData} />
 
         {/* Enhanced Tabs for Mobile Navigation */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-4 h-auto p-1 bg-white/70 rounded-lg">
-            <TabsTrigger value="profile" className="text-xs py-2 px-1 rounded-md touch-manipulation">
+          <TabsList className="grid w-full grid-cols-4 h-auto p-1 bg-white/70 rounded-lg shadow-sm backdrop-blur-sm">
+            <TabsTrigger 
+              value="profile" 
+              className="text-xs py-2.5 px-1 rounded-md touch-manipulation transition-all duration-200 min-h-[48px] data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              aria-label="View personality profile"
+            >
               <div className="flex flex-col items-center space-y-1">
-                <Star className="h-3 w-3 sm:h-4 sm:w-4" />
+                <Star className="h-3 w-3 sm:h-4 sm:w-4" aria-hidden="true" />
                 <span className="text-xs">Profile</span>
               </div>
             </TabsTrigger>
-            <TabsTrigger value="selffuture" className="text-xs py-2 px-1 rounded-md touch-manipulation">
+            <TabsTrigger 
+              value="selffuture" 
+              className="text-xs py-2.5 px-1 rounded-md touch-manipulation transition-all duration-200 min-h-[48px] data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              aria-label="View self development and future insights"
+            >
               <div className="flex flex-col items-center space-y-1">
-                <Compass className="h-3 w-3 sm:h-4 sm:w-4" />
+                <Compass className="h-3 w-3 sm:h-4 sm:w-4" aria-hidden="true" />
                 <span className="text-xs">Self + Future</span>
               </div>
             </TabsTrigger>
-            <TabsTrigger value="vedic" className="text-xs py-2 px-1 rounded-md touch-manipulation">
+            <TabsTrigger 
+              value="vedic" 
+              className="text-xs py-2.5 px-1 rounded-md touch-manipulation transition-all duration-200 min-h-[48px] data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              aria-label="View vedic astrology insights"
+            >
               <div className="flex flex-col items-center space-y-1">
-                <Brain className="h-3 w-3 sm:h-4 sm:w-4" />
+                <Brain className="h-3 w-3 sm:h-4 sm:w-4" aria-hidden="true" />
                 <span className="text-xs">Vedic</span>
               </div>
             </TabsTrigger>
-            <TabsTrigger value="reading" className="text-xs py-2 px-1 rounded-md touch-manipulation">
+            <TabsTrigger 
+              value="reading" 
+              className="text-xs py-2.5 px-1 rounded-md touch-manipulation transition-all duration-200 min-h-[48px] data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              aria-label="Get personal reading"
+            >
               <div className="flex flex-col items-center space-y-1">
-                <MessageCircle className="h-3 w-3 sm:h-4 sm:w-4" />
+                <MessageCircle className="h-3 w-3 sm:h-4 sm:w-4" aria-hidden="true" />
                 <span className="text-xs">Reading</span>
               </div>
             </TabsTrigger>
           </TabsList>
 
           {/* Your Profile Tab - Consolidated Content */}
-          <TabsContent value="profile" className="space-y-4 mt-4">
+          <TabsContent value="profile" className="space-y-4 sm:space-y-6 mt-4" role="tabpanel" aria-labelledby="profile-tab">
             {/* Main Archetype */}
-            <ArchetypeCard 
-              archetype={profile.archetype} 
-              secondaryArchetype={profile.secondaryArchetype} 
-            />
+            <section aria-labelledby="archetype-section">
+              <ArchetypeCard 
+                archetype={profile.archetype} 
+                secondaryArchetype={profile.secondaryArchetype} 
+              />
+            </section>
 
             {/* Life Purpose */}
-            <Card className="border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50">
-              <CardHeader className="pb-3 px-4 pt-4">
-                <CardTitle className="flex items-center space-x-2 text-base sm:text-lg">
-                  <Heart className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
-                  <span>Your Life Purpose</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="px-4 pb-4">
-                <p className="text-gray-800 leading-relaxed text-sm">{archetypeData.lifePurpose}</p>
-              </CardContent>
-            </Card>
+            <section aria-labelledby="life-purpose-section">
+              <Card className="border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50 shadow-sm">
+                <CardHeader className="pb-3 px-4 sm:px-6 pt-4 sm:pt-6">
+                  <CardTitle id="life-purpose-section" className="flex items-center space-x-2 text-base sm:text-lg lg:text-xl">
+                    <Heart className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" aria-hidden="true" />
+                    <span>Your Life Purpose</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="px-4 sm:px-6 pb-4 sm:pb-6">
+                  <p className="text-gray-800 leading-relaxed text-sm sm:text-base">{archetypeData.lifePurpose}</p>
+                </CardContent>
+              </Card>
+            </section>
 
             {/* Core Patterns */}
             <Card className="border-orange-200">
@@ -359,7 +382,7 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
             </Card>
           </TabsContent>
         </Tabs>
-      </div>
+      </main>
 
       {/* Floating CTA */}
       <FloatingCTA />
