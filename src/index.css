@@ -35,20 +35,18 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Mobile-specific optimizations */
+    --touch-target-min: 44px;
+    --mobile-spacing: 1rem;
+    --mobile-font-scale: 1;
   }
 
   .dark {
@@ -88,6 +86,13 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  /* Mobile-first responsive font scaling */
+  @media (max-width: 640px) {
+    :root {
+      --mobile-font-scale: 0.9;
+    }
+  }
 }
 
 @layer base {
@@ -97,5 +102,35 @@
 
   body {
     @apply bg-background text-foreground;
+    /* Mobile optimizations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+  }
+
+  /* Mobile touch improvements */
+  button, [role="button"], input[type="submit"], input[type="button"] {
+    @apply touch-manipulation;
+    min-height: var(--touch-target-min);
+    min-width: var(--touch-target-min);
+  }
+
+  /* Prevent zoom on iOS input focus */
+  @media screen and (max-width: 768px) {
+    input, select, textarea {
+      font-size: 16px;
+    }
+  }
+
+  /* Smooth scrolling for mobile */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Mobile-friendly focus indicators */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
   }
 }
