@@ -198,9 +198,9 @@ const KarmaForm = () => {
 
     let fullname = formData.name;
     let email = formData.email;
-    let DOB = formData.email;
-    let TOB = formData.email;
-    let POB = formData.email;
+    let DOB = formData.dateOfBirth;
+    let TOB = formData.timeOfBirth;
+    let POB = formData.placeOfBirth;
 
     try {
       const res = await axios
