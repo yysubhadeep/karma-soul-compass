@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { ArrowRight, Compass, Calendar, Star } from "lucide-react";
 import KarmaForm from '@/components/KarmaForm';
 import SEO from '@/components/SEO';
+import WhatsAppWidget from '@/components/WhatsAppWidget';
 
 const Index = () => {
   const [showForm, setShowForm] = useState(false);
@@ -394,6 +395,9 @@ const Index = () => {
           </div>
         </footer>
       </div>
+      
+      {/* WhatsApp Widget */}
+      <WhatsAppWidget />
     </>
   );
 };
