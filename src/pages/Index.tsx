@@ -32,11 +32,11 @@ const Index = () => {
   return (
     <>
       <SEO
-        title="KarmaMap™ - Discover Your Life Purpose & Personality Type | Free AI Reading"
-        description="Find your true path with KarmaMap™. Get instant clarity on who you are, what you're meant to do, and when to take action. Free AI-powered personality reading based on ancient wisdom."
-        keywords="personality test, life purpose, career guidance, astrology, karma, self discovery, free reading, ancient wisdom, AI astrology, personality type"
-        ogTitle="KarmaMap™ - Free Life Purpose & Personality Reading"
-        ogDescription="Discover your unique personality type and life purpose in just 3 minutes. Trusted by 10,000+ people worldwide."
+        title="KarmaMap™ - Discover Your Life Purpose & Personality Type | Free Astrology Reading"
+        description="Find your true path with KarmaMap™. Get instant clarity on who you are, what you're meant to do, and when to take action. Free AI-powered astrology reading based on ancient wisdom."
+        keywords="personality test, life purpose, career guidance, astrology, karma, self discovery, free reading, ancient wisdom, AI astrology, personality type, vedic astrology, birth chart"
+        ogTitle="KarmaMap™ - Free Life Purpose & Astrology Reading"
+        ogDescription="Discover your unique personality type and life purpose through astrology in just 3 minutes. Trusted by 10,000+ people worldwide."
         canonicalUrl="https://karmamap.lovable.app"
         structuredData={structuredData}
       />
@@ -63,26 +63,29 @@ const Index = () => {
             <div className="text-center space-y-4">
               <div>
                 <span className="inline-block bg-orange-100 text-orange-800 px-3 py-2 rounded-full text-xs sm:text-sm font-medium mb-4">
-                  🌟 Discover Your Life Purpose
+                  ⭐ Ancient Astrology Meets Modern AI
                 </span>
                 <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-tight px-2">
-                  Find Your True Path with <span className="text-orange-600">KarmaMap™</span>
+                  Discover Your <span className="text-orange-600">Cosmic Blueprint</span> with KarmaMap™
                 </h1>
-                <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4 px-2">
-                  Get instant clarity on who you are and what you're meant to do. Powered by AI and ancient wisdom.
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-2 px-2">
+                  Get your personalized astrology reading based on your birth details. Understand your planetary influences, life patterns, and soul purpose.
+                </p>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4 px-2 italic">
+                  "Your birth chart is your soul's GPS" - Ancient Vedic wisdom meets cutting-edge AI
                 </p>
               </div>
 
               {/* Mobile CTA Card - Prominent */}
               {!showForm ? (
-                <Card className="bg-gradient-to-br from-orange-500 to-red-500 text-white border-0 shadow-xl mx-2 sm:mx-4">
+                <Card className="bg-gradient-to-br from-purple-600 to-indigo-600 text-white border-0 shadow-xl mx-2 sm:mx-4">
                   <CardContent className="p-4 sm:p-6 text-center space-y-4">
-                    <div className="text-3xl sm:text-4xl mb-3">🧭</div>
+                    <div className="text-3xl sm:text-4xl mb-3">🔮</div>
                     <h2 className="text-lg sm:text-xl font-bold mb-3">
-                      Get Your FREE KarmaArchetype
+                      Get Your FREE Astrology Reading
                     </h2>
                     <p className="text-xs sm:text-sm opacity-90 mb-4">
-                      Discover your unique personality type and life purpose in just 3 minutes.
+                      Discover your cosmic blueprint based on your birth chart. Understand planetary influences on your personality, career, and relationships.
                     </p>
                     
                     <div className="space-y-2 mb-4 text-xs">
@@ -138,21 +141,40 @@ const Index = () => {
 
             {/* Mobile Benefits - Second Fold */}
             <div className="grid grid-cols-2 gap-2 sm:gap-3 mt-8 px-2">
-              <div className="flex items-center space-x-2 bg-white/70 rounded-lg p-2 sm:p-3">
-                <span className="text-lg sm:text-xl">🎯</span>
-                <span className="font-medium text-gray-800 text-xs sm:text-sm">Find Purpose</span>
+              <div className="flex flex-col items-center text-center bg-white/70 rounded-lg p-2 sm:p-3">
+                <span className="text-lg sm:text-xl mb-1">🌌</span>
+                <span className="font-medium text-gray-800 text-xs sm:text-sm">Birth Chart</span>
               </div>
-              <div className="flex items-center space-x-2 bg-white/70 rounded-lg p-2 sm:p-3">
-                <span className="text-lg sm:text-xl">💡</span>
-                <span className="font-medium text-gray-800 text-xs sm:text-sm">Career Clarity</span>
+              <div className="flex flex-col items-center text-center bg-white/70 rounded-lg p-2 sm:p-3">
+                <span className="text-lg sm:text-xl mb-1">🪐</span>
+                <span className="font-medium text-gray-800 text-xs sm:text-sm">Planetary Insights</span>
               </div>
-              <div className="flex items-center space-x-2 bg-white/70 rounded-lg p-2 sm:p-3">
-                <span className="text-lg sm:text-xl">💕</span>
-                <span className="font-medium text-gray-800 text-xs sm:text-sm">Love Insights</span>
+              <div className="flex flex-col items-center text-center bg-white/70 rounded-lg p-2 sm:p-3">
+                <span className="text-lg sm:text-xl mb-1">💕</span>
+                <span className="font-medium text-gray-800 text-xs sm:text-sm">Love Compatibility</span>
               </div>
-              <div className="flex items-center space-x-2 bg-white/70 rounded-lg p-2 sm:p-3">
-                <span className="text-lg sm:text-xl">⏰</span>
-                <span className="font-medium text-gray-800 text-xs sm:text-sm">Perfect Timing</span>
+              <div className="flex flex-col items-center text-center bg-white/70 rounded-lg p-2 sm:p-3">
+                <span className="text-lg sm:text-xl mb-1">🌟</span>
+                <span className="font-medium text-gray-800 text-xs sm:text-sm">Life Purpose</span>
+              </div>
+            </div>
+
+            {/* Astrology Explainer - Mobile */}
+            <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-3 sm:p-4 border border-purple-200 mx-2 sm:mx-4 mt-6">
+              <h3 className="text-sm font-bold text-gray-900 mb-2 text-center">🔮 How It Works</h3>
+              <div className="space-y-2 text-xs text-gray-700">
+                <p className="flex items-start space-x-2">
+                  <span className="text-purple-600 font-bold">1.</span>
+                  <span>Enter your birth details (date, time, place)</span>
+                </p>
+                <p className="flex items-start space-x-2">
+                  <span className="text-purple-600 font-bold">2.</span>
+                  <span>AI analyzes your planetary positions</span>
+                </p>
+                <p className="flex items-start space-x-2">
+                  <span className="text-purple-600 font-bold">3.</span>
+                  <span>Get personalized astrology insights instantly</span>
+                </p>
               </div>
             </div>
           </div>
@@ -163,14 +185,16 @@ const Index = () => {
             <div className="space-y-6">
               <div>
                 <span className="inline-block bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
-                  🌟 Discover Your Life Purpose
+                  ⭐ Ancient Astrology Meets Modern AI
                 </span>
                 <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
-                  Find Your True Path with <span className="text-orange-600">KarmaMap™</span>
+                  Discover Your <span className="text-orange-600">Cosmic Blueprint</span> with KarmaMap™
                 </h1>
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-                  Get instant clarity on who you are, what you're meant to do, and when to take action. 
-                  Powered by AI and ancient wisdom.
+                <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-4">
+                  Get your personalized astrology reading based on your birth details. Understand your planetary influences, life patterns, and soul purpose.
+                </p>
+                <p className="text-sm text-gray-600 leading-relaxed mb-6 italic">
+                  "Your birth chart is your soul's GPS" - Ancient Vedic wisdom meets cutting-edge AI
                 </p>
               </div>
 
@@ -213,14 +237,14 @@ const Index = () => {
             {/* Right Content - CTA Form */}
             <div className="lg:pl-8">
               {!showForm ? (
-                <Card className="bg-gradient-to-br from-orange-500 to-red-500 text-white border-0 shadow-2xl">
+                <Card className="bg-gradient-to-br from-purple-600 to-indigo-600 text-white border-0 shadow-2xl">
                   <CardContent className="p-8 text-center space-y-6">
-                    <div className="text-5xl mb-4">🧭</div>
+                    <div className="text-5xl mb-4">🔮</div>
                     <h2 className="text-2xl md:text-3xl font-bold mb-4">
-                      Get Your FREE KarmaArchetype
+                      Get Your FREE Astrology Reading
                     </h2>
                     <p className="text-lg opacity-90 mb-6">
-                      Discover your unique personality type, life purpose, and growth path in just 3 minutes.
+                      Discover your cosmic blueprint based on your birth chart. Understand planetary influences on your personality, career, and relationships.
                     </p>
                     
                     <div className="space-y-3 mb-6">
@@ -318,33 +342,33 @@ const Index = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               {
-                title: "Your KarmaArchetype™",
-                description: "Your karmic personality type",
-                icon: "🌟"
+                title: "Birth Chart Analysis",
+                description: "Your complete astrological blueprint",
+                icon: "🌌"
               },
               {
-                title: "Life Insights",
-                description: "Clear insights on career, love, life timing",
-                icon: "💡"
+                title: "Planetary Influences",
+                description: "How planets shape your personality",
+                icon: "🪐"
               },
               {
-                title: "Weekly Guidance",
-                description: "Weekly guidance via KarmaSync™",
-                icon: "📅"
+                title: "Karma Patterns",
+                description: "Understanding your life lessons",
+                icon: "🔄"
               },
               {
-                title: "Personalized Reports",
-                description: "Affordable reports in English, Hindi, and more",
-                icon: "📋"
+                title: "Future Guidance",
+                description: "Timing for important decisions",
+                icon: "⏰"
               }
             ].map((feature, index) => (
-              <Card key={index} className="border-orange-200 hover:shadow-lg transition-shadow duration-300">
+              <Card key={index} className="border-purple-200 hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <CardHeader className="text-center pb-3">
                   <div className="text-3xl sm:text-4xl mb-2">{feature.icon}</div>
-                  <CardTitle className="text-base sm:text-lg">{feature.title}</CardTitle>
+                  <CardTitle className="text-base sm:text-lg text-purple-800">{feature.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-center text-sm">
+                  <CardDescription className="text-center text-sm text-gray-600">
                     {feature.description}
                   </CardDescription>
                 </CardContent>
