@@ -7,7 +7,6 @@ import { getArchetypeData, calculateArchetypeFromChart } from '@/data/archetypeD
 
 interface FormData {
   name: string;
-  email: string;
   dateOfBirth: string;
   timeOfBirth: string;
   placeOfBirth: string;
@@ -611,7 +610,7 @@ const AstrologyReport = ({ formData, onBack }: AstrologyReportProps) => {
             This is the beginning of your journey to psychological clarity and authentic living.
           </p>
           <p className="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base">
-            Your detailed KarmaArchetype report has been sent to {formData.email}
+            Your KarmaArchetype analysis is now complete and displayed above.
           </p>
           <div className="bg-white/50 rounded-lg p-3 sm:p-4 mt-4">
             <p className="text-xs sm:text-sm text-gray-700 italic">
