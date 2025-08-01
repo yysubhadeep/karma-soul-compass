@@ -317,32 +317,34 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
           {/* Get Personal Reading Tab */}
           <TabsContent value="reading" className="space-y-4 mt-4">
             {/* Main Call to Action */}
-            <Card className="border-4 border-gradient-to-r from-purple-400 to-pink-400 bg-gradient-to-br from-purple-50 via-pink-50 to-violet-50">
+            <Card className="border-4 border-gradient-to-r from-green-400 to-green-500 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
               <CardContent className="text-center py-6 sm:py-8 space-y-4 sm:space-y-6 px-4">
-                <div className="text-4xl sm:text-6xl mb-4">✨</div>
-                <h2 className="text-xl sm:text-2xl font-bold text-purple-900 mb-4">Ready to Go Deeper?</h2>
+                <div className="text-4xl sm:text-6xl mb-4">💬</div>
+                <h2 className="text-xl sm:text-2xl font-bold text-green-900 mb-4">Ready for Personal Guidance?</h2>
                 <p className="text-sm sm:text-base text-gray-800 leading-relaxed mb-4 sm:mb-6">
-                  Get personalized answers to your most pressing questions about love, career, purpose, and personal growth.
+                  Get personalized insights about your KarmaArchetype with our certified astrologer via WhatsApp.
                 </p>
                 
-                <div className="bg-white/70 rounded-2xl p-4 sm:p-6 border-2 border-purple-200">
+                <div className="bg-white/70 rounded-2xl p-4 sm:p-6 border-2 border-green-200">
                   <div className="flex items-center justify-center space-x-2 mb-4">
-                    <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 text-purple-600" />
-                    <h3 className="text-lg sm:text-xl font-bold text-purple-800">Ask Your First Question FREE</h3>
+                    <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 text-green-600" />
+                    <h3 className="text-lg sm:text-xl font-bold text-green-800">Personal WhatsApp Consultation</h3>
                   </div>
                   
                   <div className="flex justify-center mb-4">
                     <Button 
-                      className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-4 sm:px-6 text-sm sm:text-base rounded-lg max-w-xs touch-manipulation"
+                      onClick={() => window.open('https://wa.me/9930421623?text=Hi%2C%20I%20completed%20my%20KarmaArchetype%20report%20and%20would%20like%20a%20personal%20consultation.', '_blank')}
+                      className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold py-3 px-4 sm:px-6 text-sm sm:text-base rounded-lg max-w-xs touch-manipulation"
                     >
-                      <Star className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                      Get My FREE Personal Reading
+                      <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                      <span className="hidden sm:inline">WhatsApp Consultation</span>
+                      <span className="sm:hidden">WhatsApp</span>
                     </Button>
                   </div>
                   
-                  <div className="grid grid-cols-3 gap-2 sm:gap-4 text-xs sm:text-sm text-purple-700 font-medium">
+                  <div className="grid grid-cols-3 gap-2 sm:gap-4 text-xs sm:text-sm text-green-700 font-medium">
                     <div className="flex flex-col items-center space-y-1 sm:space-y-2">
-                      <span className="text-xl sm:text-2xl">💜</span>
+                      <span className="text-xl sm:text-2xl">💚</span>
                       <span>Love & Relationships</span>
                     </div>
                     <div className="flex flex-col items-center space-y-1 sm:space-y-2">
@@ -356,25 +358,21 @@ const MobileAstrologyReport = ({ formData, onBack }: MobileAstrologyReportProps)
                   </div>
                 </div>
 
-                {/* What You'll Get */}
-                <div className="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-xl p-3 sm:p-4 border border-indigo-200">
-                  <h4 className="text-base sm:text-lg font-bold text-indigo-900 mb-3">What You'll Get:</h4>
-                  <div className="space-y-2 text-xs sm:text-sm text-indigo-800">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-indigo-600">✓</span>
-                      <span>Personalized answers to your specific questions</span>
+                {/* Contact Info */}
+                <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-3 sm:p-4 border border-green-200">
+                  <h4 className="text-base sm:text-lg font-bold text-green-900 mb-3">Direct Contact:</h4>
+                  <div className="space-y-2 text-xs sm:text-sm text-green-800">
+                    <div className="flex items-center justify-center space-x-2">
+                      <span className="text-green-600">📱</span>
+                      <span className="font-semibold">WhatsApp: 9930421623</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-indigo-600">✓</span>
-                      <span>Deeper insights into your {profile.archetype} nature</span>
+                    <div className="flex items-center justify-center space-x-2">
+                      <span className="text-green-600">⏰</span>
+                      <span>Available for personalized consultations</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-indigo-600">✓</span>
-                      <span>Guidance for your next life steps</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-indigo-600">✓</span>
-                      <span>No commitment - first question is completely free</span>
+                    <div className="flex items-center justify-center space-x-2">
+                      <span className="text-green-600">🔒</span>
+                      <span>100% confidential & secure</span>
                     </div>
                   </div>
                 </div>
