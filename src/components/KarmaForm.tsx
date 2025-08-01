@@ -5,8 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import PlaceAutosuggest from "./PlaceAutosuggest";
-import AstrologyReport from "./AstrologyReport";
 
 interface FormData {
   name: string;
@@ -16,7 +16,7 @@ interface FormData {
 }
 
 const KarmaForm = () => {
-  const [showReport, setShowReport] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     dateOfBirth: "",
@@ -51,24 +51,10 @@ const KarmaForm = () => {
     setTimeout(() => {
       setLoading(false);
       toast.success("🌟 Your KarmaArchetype has been generated!");
-      setShowReport(true);
+      navigate("/report", { state: { formData } });
     }, 2000);
   };
 
-  const handleBackToForm = () => {
-    setShowReport(false);
-    setFormData({
-      name: "",
-      dateOfBirth: "",
-      timeOfBirth: "",
-      placeOfBirth: "",
-    });
-  };
-
-  // Show report if generated
-  if (showReport) {
-    return <AstrologyReport formData={formData} onBack={handleBackToForm} />;
-  }
 
   return (
     <div className="w-full max-w-sm mx-auto px-2">

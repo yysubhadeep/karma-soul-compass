@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Compass, Calendar, Star } from "lucide-react";
@@ -58,7 +59,7 @@ const Index = () => {
           <nav className="hidden md:flex space-x-6">
             <a href="#about" className="text-gray-700 hover:text-orange-600 transition-colors">About</a>
             <a href="#features" className="text-gray-700 hover:text-orange-600 transition-colors">Features</a>
-            <a href="/contact" className="text-gray-700 hover:text-orange-600 transition-colors">Contact</a>
+            <Link to="/contact" className="text-gray-700 hover:text-orange-600 transition-colors">Contact</Link>
           </nav>
         </header>
 
