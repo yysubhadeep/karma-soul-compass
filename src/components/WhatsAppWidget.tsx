@@ -15,7 +15,7 @@ const WhatsAppWidget = () => {
       >
         <MessageCircle className="h-5 w-5" />
         <span className="hidden sm:block text-sm font-medium whitespace-nowrap">
-          Click here and consult via WhatsApp
+          WhatsApp 9930421623 for Consultation
         </span>
         <span className="block sm:hidden text-xs font-medium">
           WhatsApp

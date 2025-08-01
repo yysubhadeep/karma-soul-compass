@@ -12,10 +12,11 @@ const Index = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "KarmaMap™",
+    "name": "KarmaMap™ - Free Astrology Reading & Life Purpose Discovery",
     "applicationCategory": "LifestyleApplication",
-    "description": "Discover your life purpose and personality type with AI-powered ancient wisdom. Get instant clarity on career, relationships, and personal growth.",
+    "description": "Discover your cosmic blueprint with KarmaMap™. Free AI-powered astrology reading based on your birth chart. Get instant clarity on personality, career, relationships, and life purpose through ancient Vedic wisdom.",
     "url": "https://karmamap.lovable.app",
+    "keywords": "free astrology reading, birth chart analysis, life purpose, personality test, vedic astrology, AI astrology, career guidance, relationship compatibility, WhatsApp consultation 9930421623",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -26,17 +27,23 @@ const Index = () => {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
       "reviewCount": "10000"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+919930421623",
+      "contactType": "customer service",
+      "availableLanguage": ["English", "Hindi"]
     }
   };
 
   return (
     <>
       <SEO
-        title="KarmaMap™ - Discover Your Life Purpose & Personality Type | Free Astrology Reading"
-        description="Find your true path with KarmaMap™. Get instant clarity on who you are, what you're meant to do, and when to take action. Free AI-powered astrology reading based on ancient wisdom."
-        keywords="personality test, life purpose, career guidance, astrology, karma, self discovery, free reading, ancient wisdom, AI astrology, personality type, vedic astrology, birth chart"
-        ogTitle="KarmaMap™ - Free Life Purpose & Astrology Reading"
-        ogDescription="Discover your unique personality type and life purpose through astrology in just 3 minutes. Trusted by 10,000+ people worldwide."
+        title="KarmaMap™ - Free Astrology Reading & Birth Chart Analysis | Discover Your Life Purpose"
+        description="Get your free personalized astrology reading with KarmaMap™. Discover your cosmic blueprint, personality type, and life purpose through AI-powered Vedic astrology. Send WhatsApp message to 9930421623 for personal consultation."
+        keywords="free astrology reading, birth chart analysis, vedic astrology, personality test, life purpose, career guidance, relationship compatibility, AI astrology, cosmic blueprint, WhatsApp consultation 9930421623, astrology consultation India"
+        ogTitle="KarmaMap™ - Free Astrology Reading & Birth Chart Analysis"
+        ogDescription="Discover your cosmic blueprint and life purpose with free AI-powered astrology reading. Based on ancient Vedic wisdom. Personal consultation available via WhatsApp 9930421623."
         canonicalUrl="https://karmamap.lovable.app"
         structuredData={structuredData}
       />
@@ -71,8 +78,11 @@ const Index = () => {
                 <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-2 px-2">
                   Get your personalized astrology reading based on your birth details. Understand your planetary influences, life patterns, and soul purpose.
                 </p>
-                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4 px-2 italic">
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-2 px-2 italic">
                   "Your birth chart is your soul's GPS" - Ancient Vedic wisdom meets cutting-edge AI
+                </p>
+                <p className="text-xs text-orange-700 font-semibold bg-orange-50 px-3 py-2 rounded-lg mx-2 mb-4">
+                  📱 For personal consultation, send WhatsApp message to 9930421623
                 </p>
               </div>
 
@@ -193,9 +203,14 @@ const Index = () => {
                 <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-4">
                   Get your personalized astrology reading based on your birth details. Understand your planetary influences, life patterns, and soul purpose.
                 </p>
-                <p className="text-sm text-gray-600 leading-relaxed mb-6 italic">
+                <p className="text-sm text-gray-600 leading-relaxed mb-4 italic">
                   "Your birth chart is your soul's GPS" - Ancient Vedic wisdom meets cutting-edge AI
                 </p>
+                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
+                  <p className="text-sm text-orange-800 font-semibold text-center">
+                    📱 Need Personal Guidance? Send WhatsApp message to 9930421623 for consultation
+                  </p>
+                </div>
               </div>
 
               {/* Key Benefits */}
@@ -410,8 +425,11 @@ const Index = () => {
               <Compass className="h-6 w-6 sm:h-8 sm:w-8 text-orange-500" />
               <span className="text-xl sm:text-2xl font-bold">KarmaMap™</span>
             </div>
-            <p className="text-gray-400 mb-4 text-sm sm:text-base">
+            <p className="text-gray-400 mb-2 text-sm sm:text-base">
               Discover your true path with AI-powered ancient wisdom
+            </p>
+            <p className="text-orange-400 mb-4 text-sm font-semibold">
+              📱 Personal Consultation: WhatsApp 9930421623
             </p>
             <p className="text-xs sm:text-sm text-gray-500">
               © 2025 KarmaMap™. Built for Bharat with 🧡
