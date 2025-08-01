@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -32,7 +31,7 @@ const KarmaForm = () => {
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
 
-  const navigate = useNavigate();
+  
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({
@@ -217,8 +216,17 @@ const KarmaForm = () => {
         .then(() => {
           setTimeout(() => {
             setLoading(false);
-            toast.success("🌟 Your KarmaArchetype has been generated!");
-            navigate("/report", { state: { formData } });
+            toast.success("🌟 Your KarmaArchetype has been generated! Check your email for the detailed report.");
+            // Show success message and reset form for new reading
+            setStep(1);
+            setFormData({
+              name: "",
+              email: "",
+              otp: "",
+              dateOfBirth: "",
+              timeOfBirth: "",
+              placeOfBirth: "",
+            });
           }, 2000);
         });
     } catch (err) {}
