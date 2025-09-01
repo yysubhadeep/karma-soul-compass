@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import MoonSign from "./pages/MoonSign";
 import WesternAstroExperiment from "./pages/WesternAstroExperiment";
 import EasternAstroExperiment from "./pages/EasternAstroExperiment";
+import KarmaQ from "./pages/KarmaQ";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/moon-sign" element={<MoonSign />} />
           <Route path="/western-experiment" element={<WesternAstroExperiment />} />
           <Route path="/vedicscience" element={<EasternAstroExperiment />} />
+          <Route path="/KarmaQ" element={<KarmaQ />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
