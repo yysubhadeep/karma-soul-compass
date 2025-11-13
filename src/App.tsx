@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
 import Index from "./pages/Index";
 import Report from "./pages/Report";
 import WesternReport from "./pages/WesternReport";
@@ -27,22 +28,24 @@ const App = () => (
       <Toaster />
       <Sonner />
       <Router>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/report" element={<Report />} />
-          <Route path="/western-report" element={<WesternReport />} />
-          <Route path="/eastern-report" element={<EasternReport />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/moon-sign" element={<MoonSign />} />
-          <Route path="/western-experiment" element={<WesternAstroExperiment />} />
-          <Route path="/vedicscience" element={<EasternAstroExperiment />} />
-          <Route path="/KarmaQ" element={<KarmaQ />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/refund-policy" element={<RefundPolicy />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/return-policy" element={<ReturnPolicy />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/report" element={<Report />} />
+            <Route path="/western-report" element={<WesternReport />} />
+            <Route path="/eastern-report" element={<EasternReport />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/moon-sign" element={<MoonSign />} />
+            <Route path="/western-experiment" element={<WesternAstroExperiment />} />
+            <Route path="/vedicscience" element={<EasternAstroExperiment />} />
+            <Route path="/KarmaQ" element={<KarmaQ />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/refund-policy" element={<RefundPolicy />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/return-policy" element={<ReturnPolicy />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout>
       </Router>
     </TooltipProvider>
   </QueryClientProvider>
