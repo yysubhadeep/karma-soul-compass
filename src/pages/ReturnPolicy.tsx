@@ -17,66 +17,41 @@ const ReturnPolicy = () => {
           
           <div className="prose prose-lg max-w-none text-foreground/80 space-y-6">
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">Digital Services</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">Return & Exchange Policy</h2>
               <p>
-                KarmaArchetype provides digital astrology services, including reports and consultations. As these are digital products, traditional returns are not applicable.
+                We offer refund / exchange within first 7 days from the date of your purchase. If 7 days have passed since your purchase, you will not be offered a return, exchange or refund of any kind.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">Service Guarantee</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">Eligibility Criteria</h2>
               <p>
-                Instead of returns, we offer a satisfaction guarantee:
-              </p>
-              <ul className="list-disc pl-6 mt-2 space-y-2">
-                <li>All reports delivered within promised timeframes</li>
-                <li>High-quality, personalized astrology readings</li>
-                <li>Professional and ethical service</li>
-                <li>Full refund if we miss our Service Level Agreement (SLA)</li>
-              </ul>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">Cancellation Before Delivery</h2>
-              <p>
-                You may cancel your order before we start working on your report:
+                In order to become eligible for a return or an exchange:
               </p>
               <ul className="list-disc pl-6 mt-2 space-y-2">
-                <li>Contact us within 2 hours of placing your order</li>
-                <li>Full refund will be issued if work hasn't begun</li>
-                <li>Partial refund may be available if work is in progress</li>
+                <li>The purchased item should be unused and in the same condition as you received it</li>
+                <li>The item must have original packaging</li>
+                <li>If the item that you purchased on a sale, then the item may not be eligible for a return / exchange</li>
               </ul>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">Quality Issues</h2>
-              <p>
-                If you receive a report with quality issues:
+              <p className="mt-4">
+                Further, only such items are replaced by us (based on an exchange request), if such items are found defective or damaged.
               </p>
-              <ul className="list-disc pl-6 mt-2 space-y-2">
-                <li>Contact us within 7 days of receiving your report</li>
-                <li>Describe the specific issues you've encountered</li>
-                <li>We will either revise the report or issue a full refund</li>
-              </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">Non-Returnable Services</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">Exempt Categories</h2>
               <p>
-                The following cannot be returned or refunded after delivery:
+                You agree that there may be a certain category of products / items that are exempted from returns or refunds. Such categories of the products would be identified to you at the item of purchase.
               </p>
-              <ul className="list-disc pl-6 mt-2 space-y-2">
-                <li>Completed live consultation sessions</li>
-                <li>Delivered digital reports that meet quality standards</li>
-                <li>Free lottery readings</li>
-                <li>Promotional services after use</li>
-              </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">Contact Support</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">Return Process</h2>
               <p>
-                For any questions about returns or service issues, please contact our support team through the website. We're committed to ensuring your satisfaction with our services.
+                For exchange / return accepted request(s) (as applicable), once your returned product / item is received and inspected by us, we will send you an email to notify you about receipt of the returned / exchanged product.
+              </p>
+              <p>
+                Further, if the same has been approved after the quality check at our end, your request (i.e. return / exchange) will be processed in accordance with our policies.
               </p>
             </section>
           </div>
